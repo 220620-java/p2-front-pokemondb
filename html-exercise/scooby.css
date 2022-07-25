@@ -30,3 +30,20 @@ img {
     margin-right: auto;
     width: 50%;
 }
+
+#description {
+    background-color: black;
+}
+
+.description-class {
+    min-width: 750px;
+    max-height: 300px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.flintstones {
+    background-image: url("https://garden.spoonflower.com/c/12694591/p/f/m/wmn3KRN4LB_AcJEMMYapyi5Ky0hyiJnChExlx2uc5js3PWROdsUp80k/flintstones%20outfit%20pattern.jpg");
+}
