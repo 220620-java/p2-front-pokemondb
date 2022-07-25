@@ -4,29 +4,46 @@
             Tom and Jerry
         </title>  
         <style>
-             .pic { 
-
-   
+             .title { 
+               background-color: black;
+               color: white;
+               font-size: large;
+                font-family: "Comic Sans MS", "Comic Sans", cursive;
             }
             .description {
                 background-color: rgb(0, 0, 0);
+                max-width: 750px;
+                min-height: 10000px;
+                margin-left: 400px;
+                margin-right: 200px;
+            }
+            .ep {
+                background-color: black;
+                max-width: 750px;
+                align-self: center;
+                margin-left: 400px;
+                margin-right: 200px;
             }
             body {
                 background-image: url(http://static.pulsk.com/images/2013/09/21/thumb_320_523c8ff70024e_523c8ff7015d4.jpg);
+                background-position-x: left;
+                -webkit-animation: colorchange 60s infinite; 
+                animation: colorchange 60s infinite;
                 font-size: large;
                 font-family: "Comic Sans MS", "Comic Sans", cursive;
-                color: rgb(255,255,255);
-                background-position: 100px;
-                min-width: 300px;
-                min-height: 10000px;
+                color:white;
+            }
+            h1{
+                color:black;
             }
         </style>  
     </header>
     <body>
-        <h1 style=color(white)>Episode 11</h1>
+        <h1 class="title">Episode 11</h1>
     
         <img href="https://en.wikipedia.org/wiki/File:Yankee_Doodle_Mouse_Poster.jpg">
-        <p class="description" >
+        <h2 class="ep" style="padding: 20px;">Yankee Doodle</h2>
+        <p class="description" style="padding: 20;"> 
                 The Yankee Doodle Mouse is a 1943 American one-reel animated cartoon in Technicolor.<br>
             It is the eleventh Tom and Jerry short produced by Fred Quimby, and directed by William Hanna and Joseph Barbera,<br>
             with musical supervision by Scott Bradley and animation by Irven Spence, Pete Burness, Kenneth Muse and <br>
@@ -36,7 +53,9 @@
             technology such as jeeps and dive bombers, represented by clever uses of common household items. <br>
             The Yankee Doodle Mouse won the 1943 Oscar for Best Animated Short Film, making it the first of seven <br>
             Tom and Jerry cartoons to receive this distinction.<br>
+            <p><img href="https://en.wikipedia.org/wiki/File:Yankee_Doodle_Mouse_Poster.jpg"></p>
         </p>
+        
     </body>
 
 </html>

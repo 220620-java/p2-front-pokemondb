@@ -44,8 +44,60 @@ img {
     width: 50%;
 }
 
-.flintstones {
+body.flintstones {
     background-image: url("https://garden.spoonflower.com/c/12694591/p/f/m/wmn3KRN4LB_AcJEMMYapyi5Ky0hyiJnChExlx2uc5js3PWROdsUp80k/flintstones%20outfit%20pattern.jpg");
+}
+
+img.flintstones {
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.flintstones {
+    display: block;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    width: 75%;
     color:white;
     background-color: chocolate;
+}
+
+p.flintstones {
+    background-color: rgb(180, 97, 37);
+}
+
+#flintstone-episode {
+    background-color: rgb(180, 97, 37);
+}
+
+#jetson-episode {
+    background-color: rgb(39, 11, 163);
+    padding: 5px;
+    margin: 5px;
+    display: block;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+    text-align: center;
+}
+
+body.jetsons {
+    background-image: url("https://img5.goodfon.com/wallpaper/big/6/7a/look-out-jetsons-a-whimsical-piece-fractal-manipulation-anim.jpg");
+}
+
+div.jetsons {
+    text-align:center;
+    display: block;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    width: 75%;
+    color:white;
+    background-color: darkblue;
 }
