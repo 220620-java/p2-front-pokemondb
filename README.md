@@ -1,4 +1,4 @@
-# Project 2 - PokéPost Front End
+# Project 2 - PokéPost Website
 The front end of Team Synergy's Pokemon database, PokéPost. This will interact with the [PokéAPI](https://pokeapi.co/) to pull Pokémon data and construct a page containing data about a particular Pokémon along with fan comments and fanart.
 
 ## Description
@@ -15,6 +15,8 @@ Administrators can moderate comments and fanart and even ban users from posting.
 ## Getting Started
 
 ### Dependencies
+* [PokéPost Web Application](https://github.com/220620-java/p2-back-pokemondb)
+* File Hosting Server to host website
 
 ### Installing
 
