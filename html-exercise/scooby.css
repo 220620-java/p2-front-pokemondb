@@ -101,3 +101,76 @@ div.jetsons {
     color:white;
     background-color: darkblue;
 }
+
+footer {
+    text-align:center;
+}
+
+div.now-playing {
+    text-align:center;
+    background-color:darkblue;
+    display: block;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    width: 75%;
+}
+
+h1.scooby {
+	text-align: center; 
+	background: #FFFFFF; 
+	border: solid 0.5em #00FF00;
+}
+
+h2.scooby{
+	text-align: center; 
+	background: #FFFFFF; 
+	color: #FF4400; 
+	border: solid 0.5em #0044FF;
+}
+
+p.scooby {
+	background: #FFFFFF; 
+	border: solid 0.5em #00FF00; 
+	margin-left: 5em; 
+	margin-right: 5em;
+	text-align: center;
+}
+
+h1.scooby#overviewHead {
+	color: #00FF00;
+	text-align: center; 
+	background: #FFFFFF; 
+	border: solid 0.5em #FF0000;
+}
+
+p.scooby#overviewBody{
+	background: #FFFFFF; 
+	color: #00FF00;
+	border: solid 0.5em #FF0000; 
+	margin-left: 5em; 
+	margin-right: 5em;
+	text-align: center;
+}
+
+li.scooby{
+	background: #FFFFFF;
+	border: solid 0.5em #0044FF;
+	list-style-type: none;
+	padding-left: 1em;
+	padding-right: 1em;
+	margin-left: 40%;
+	margin-right: 40%;
+	margin-top: 0.2 em;
+	margin-bottom: 0.2 em;
+	text-align: center;
+}
+
+li.scooby a {
+	color: #FF4400;
+}
+
+li.scooby a:hover {
+	color: #0044FF;
+}
