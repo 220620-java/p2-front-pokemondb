@@ -10,6 +10,7 @@ nav {
 	padding: 0.5em;
 	vertical-align: middle;
 	text-align: center;
+	border: solid 0.1em #000000;
 }
 
 nav table{
