@@ -6,28 +6,52 @@ body {
 nav {
 	position: sticky;
 	background-image: linear-gradient(to bottom, #5d8aa8, #7fffd4);
-	padding-top: 0.5em;
-	padding-bottom: 0.5em;
+	top: 1%;
+	padding: 0.5em;
+	vertical-align: middle;
+	text-align: center;
 }
 
-nav ul{
-	list-style: none;
+nav table{
+	width: 100%;
 }
 
-nav ul li{
-	display: inline-block;
-	list-style-image: url('pokeball.png');
-	height: 1em;
+nav td{
+	padding-left: 0.8em;
+	padding-right: 0.8em;
 }
 
-nav ul li#siteLogo{
-	list-style-image: none;
+td.siteLogo{
+	vertical-align: middle;
+	text-align: left;
+	width: 15%;
 }
 
-nav ul li#loginLink{
-	
+td.navPages, td.navPg {
+	vertical-align: middle;
+	text-align: center;
+	border-left: solid 0.5em #FFFFFF;
+	border-right: solid 0.5em #FFFFFF;
 }
 
-nav ul li#userAvatar{
+td.navPages{
+	width: 70%;
+}
+
+td.navPages a{
+	color: yellow;
+}
+
+td.userArea {
+	vertical-align: middle;
+	text-align: right;
+	width: 15%;
+}
+
+a#loginLink {
 	display: none;
+}
+
+p#userAvatar{
+	/*display: none;*/
 }
