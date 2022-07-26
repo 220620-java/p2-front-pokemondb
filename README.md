@@ -1,5 +1,5 @@
-# Project 2 - Pokemon Database Front End
-The front end of Team Synergy's Pokemon Database. This will interact with the [PokéAPI](https://pokeapi.co/) to pull Pokémon data and construct a page containing data about a particular Pokémon along with fan comments and fanart.
+# Project 2 - PokéPost Front End
+The front end of Team Synergy's Pokemon database, PokéPost. This will interact with the [PokéAPI](https://pokeapi.co/) to pull Pokémon data and construct a page containing data about a particular Pokémon along with fan comments and fanart.
 
 ## Description
 
