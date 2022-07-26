@@ -4,19 +4,26 @@ body {
     font-size: large;
     font-family: "Comic Sans MS", "Comic Sans", cursive;
 }
+
 table {
-    max-width: 750px;
     background-color: darkred;
-    margin: 5px;
     padding: 10px;
     border-radius: 1px;
-    border: hotpink solid 1x;
+    border-style: solid;
+    border: hotpink solid;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
+    width: 600px;
     text-align: center;
 }
+
+th {
+    border-radius: 1px;
+    border-style: solid;
+    border: hotpink solid;
+}
+
 
 img {
     max-width: 300px;
@@ -84,6 +91,8 @@ p.flintstones {
     margin-right: auto;
     width: 75%;
     text-align: center;
+    border:blue 2px;
+    border-style: solid;
 }
 
 body.jetsons {
@@ -100,6 +109,8 @@ div.jetsons {
     width: 75%;
     color:white;
     background-color: darkblue;
+    border:blue 2px;
+    border-style: solid;
 }
 
 footer {
@@ -115,6 +126,9 @@ div.now-playing {
     margin-right: auto;
     padding: 10px;
     width: 75%;
+    border-radius: 2px;
+    border-style: solid;
+    border: cyan 2;
 }
 
 h1.scooby {
@@ -173,4 +187,18 @@ li.scooby a {
 
 li.scooby a:hover {
 	color: #0044FF;
+}
+
+.emailSignup {
+    border:#FF0000 2px;
+    border-style: solid;
+    display: block;
+    padding: 10px;
+    background-color: darkblue;
+    margin-left: 20%;
+	margin-right: 20%;
+}
+
+hr.flint {
+    border-top:rgb(255, 109, 5) solid 10px;
 }
