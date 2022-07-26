@@ -15,6 +15,28 @@ section {
     justify-content: center;
 }
 
+td{
+	vertical-align: middle;
+	text-align: center;
+}
+
+label{
+	color: yellow;
+}
+table {
+	margin: 2em;
+}
+
+.liBtn{
+	text-align: left;
+	width: 50%;
+}
+
+.suBtn{
+	text-align: right;
+	width: 50%;
+}
+
 .container {
     height: 90vh;
     max-width: 70px;
@@ -42,21 +64,19 @@ section {
     
 }
 
-.inputBox {
+/*.inputBox {
     margin-left: 20px;
-}
+}*/
 
 .pokeButt {
     cursor:pointer; 
     background-color: transparent;
     border: none;
-    margin: 15px;
     align-items: center;
 }
 
 .pokeButt:hover {
     transform: scale(1.1);
-    margin: 15px;
     
 }
 

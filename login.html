@@ -1,33 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-    
-    <header>
-        <link rel="stylesheet" href="loginCss.css" type="text/css">
-        <title>
-            Pokemon Database
-        </title>
-    </header>
     <head>
-        <div class="container"><img src="Pokemon.png"/></div>
+        <title>
+            PokePost Login
+        </title>
+		<link rel= "icon" href="images/pokeball.png" type="image/x-icon">
+        <link rel="stylesheet" href="css/loginCss.css" type="text/css">
+        <div class="container"><img id="siteLogo" src="images/PokePost.png"/></div>
     </head>
 
     <body>
         <section>
             <div class="logBox">
                 <div>
-                    <img style="border-width: 20px black;" src="Welcome.png">
-                    <table>
+					<table>
+						<tr>
+						<td colspan="2"><img src="images/Welcome.png"></td>
+						</tr>
                         <tr>
-                            <td><input class="inputBox" type="text"></td>
+							<td><label for="username">Username:</label></td>
+                            <td><input class="inputBox" id="username" type="text"></td>
                         </tr>
                         <tr>
-                            <td><input class="inputBox" type="password"></td>
+							<td><label for="password">Password:</label></td>
+                            <td><input class="inputBox" id="password" type="password"></td>
                         </tr>
+						<tr>
+							<td class="liBtn"><button class="pokeButt"><img src="images/log-in.png"></button></td>
+							<td class="suBtn"><button class="pokeButt"><img src="images/sign-up.png"></button></td>
+						</tr>
                     </table>
-                    <div>
-                        <button class="pokeButt"><img src="log-in.png"></button>
-                        <button class="pokeButt"><img src="sign-up.png"></button>
-                    </div>
                 </div>
             </div>
         </section>
