@@ -6,7 +6,7 @@ console.log("Loaded getPokemon.js");
 function getPokemon(pokemon_name, element_id) {
   	// Opening a connection to the server
   	console.log("Running get_pokemon.js with the name: " + pokemon_name);
-  	let url = "http://localhost:8080/pokemon/" + pokemon_name;
+  	let url = "http://pokepost-env.eba-jzp4ndpr.us-east-1.elasticbeanstalk.com/pokemon/" + pokemon_name;
   	//constructing a json object to store the information
   	//in the request to be sent out.
 
