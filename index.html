@@ -9,10 +9,14 @@
         <meta charset="UTF-8">
 		<link rel= "icon" href="images/pokeball.png" type="image/x-icon">
 		<link rel="stylesheet" href="css/template.css">
-
-		<!-- Javascript -->
-		<script src="js/getPokemon.js"></script>
-		
+		<script type="module">
+			import { getRequest } from "./js/getRequest.js";
+			window.getRequest = getRequest;
+		</script>
+		<script type="module">
+			import { createPokemonPage } from "./js/createPokemonPage.js";
+			window.createPokemonPage = createPokemonPage;
+		</script>
     </head>
 
     <body><nav>
@@ -55,7 +59,8 @@
             <input value="Pikachu" type="text" id="pokemon_box">
             <button id="button" type="button" class="btn btn-primary" onclick="return sendPokemonRequest()">Get Pokemon</button>
         </form>
-		<p style="color:white" id="pokemon_output"></div>
+		<div><p style="color:white" id="pokemon_output"></div>
+
     </body>
 	<script>
 		// Send the pokemon get request
@@ -70,8 +75,12 @@
 			}
 		
 			// Send username and password to the backend to check against values in the DB
-			getPokemon(pokemon_name, document.getElementById('pokemon_output'));
+			let url = "http://localhost:8080/pokemon/" + pokemon_name;
+			getRequest (url, null, createPokemonPage);
+
 			return false;
 		}
 	</script>
+	<!-- Javascript -->
+
 </html>
