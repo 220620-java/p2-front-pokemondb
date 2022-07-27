@@ -84,7 +84,9 @@ export function createPokemonPage (pokemonJSON) {
         const linkText = document.createTextNode(name);
         link.appendChild(linkText);
         link.href="/pokemon/" + name;
-        evolutionDiv.appendChild (link);
+        const p = document.createElement("p");
+        p.appendChild(link);
+        evolutionDiv.appendChild (p);
     }
     outputDiv.appendChild (evolutionDiv);
 }
