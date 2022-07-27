@@ -19,7 +19,9 @@ export function createPokemonPage (pokemonJSON) {
     const pokemonDescription = pokemonJSON.description;
     const pokemonHeight = pokemonJSON.heightInFeetInches;
     const pokemonWeight = pokemonJSON.weightInPoundsString;
+    const pokemonBaseStats = pokemonJSON.baseStats;
     const pokemonEvolution = pokemonJSON.evolutionChain;
+    const pokemonLocation = pokemonJSON.locationVersions;
 
     // Grab target div
     const outputDiv = document.getElementById ("pokemon_output");
@@ -70,11 +72,44 @@ export function createPokemonPage (pokemonJSON) {
     infoDiv.appendChild (descriptionLine);
     outputDiv.appendChild (infoDiv);
 
+    // Base Stats
+    const baseStatsDiv = document.createElement ("div");
+
+    let keys = Object.keys(pokemonBaseStats);
+
+    let table = document.createElement('table'); // creates a table element
+    let rows = 2;
+    let cols = 6;
+    for (let i = 0; i < rows; i++) {
+        let tr;
+        tr = document.createElement('tr'); // creates a table row element
+        for (let j = 0; j < cols; j++) {
+            let td;
+            // if it's the first row, create a table header
+            // otherwise, create a table data element
+            if (i === 0) {
+                td = document.createElement('th');
+                td.innerText = keys[j];
+                tr.appendChild(td);
+            }
+            else {
+                td = document.createElement('td');
+                td.innerText = pokemonBaseStats[keys[j]];
+                tr.appendChild(td);
+            }
+            
+        }
+        
+        table.appendChild(tr);
+    }
+    baseStatsDiv.appendChild(table);
+    outputDiv.appendChild (baseStatsDiv);
+
     // Evolution Chain
     const evolutionDiv = document.createElement ("div");
 
     const evolutionLine = document.createElement("p");
-    const evolutionText = document.createTextNode("Evolutions: ");
+    const evolutionText = document.createTextNode("Evolution Chain: ");
     evolutionLine.appendChild (evolutionText);
     evolutionDiv.appendChild (evolutionLine);
 
@@ -89,4 +124,33 @@ export function createPokemonPage (pokemonJSON) {
         evolutionDiv.appendChild (p);
     }
     outputDiv.appendChild (evolutionDiv);
+
+    // Locations/Versions Section
+    const locationDiv = document.createElement ("div");
+
+    const locationP = document.createElement("p");
+    const locationText = document.createTextNode("Locations: ");
+    locationP.appendChild (locationText);
+    locationDiv.appendChild (locationP);
+
+    for (let i = 0; i < pokemonLocation.length; i++) {
+        // locations
+        const locationName = pokemonLocation[i].locationName;
+        const link = document.createElement("a");
+        const linkText = document.createTextNode(locationName);
+        link.appendChild(linkText);
+        const locationURL = pokemonLocation[i].locationURL;
+        const urlSplit = locationURL.split('/');
+        const urlSplitLength = urlSplit.length;
+        link.href=("/" + urlSplit[urlSplitLength - 3] + "/" + urlSplit[urlSplitLength - 2]);
+        const p = document.createElement("p");
+        p.appendChild(link);
+        const methods = pokemonLocation[i].methods;
+        const maxChance = pokemonLocation[i].maxChance;
+        const versionName = pokemonLocation[i].versionName;
+        const text = document.createTextNode(" :  " + versionName + ": " + methods + " " + maxChance);
+        p.appendChild(text);
+        locationDiv.appendChild (p);
+    }
+    outputDiv.appendChild (locationDiv);
 }
