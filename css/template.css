@@ -31,16 +31,18 @@ td.siteLogo{
 td.navPages, td.navPg {
 	vertical-align: middle;
 	text-align: center;
-	border-left: solid 0.5em #FFFFFF;
-	border-right: solid 0.5em #FFFFFF;
 }
 
 td.navPages{
 	width: 70%;
 }
 
-td.navPages a{
-	color: yellow;
+.navImg{
+	width: 50%;
+}
+
+.navImg:hover {
+	transform: scale(1.1); 
 }
 
 td.userArea {
