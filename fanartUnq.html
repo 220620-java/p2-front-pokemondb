@@ -3,6 +3,7 @@
 		<title>PokePost</title>
 		<link rel= "icon" href="images/pokeball.png" type="image/x-icon">
 		<link rel="stylesheet" href="css/fanartUnqCss.css">
+		<script src="js/fanartUnqJs.js" defer></script>
         <meta charset="UTF-8">
 	</head>
 	<body>
@@ -16,13 +17,13 @@
 						<table>
 							<tr>
 								<td class="navPg">
-									<a href="page.html">Page 1</a>
+									<a href="pokemon.html"><img class="navImg" src="images/Pokemon.png"></a>
 								</td>
 								<td class="navPg">
-									<a href="page.html">Page 2</a>
+									<a href="fanart.html"><img class="navImg" src="images/Fanart.png"></a>
 								</td>
 								<td class="navPg">
-									<a href="page.html">Page 3</a>
+									<a href="wishlist.html"><img class="navImg" src="images/Wishlist.png"></a>
 								</td>
 							</tr>
 						</table>
@@ -40,10 +41,11 @@
 
 					<td colspan="3" class="fanartImg">
 						<div class="fanartImg">
-							<label for="likeChk" class="rate" id="rateLbl">Rate This Art</label><br>
-							<input type="checkbox" class="rate" id="likeChk"></input>
-							<input type="checkbox" class="rate" id="dislikeChk"></input>
 							<img class="fanartImg" id="fanartImg" src="images/fanart/spheal.png" alt="Spheal With It!"/>
+							<input type="checkbox" class="flag" id="flagChk"></input>
+							<label class="flag" id="flagLbl" for="flagChk"><img id="flagImg" src="images/flagLow.png" height="32" width="32"></label>
+							<input type="checkbox" class="rate" id="rateChk"></input>
+							<label class="rate" id="rateLbl" for="rateChk"><img id="rateImg" src="images/heartEmpty.png" height="32" width="32"></label>
 						</div>
 					</td>
 				</tr>
@@ -68,7 +70,7 @@
 					<th colspan="2">Tags</th>
 				</tr>
 				<tr>
-					<td colspan="2"  class="fanartDetails">spheal, leanardodivinci</td>
+					<td colspan="2"  class="fanartDetails">spheal, leanardodevinci</td>
 				</tr>
 			</table>
 		</div>

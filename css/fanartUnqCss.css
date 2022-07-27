@@ -40,8 +40,12 @@ td.navPages{
 	width: 70%;
 }
 
-td.navPages a{
-	color: yellow;
+.navImg{
+	width: 50%;
+}
+
+.navImg:hover {
+	transform: scale(1.1); 
 }
 
 td.userArea, td.prevArt {
@@ -64,6 +68,7 @@ p#userAvatar{
 
 img#fanartImg {
 	display: block;
+	top: 0%;
 	border: solid 0.3em #7fffd4;
 	max-width: 95%;
 	margin: auto;
@@ -86,8 +91,24 @@ td.fanartDetails{
 	text-align: center;
 }
 
-.rate {
+.flag {
 	float: right;
 	position: relative;
 	top: 0%;
+	right: 45%;
+}
+
+input#flagChk, input#rateChk{
+	display:none;
+}
+
+label#flagLbl, label#rateLbl{
+	cursor: pointer;
+}
+
+.rate {
+	float: left;
+	position: relative;
+	top: 0%;
+	left: 45%;
 }
