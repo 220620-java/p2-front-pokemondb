@@ -1,4 +1,4 @@
-<html>
+﻿<html>
 	<head>
 		<title>PokéPost</title>
 		<link rel= "icon" href="images/pokeball.png" type="image/x-icon">
@@ -6,7 +6,7 @@
 		<script src="js/fanartUnqJs.js" defer></script>
         <meta charset="UTF-8">
 	</head>
-	<body>
+	<body id="fanartUnqBody">
 		<nav>
 			<table>
 				<tr>
@@ -42,9 +42,9 @@
 					<td colspan="3" class="fanartImg">
 						<div class="fanartImg">
 							<img class="fanartImg" id="fanartImg" src="images/fanart/spheal.png" alt="Spheal With It!"/>
-							<input type="checkbox" class="flag" id="flagChk"></input>
+							<input type="checkbox" class="flag" id="flagChk">
 							<label class="flag" id="flagLbl" for="flagChk"><img id="flagImg" src="images/flagLow.png" height="32" width="32"></label>
-							<input type="checkbox" class="rate" id="rateChk"></input>
+							<input type="checkbox" class="rate" id="rateChk">
 							<label class="rate" id="rateLbl" for="rateChk"><img id="rateImg" src="images/heartEmpty.png" height="32" width="32"></label>
 						</div>
 					</td>
@@ -63,14 +63,14 @@
 					<th>Posted On:</th>
 				</tr>
 				<tr>
-					<td class="fanartDetails">Leanardo DeVinci</td>
-					<td class="fanartDetails">07/06/1841</td>
+					<td class="fanartDetails" id="fanartAuthor">Leanardo DeVinci</td>
+					<td class="fanartDetails" id="fanartPostDate">07/06/1841</td>
 				</tr>
 				<tr>
 					<th colspan="2">Tags</th>
 				</tr>
 				<tr>
-					<td colspan="2"  class="fanartDetails">spheal, leanardodevinci</td>
+					<td colspan="2"  class="fanartDetails" id="fanartTags">spheal, leanardodevinci</td>
 				</tr>
 			</table>
 		</div>

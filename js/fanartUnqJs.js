@@ -1,27 +1,50 @@
 console.log("Loaded fanartUnqJs.js");
 
-/*
-	fanartUnqBody.onload
-*/
+/*Script Variables*/
 
 let fanartUnqBody = document.getElementById("fanartUnqBody");
+let fanartTitle = document.getElementById("fanartTitle");
+let fanartAuthor = document.getElementById("fanartAuthor");
+let fanartPostDate = document.getElementById("fanartPostDate");
+let fanartTags = document.getElementById("fanartTags");
+let fanartImg = document.getElementById("fanartImg");
+let rateChk = document.getElementById("rateChk");
+let rateImg = document.getElementById('rateImg');
+let flagChk = document.getElementById('flagChk');
+let flagImg = document.getElementById('flagImg');
 
-//fanartUnqBody.onload = getFanart;
+/*Event Listeners*/
 
-/*Sends a GET request with an ID for a specific fanart. 
-	The response is expected to have detail specific to that fanart (i.e. url, author, etc.)
-	Upon response, JS feeds the given information into its corresponding location */
-function getFanart(fanart_id) {
+fanartUnqBody.onload = function () {getFanart(document.documentURI)};
+rateChk.onchange = function () { rateChkCheckChanged(rateImg) };
+flagChk.onchange = function () { flagChkCheckChanged(flagImg) };
+
+/*Functions*/
+
+/**
+ *	Sends a GET request with an ID for a specific fanart. 
+ *	The response is expected to have details specific to that fanart (i.e. url, author, etc.)
+ *	Upon response, JS feeds the given information into its corresponding location
+ */
+function getFanart(doc_uri) {
+	/*Function Variables*/
+	let paramIndex, fanart, request, response;
+
+	//Determining fanart_id
+	paramIndex = doc_uri.lastIndexOf('/');
+	fanart = doc_uri.substring((paramIndex + 1));
+
   	// Opening a connection to the server
   	console.log("Running fanartUnqJs.js with the id: " + fanart_id);
-  	let url = "localhost:8080/fanart/" + fanart_id;
-  	//constructing a json object to store the information
+	let url = "localhost:8080/fanart/" + fanart_id;
+
+  	//Constructing a json object to store the information
   	//in the request to be sent out.
 
   	console.log("URL is: " + url);
 
   	//Making a bridge to the server through XMLHttpRequest()
-  	let request = new XMLHttpRequest();
+  	request = new XMLHttpRequest();
 
   	//Initializaing a request to the order
   	request.open("GET", url, false);
@@ -38,9 +61,16 @@ function getFanart(fanart_id) {
 			console.log("Request is sent!");
 			console.log("Response: " + request.response);
 			console.log("Status Text: " + request.statusText);
-			let fanart_response = request.response;
-			sessionStorage.setItem("fanart_object", fanart_response);
-			return pokemon_response;
+			response = request.response;
+			sessionStorage.setItem("fanart_object", response);
+			response = JSON.parse(fanart_response);
+
+			//Setting elements
+			fanartTitle.innerHTML = response.title;
+			fanartAuthor.innerHTML = response.author;
+			fanartPostDate.innerHTML = response.postDate;
+			fanartTags.innerHTML = response.tags;
+			fanartImg.src = response.url;
 		} else {
 			//Error handling
 			const errorMessage = document.createElement("error");
@@ -49,6 +79,13 @@ function getFanart(fanart_id) {
 			alert(
 				"FAILED: Getting Pokemon Failed!, Please Try Again or Contact Support."
 			);
+
+			//Setting elements
+			fanartTitle.innerHTML = "Spheal With It!";
+			fanartAuthor.innerHTML = "Leanardo Devinci";
+			fanartPostDate.innerHTML = "07/06/1841";
+			fanartTags.innerHTML = "spheal, leanardodevinci";
+			fanartImg.src = "images/fanart/spheal.png";
 		}
 	};
 	// Send out request
@@ -56,18 +93,9 @@ function getFanart(fanart_id) {
 
 }
 
-/*
-	rateChk.onchange
-*/
-
-//Assigning Variables
-let rateChk = document.getElementById('rateChk');
-let rateImg = document.getElementById('rateImg');
-
-//Adding event listener
-rateChk.onchange = function () { rateChkCheckChanged(rateImg) };
-
-/*Changes the image file between heart.png and heartEmpty.png based on the checked state*/
+/**
+ *	Changes the image file between heart.png and heartEmpty.png based on the checked state
+ */
 function rateChkCheckChanged(imageId){
 	console.log("rateChk.onchange called");
 	let url = "";
@@ -81,18 +109,9 @@ function rateChkCheckChanged(imageId){
 	imageId.src = url;
 }
 
-/*
-	flagChk.onchange
-*/
-
-//Assigning Variables
-let flagChk = document.getElementById('flagChk');
-let flagImg = document.getElementById('flagImg');
-
-//Adding event listener
-flagChk.onchange = function () { flagChkCheckChanged(flagImg) };
-
-/*Changes the image file between flag.png and flagLow.png based on the checked state*/
+/**
+ *	Changes the image file between flag.png and flagLow.png based on the checked state
+ */
 function flagChkCheckChanged(imageId){
 	console.log("rateChk.onchange called");
 	let url = '';
