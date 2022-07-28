@@ -34,17 +34,38 @@
 				<li id="loginLink"><a  href="login.html"><img class="navImg" src="images/log-in.png"></a></li>
 			</div>
 		</nav>
-		<section>
-			<div class=pokemonClass>
-				<div><h1>Pokémon Page</h1></div>
-				<form class=pokemonClass onsubmit="return sendPokemonRequest(); return false">
-					<p>Enter a Pokémon name or ID:</p>
-					<input value="Pikachu" type="text" id="pokemon_box">
-					<button id="button" type="button" class="btn btn-primary" onclick="return sendPokemonRequest()">Get Pokemon</button>
-				</form>
-			</div>
-			<div class="pokemonClass"><p style="color:white" id="pokemon_output"></div>
-		</section>
+		<div class="grid">
+			<!-- Row 1 Header -->
+			<aside class="aside-left">
+			</aside>
+			<section>
+				<div><h1 style="text-align: center">Pokémon Page</h1></div>
+			</section>
+			<aside class="aside-right">
+			</aside>
+			<!-- Row 2 Search Bar -->
+			<aside class="aside-left">
+			</aside>
+			<section>
+				<div class=pokemonClass>
+					<form class=pokemonClass onsubmit="return sendPokemonRequest(); return false">
+						<p>Enter a Pokémon name or ID:</p>
+						<input value="Pikachu" type="text" id="pokemon_box">
+						<button id="button" type="button" class="btn btn-primary" onclick="return sendPokemonRequest()">Get Pokemon</button>
+					</form>
+				</div>
+			</section>
+			<aside class="aside-right">
+			</aside>
+			<!-- Row 3 Pokemon Content -->
+			<aside class="aside-left">
+			</aside>
+			<section>
+				<div class="pokemonClass" id="pokemon_output"></div>
+			</section>
+			<aside class="aside-right">
+			</aside>
+		</div>
     </body>
     <script>
 		// Send the pokemon get request

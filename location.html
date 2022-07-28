@@ -16,10 +16,6 @@
 			import { getRequest } from "./js/getRequest.js";
 			window.getRequest = getRequest;
 		</script>
-		<script type="module">
-			import { createPokemonPage } from "./js/createPokemonPage.js";
-			window.createPokemonPage = createPokemonPage;
-		</script>
     </head>
     <body>
         <!-- Nav bar -->
@@ -35,5 +31,37 @@
 				<li id="loginLink"><a  href="login.html"><img class="navImg" src="images/log-in.png"></a></li>
 			</div>
 		</nav>
+		<div class="grid">
+			<!-- Row 1 Header -->
+			<aside class="aside-left">
+			</aside>
+			<section>
+				<div><h1 style="text-align: center">Location Page</h1></div>
+			</section>
+			<aside class="aside-right">
+			</aside>
+			<!-- Row 2 Search Bar -->
+			<aside class="aside-left">
+			</aside>
+			<section>
+				<div class=pokemonClass>
+					<form class=pokemonClass onsubmit="return sendLocationRequest(); return false">
+						<p>Enter a Location ID:</p>
+						<input value="1" type="text" id="pokemon_box">
+						<button id="button" type="button" class="btn btn-primary" onclick="return sendLocationRequest()">Get Location</button>
+					</form>
+				</div>
+			</section>
+			<aside class="aside-right">
+			</aside>
+			<!-- Row 3 Pokemon Content -->
+			<aside class="aside-left">
+			</aside>
+			<section>
+				<div class="pokemonClass" id="pokemon_output"></div>
+			</section>
+			<aside class="aside-right">
+			</aside>
+		</div>
     </body>
 </html>
