@@ -9,10 +9,6 @@
         <meta charset="UTF-8">
 		<link rel= "icon" href="images/pokeball.png" type="image/x-icon">
 		<link rel="stylesheet" href="css/template.css">
-
-		<!-- Javascript -->
-		<script src="js/getPokemon.js"></script>
-		
     </head>
 
     <body>
@@ -26,6 +22,12 @@
 						<table>
 							<tr>
 								<td class="navPg">
+									<a href="pokemon_page.html">Pokemon Page</a>
+								</td>
+								<td class="navPg">
+									<a href="login.html">Login</a>
+                </td>
+                <td class="navPg">
 									<a href="pokemon.html"><img class="navImg" src="images/Pokemon.png"></a>
 								</td>
 								<td class="navPg">
@@ -51,28 +53,12 @@
         <a href="https://github.com/220620-java/p2-front-pokemondb">Link to Repo</a>
         <br>
         <br>
-        <form onsubmit="return sendPokemonRequest(); return false">
-            <p>Enter a Pokemon name:</p>
-            <input value="Pikachu" type="text" id="pokemon_box">
-            <button id="button" type="button" class="btn btn-primary" onclick="return sendPokemonRequest()">Get Pokemon</button>
-        </form>
-		<p style="color:white" id="pokemon_output"></div>
+		<div >
+			
+		</div>
+		
     </body>
-	<script>
-		// Send the pokemon get request
-		function sendPokemonRequest() {
-			let pokemon_name = document.getElementById('pokemon_box').value;
-			console.log ("Sending Pokemon Request... " + pokemon_name);
-		
-			//checks username and password for empty credentials
-			if (pokemon_name == "") {
-				alert("Invalid Credentials: Please Fill Out All Inputs");
-				return false;
-			}
-		
-			// Send username and password to the backend to check against values in the DB
-			getPokemon(pokemon_name, document.getElementById('pokemon_output'));
-			return false;
-		}
-	</script>
+
+	<!-- Javascript -->
+
 </html>
