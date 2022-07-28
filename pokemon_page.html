@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <!-- metadata -->
+        <title>PokéPost Home</title>
+        <meta charset="UTF-8">
+		<link rel= "icon" href="images/pokeball.png" type="image/x-icon">
+		<link rel="stylesheet" href="css/template.css">
+		<link rel="stylesheet" href="css/pokemonPage.css">
+		<!-- Progress Circle-->
+		<!-- <link rel="stylesheet" href="css/progresscircle.css" /> -->
+		<!-- <script src="js/progresscircle.js"></script> -->
+
+		<script type="module">
+			import { getRequest } from "./js/getRequest.js";
+			window.getRequest = getRequest;
+		</script>
+		<script type="module">
+			import { createPokemonPage } from "./js/createPokemonPage.js";
+			window.createPokemonPage = createPokemonPage;
+		</script>
+    </head>
+    <body>
+        <nav>
+			<table>
+				<tr>
+					<td class="siteLogo">
+						<a id="siteLogo" href="index.html"><img src="images/PokePost.png" height="80" width="200"></a>
+					</td>
+					<td class="navPages">
+						<table>
+							<tr>
+								<td class="navPg">
+									<a href="index.html">Home Page</a>
+								</td>
+								<td class="navPg">
+									<a href="login.html">Login</a>
+								</td>
+								<td class="navPg">
+									<a href="page.html">Page 3</a>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td class="userArea">
+						<a id="loginLink" href="login.html">Login</a>
+						<p id="userAvatar">username<p>
+					</td>
+				</tr>
+			</table>
+		</nav>
+        <div class=pokemonClass>
+            <div><h1>Pokémon Page</h1></div>
+            <form class=pokemonClass onsubmit="return sendPokemonRequest(); return false">
+                <p>Enter a Pokémon name or ID:</p>
+                <input value="Pikachu" type="text" id="pokemon_box">
+                <button id="button" type="button" class="btn btn-primary" onclick="return sendPokemonRequest()">Get Pokemon</button>
+            </form>
+        </div>
+        <div class="pokemonClass"><p style="color:white" id="pokemon_output"></div>
+    </body>
+    <script>
+
+		// Send the pokemon get request
+		function sendPokemonRequest() {
+			let pokemon_name = document.getElementById('pokemon_box').value;
+			console.log ("Sending Pokemon Request... " + pokemon_name);
+		
+			//checks username and password for empty credentials
+			if (pokemon_name == "") {
+				alert("Invalid Credentials: Please Fill Out All Inputs");
+				return false;
+			}
+		
+			// Send username and password to the backend to check against values in the DB
+			//let url = "http://pokepost-env.eba-jzp4ndpr.us-east-1.elasticbeanstalk.com/pokemon/" + pokemon_name;
+			let url = "http://localhost:8080/pokemon/" + pokemon_name;
+			getRequest (url, null, createPokemonPage);
+
+			return false;
+		}
+	</script>
+</html>

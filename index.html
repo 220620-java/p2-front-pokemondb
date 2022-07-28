@@ -9,17 +9,10 @@
         <meta charset="UTF-8">
 		<link rel= "icon" href="images/pokeball.png" type="image/x-icon">
 		<link rel="stylesheet" href="css/template.css">
-		<script type="module">
-			import { getRequest } from "./js/getRequest.js";
-			window.getRequest = getRequest;
-		</script>
-		<script type="module">
-			import { createPokemonPage } from "./js/createPokemonPage.js";
-			window.createPokemonPage = createPokemonPage;
-		</script>
     </head>
 
-    <body><nav>
+    <body>
+		<nav>
 			<table>
 				<tr>
 					<td class="siteLogo">
@@ -29,10 +22,10 @@
 						<table>
 							<tr>
 								<td class="navPg">
-									<a href="page.html">Page 1</a>
+									<a href="pokemon_page.html">Pokemon Page</a>
 								</td>
 								<td class="navPg">
-									<a href="page.html">Page 2</a>
+									<a href="login.html">Login</a>
 								</td>
 								<td class="navPg">
 									<a href="page.html">Page 3</a>
@@ -54,33 +47,12 @@
         <a href="https://github.com/220620-java/p2-front-pokemondb">Link to Repo</a>
         <br>
         <br>
-        <form onsubmit="return sendPokemonRequest(); return false">
-            <p>Enter a Pokemon name or ID:</p>
-            <input value="Pikachu" type="text" id="pokemon_box">
-            <button id="button" type="button" class="btn btn-primary" onclick="return sendPokemonRequest()">Get Pokemon</button>
-        </form>
-		<div><p style="color:white" id="pokemon_output"></div>
-
+		<div >
+			
+		</div>
+		
     </body>
-	<script>
-		// Send the pokemon get request
-		function sendPokemonRequest() {
-			let pokemon_name = document.getElementById('pokemon_box').value;
-			console.log ("Sending Pokemon Request... " + pokemon_name);
-		
-			//checks username and password for empty credentials
-			if (pokemon_name == "") {
-				alert("Invalid Credentials: Please Fill Out All Inputs");
-				return false;
-			}
-		
-			// Send username and password to the backend to check against values in the DB
-			let url = "http://localhost:8080/pokemon/" + pokemon_name;
-			getRequest (url, null, createPokemonPage);
 
-			return false;
-		}
-	</script>
 	<!-- Javascript -->
 
 </html>

@@ -1,4 +1,5 @@
 console.log("Loaded createPokemonPage.js");
+// import ProgressCircle from './progresscircle'; 
 
 export function createPokemonPage (pokemonJSON) {
 
@@ -102,6 +103,41 @@ export function createPokemonPage (pokemonJSON) {
         
         table.appendChild(tr);
     }
+
+    // let instance = new ProgressCircle("#stat-circles", true);
+    // let pData = [{
+    //     text : "HP",
+    //     percent : 120,
+    //     color : "green",
+    //     textColor: "black"
+    // },{
+    //     text : "Attack",
+    //     percent : 64,
+    //     color : "red",
+    //     textColor: "black"
+    // },{
+    //     text : "Defense",
+    //     percent : 64,
+    //     color : "blue",
+    //     textColor: "black"
+    // },{
+    //     text : "Speed",
+    //     percent : 64,
+    //     color : "yellow",
+    //     textColor: "black"
+    // },{
+    //     text : "Sp. Atk",
+    //     percent : 64,
+    //     color : "orange",
+    //     textColor: "black"
+    // },{
+    //     text : "Sp. Def",
+    //     percent : 64,
+    //     color : "teal",
+    //     textColor: "black"
+    // }];
+    // instance.load(pData);
+
     baseStatsDiv.appendChild(table);
     outputDiv.appendChild (baseStatsDiv);
 
