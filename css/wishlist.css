@@ -1,0 +1,25 @@
+body {
+    background-color: rgb(193, 234, 222);
+}
+
+h1 {
+    text-shadow: 2px 2px 8px blue;
+    margin: auto;
+    padding-left: 50px;
+    padding-right: 50px;
+    text-align: center;
+    font-family: Ravie;
+    font-size: 75px;
+    background-image: linear-gradient(to bottom, rgb(11, 187, 187), rgb(120, 212, 198));
+}
+
+h2 {
+    margin: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    font-family: snap itc;
+    text-shadow: 4px 4px 8px rgb(11, 11, 242);
+    font-size: 45px;
+    background-image: linear-gradient(to bottom, rgb(120, 212, 198),  rgb(156, 233, 233));
+}
