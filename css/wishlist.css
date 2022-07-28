@@ -10,7 +10,7 @@ h1 {
     text-align: center;
     font-family: Ravie;
     font-size: 75px;
-    background-image: linear-gradient(to bottom, rgb(11, 187, 187), rgb(120, 212, 198));
+    background-image: linear-gradient(to bottom, #7fffd4, #acfae0);
 }
 
 h2 {
@@ -21,5 +21,55 @@ h2 {
     font-family: snap itc;
     text-shadow: 4px 4px 8px rgb(11, 11, 242);
     font-size: 45px;
-    background-image: linear-gradient(to bottom, rgb(120, 212, 198),  rgb(156, 233, 233));
+    background-image: linear-gradient(to bottom, #acfae0,  #cbf5e7);
+}
+
+nav {
+	position: sticky;
+	background-image: linear-gradient(to bottom, #5d8aa8, #7fffd4);
+	top: 1%;
+	padding: 0.5em;
+	vertical-align: middle;
+	text-align: center;
+	border: solid 0.1em #000000;
+}
+
+nav table{
+	width: 100%;
+}
+
+nav td{
+	padding-left: 0.8em;
+	padding-right: 0.8em;
+}
+
+td.siteLogo, td.nextArt{
+	vertical-align: middle;
+	text-align: left;
+}
+
+td.siteLogo, td.userArea{
+	width: 15%;
+}
+
+td.navPages, td.navPg, td.fanartTitle {
+	vertical-align: middle;
+	text-align: center;
+}
+
+td.navPages{
+	width: 70%;
+}
+
+.navImg{
+	width: 50%;
+}
+
+.navImg:hover {
+	transform: scale(1.1); 
+}
+
+td.userArea, td.prevArt {
+	vertical-align: middle;
+	text-align: right;
 }
