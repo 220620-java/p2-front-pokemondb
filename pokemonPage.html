@@ -1,11 +1,12 @@
 <html>
     <head>
         <!-- metadata -->
-        <title>PokéPost Home</title>
+        <title>PokéPost Pokemon</title>
         <meta charset="UTF-8">
 		<link rel= "icon" href="images/pokeball.png" type="image/x-icon">
 		<link rel="stylesheet" href="css/template.css">
 		<link rel="stylesheet" href="css/pokemonPage.css">
+		<link rel="stylesheet" href="css/navbar.css" type="text/css">
 		<!-- Progress Circle-->
 		<!-- <link rel="stylesheet" href="css/progresscircle.css" /> -->
 		<!-- <script src="js/progresscircle.js"></script> -->
@@ -20,46 +21,32 @@
 		</script>
     </head>
     <body>
-        <nav>
-			<table>
-				<tr>
-					<td class="siteLogo">
-						<a id="siteLogo" href="index.html"><img src="images/PokePost.png" height="80" width="200"></a>
-					</td>
-					<td class="navPages">
-						<table>
-							<tr>
-								<td class="navPg">
-									<a href="index.html">Home Page</a>
-								</td>
-								<td class="navPg">
-									<a href="login.html">Login</a>
-								</td>
-								<td class="navPg">
-									<a href="page.html">Page 3</a>
-								</td>
-							</tr>
-						</table>
-					</td>
-					<td class="userArea">
-						<a id="loginLink" href="login.html">Login</a>
-						<p id="userAvatar">username<p>
-					</td>
-				</tr>
-			</table>
+		<!-- Nav bar -->
+		<nav>
+			<div id="menuBar">
+				<ul id="nav">
+					<li><a href="index.html"><img class="navImg" src="images/Home.png"></a></li>
+					<li><a href="pokemonPage.html"><img class="navImg" src="images/Pokemon.png"></a></li>
+					<li><a href="location.html"><img class="navImg" src="images/Locations.png"></a></li>
+					<li><a href="fanartUnq.html"><img class="navImg" src="images/Fanart.png"></a></li>
+					<li><a href="wishlist.html"><img class="navImg" src="images/Wishlist.png"></a></li>
+				</ul>
+				<li id="loginLink"><a  href="login.html"><img class="navImg" src="images/log-in.png"></a></li>
+			</div>
 		</nav>
-        <div class=pokemonClass>
-            <div><h1>Pokémon Page</h1></div>
-            <form class=pokemonClass onsubmit="return sendPokemonRequest(); return false">
-                <p>Enter a Pokémon name or ID:</p>
-                <input value="Pikachu" type="text" id="pokemon_box">
-                <button id="button" type="button" class="btn btn-primary" onclick="return sendPokemonRequest()">Get Pokemon</button>
-            </form>
-        </div>
-        <div class="pokemonClass"><p style="color:white" id="pokemon_output"></div>
+		<section>
+			<div class=pokemonClass>
+				<div><h1>Pokémon Page</h1></div>
+				<form class=pokemonClass onsubmit="return sendPokemonRequest(); return false">
+					<p>Enter a Pokémon name or ID:</p>
+					<input value="Pikachu" type="text" id="pokemon_box">
+					<button id="button" type="button" class="btn btn-primary" onclick="return sendPokemonRequest()">Get Pokemon</button>
+				</form>
+			</div>
+			<div class="pokemonClass"><p style="color:white" id="pokemon_output"></div>
+		</section>
     </body>
     <script>
-
 		// Send the pokemon get request
 		function sendPokemonRequest() {
 			let pokemon_name = document.getElementById('pokemon_box').value;
