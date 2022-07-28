@@ -1,0 +1,114 @@
+body {
+	background: #6e7f80;
+	color: #f5f5dc;
+}
+
+nav {
+	position: sticky;
+	background-image: linear-gradient(to bottom, #5d8aa8, #7fffd4);
+	top: 1%;
+	padding: 0.5em;
+	vertical-align: middle;
+	text-align: center;
+	border: solid 0.1em #000000;
+}
+
+nav table{
+	width: 100%;
+}
+
+nav td{
+	padding-left: 0.8em;
+	padding-right: 0.8em;
+}
+
+td.siteLogo, td.nextArt{
+	vertical-align: middle;
+	text-align: left;
+}
+
+td.siteLogo, td.userArea{
+	width: 15%;
+}
+
+td.navPages, td.navPg, td.fanartTitle {
+	vertical-align: middle;
+	text-align: center;
+}
+
+td.navPages{
+	width: 70%;
+}
+
+.navImg{
+	width: 50%;
+}
+
+.navImg:hover {
+	transform: scale(1.1); 
+}
+
+td.userArea, td.prevArt {
+	vertical-align: middle;
+	text-align: right;
+}
+
+a#loginLink {
+	display: none;
+}
+
+p#userAvatar{
+	/*display: none;*/
+}
+
+.fanartUnqBtn {	
+	height: 1.5em;
+	width: 3em;
+}
+
+img#fanartImg {
+	display: block;
+	top: 0%;
+	border: solid 0.3em #7fffd4;
+	max-width: 95%;
+	margin: auto;
+}
+
+.fanartShow table {
+	width: 96%;
+	margin-left: 2%;
+	margin-right: 2%;
+}
+
+.fanartDetails table{
+	border: solid 0.3em #7fffd4;
+	width: 80%;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+td.fanartDetails{
+	text-align: center;
+}
+
+.flag {
+	float: right;
+	position: relative;
+	top: 0%;
+	right: 45%;
+}
+
+input#flagChk, input#rateChk{
+	display:none;
+}
+
+label#flagLbl, label#rateLbl{
+	cursor: pointer;
+}
+
+.rate {
+	float: left;
+	position: relative;
+	top: 0%;
+	left: 45%;
+}
