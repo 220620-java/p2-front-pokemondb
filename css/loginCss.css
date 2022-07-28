@@ -1,6 +1,6 @@
 body {
     font-family: sans-serif;
-    background-image: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages4.alphacoders.com%2F125%2F125994.jpg&f=1&nofb=1);
+    background-image: url("../images/background.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     border: 100px rgb(25, 179, 213);
