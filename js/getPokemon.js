@@ -6,11 +6,11 @@ import { getRequest } from "./getRequest.js";
 export function getPokemon(pokemon_name, element_id) {
 	console.log("Loaded getPokemon.js");
 
-  	console.log("Running getPokemon.js with the name: " + pokemon_name);
-  	let url = "http://localhost:8080/pokemon/" + pokemon_name;
+	console.log("Running getPokemon.js with the name: " + pokemon_name);
+	let url = "http://localhost:8080/pokemon/" + pokemon_name;
 
-	let pokemonResponse = getRequest (url);
-	console.log (pokemonResponse);
+	let pokemonResponse = getRequest(url);
+	console.log(pokemonResponse);
 	if (pokemonResponse != null) {
 		sessionStorage.setItem("pokemon_object", pokemon_response);
 		element_id.innerHTML = "<pre>" + pokemon_response + "</pre>";

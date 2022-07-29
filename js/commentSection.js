@@ -1,6 +1,6 @@
 const commentContainer = document.getElementById('allComments');
 document.getElementById('addComments').addEventListener('click', function (ev) {
-   addComment(ev);
+    addComment(ev);
 });
 
 function addComment(ev) {
@@ -23,5 +23,5 @@ function addComment(ev) {
     textBox.innerHTML = commentText;
     wrapDiv.append(textBox, replyButton, likeButton, deleteButton);
     commentContainer.appendChild(wrapDiv);
-    
+
 }

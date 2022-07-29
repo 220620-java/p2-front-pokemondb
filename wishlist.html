@@ -2,6 +2,7 @@
 
 <head>
     <title>Wishlist</title>
+    <link rel="icon" href="images/pokeball.png" type="image/x-icon">
     <link rel="stylesheet" href="css/wishlist.css">
 </head>
 
@@ -38,7 +39,22 @@
     </nav>
     <h1 style="color: yellow">Gotta Catch Em All!</h1>
 
-    <h2 style="color: rgb(243, 243, 12)">username's Pokemon Wish Lists</h2>
+    <h2 style="color: rgb(243, 243, 12)">username's P<img
+
+        
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8d4WK3GscD4UKRHN63RWpGjhP0P-qVwW6iw&usqp=CAU"
+            height="30" width="30" class="pB">kem<img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8d4WK3GscD4UKRHN63RWpGjhP0P-qVwW6iw&usqp=CAU"
+            height="30" width="30" class="pB">n Wish Lists</h2>
+
+            <div class=pokemonClass>
+                <form class=pokemonClass onsubmit="return sendPokemonRequest(); return false">
+                    <p>Enter a Pokémon name or ID:</p>
+                    <input value="Pikachu" type="text" id="pokemon_box">
+                    <button id="button" type="button" class="btn btn-primary" onclick="return sendPokemonRequest()">Get Pokemon</button>
+                </form>
+            </div>
+            <div class="pokemonClass"><p style="color:white" id="pokemon_output"></div>
 </body>
 
 </html>

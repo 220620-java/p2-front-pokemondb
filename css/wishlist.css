@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(163, 187, 234);
+    background-color: rgb(166, 190, 239);
 }
 
 h1 {
@@ -72,4 +72,8 @@ td.navPages{
 td.userArea, td.prevArt {
 	vertical-align: middle;
 	text-align: right;
+}
+
+img.pB {
+	border-radius: 50%;
 }
