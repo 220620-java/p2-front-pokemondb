@@ -8,10 +8,11 @@
 	--pikachu-yellow: #fff235;
 	--pikachu-yellow-dark: #e0cd22;
 	--white: #ffffff;
+	--white-blue: #e2ecff;
 }
 
 body {
-	font-family: "Verdana", sans-serif;
+	font-family: Helvetica, sans-serif;
     background-image: url("../images/background.jpg");
     background-repeat: no-repeat;
     background-size: contain;
@@ -28,7 +29,6 @@ body {
 aside.aside-left{
 	float: left;
 	font-style: italic;
-	background-color: var(--spheal-blue-semidark);
 }
 
 aside img {
@@ -39,7 +39,6 @@ aside img {
 aside.aside-right{
 	float: right;
 	font-style: italic;
-	background-color: var(--spheal-blue-semidark);
 }
 
 aside div {
@@ -50,7 +49,8 @@ aside div {
 }
 
 section {
-	background-color: var(--spheal-blue);
+	color: black;
+	background-color: var(--white-blue);
 	margin-left: auto;
 	margin-right: auto;
 	width: 100%;

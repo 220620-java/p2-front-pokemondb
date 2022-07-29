@@ -11,7 +11,7 @@
   	request.onreadystatechange = readyStateChange;
   	request.onload = load;
 
-	request.open("PUT", url, false);
+	request.open("PUT", url, true);
 
 	// Setting the header of the API request if there's a json object
 	if (json) {

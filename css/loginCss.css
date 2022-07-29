@@ -1,6 +1,22 @@
+:root {
+	--blue: #284fce;
+    --blue-bright: #3e81e6;
+	--soft-blue: rgb(96, 167, 196);
+    --spheal-blue-bright:#9ec9f8;
+    --spheal-blue:#7aa8d9;
+    --spheal-blue-semidark:#6d95c0;
+    --spheal-blue-dark:#4472a3;
+	--pikachu-yellow-bright: #fffc3e;
+	--pikachu-yellow: #fff235;
+	--pikachu-yellow-dark: #e0cd22;
+	--white: #ffffff;
+	--white-blue: #e2ecff;
+}
+
 body {
-    font-family: sans-serif;
+    font-family: Verdana, Tahoma, sans-serif;
     background-image: url("../images/background.jpg");
+    background-color: var(--spheal-blue);
     background-repeat: no-repeat;
     background-size: cover;
     border: 100px rgb(25, 179, 213);
@@ -8,33 +24,41 @@ body {
 
 section {
     border: 10px transparent gray;
-    height: 90vh;
-
+    max-height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-td{
-	vertical-align: middle;
-	text-align: center;
+.pokeButt {
+    cursor:pointer; 
+    background-color: transparent;
+    border: none;
+    align-items: center;
+    transition: all .05s ease-in-out;
 }
 
-label{
-	color: yellow;
-}
-table {
-	margin: 2em;
+.pokeButt:hover {
+    transform: scale(1.1);
 }
 
-.liBtn{
-	text-align: left;
-	width: 50%;
+.pokeButt:active {
+    transform: scale(1.05);
 }
 
-.suBtn{
-	text-align: right;
-	width: 50%;
+.maintitle {
+    height: 90vh;
+    max-width: 70px;
+    margin: auto;
+    transform: scale(.7);
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.maintitle:hover {
+    transform: scale(1.1);
 }
 
 .container {
@@ -49,44 +73,117 @@ table {
 }
 
 .logBox {
-    height: 175px;
-    display: flex;
-    table-layout: auto;
-    background-color: rgb(3, 110, 182);
-    border-radius: 20px;
-    border-radius: 5px black;
-    
-    align-items:flex-end;
+    width:700px;
+    display: block;
+    background-image: linear-gradient(to bottom, var(--blue-bright) 1%, var(--blue) 50%, var(--blue-bright) 90%);
+    background-color: var(--blue);
+    border-radius: 25px;
+    border: var(--blue) solid;
+    margin-left: auto;
+    margin-right: auto;
     align-items: center;
     justify-content: center;
-    vertical-align: auto;
-    margin-bottom: 30%;
-    
+    filter: drop-shadow(0.5rem 1.1rem 0.25rem rgba(0, 0, 0, 0.4));
 }
 
-/*.inputBox {
-    margin-left: 20px;
-}*/
-
-.pokeButt {
-    cursor:pointer; 
-    background-color: transparent;
-    border: none;
-    align-items: center;
+#logGrid {
+    display: grid;
+    grid-template-areas: "head head"
+                         "user user"
+                         "pass pass"
+                         "login login"
+                         "signup signup";
+    grid-template-rows: 1fr 0.5fr 0.5fr 0.25fr 0.25fr;
+    grid-template-columns: 1fr 1fr;
 }
 
-.pokeButt:hover {
-    transform: scale(1.1);
-    
+#logGridHead {
+    grid-area: head;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1em;
 }
 
-.maintitle {
-    height: 90vh;
-    max-width: 70px;
+#logGridHead > img {
+    display: block;
+    max-width: 100%;
+    height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#logGridUser {
+    grid-area: user;
+    padding-bottom: 1em;
     margin: auto;
-    transform: scale(.7);
-    height: 250px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+}
+
+#logGridUser > input {
+    width: 100%;
+    height: 50%;
+    margin-top: 0.25em;
+    border-radius: 5px;
+    font-size: 2em;
+}
+
+#logGridUser > label {
+    float: left;
+    font-size: 2em;
+	color: yellow;
+    filter: drop-shadow(0.25rem 0.35rem 0.10rem rgba(0, 0, 0, 0.4));
+    padding-right: 0.5em;
+}
+
+#logGridPass {
+    grid-area: pass;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    margin: auto;
+}
+
+#logGridPass > input {
+    width: 100%;
+    height: 50%;
+    margin-top: 0.25em;
+    border-radius: 5px;
+    font-size: 2em;
+}
+
+#logGridPass > label {
+    float: left;
+    font-size: 2em;
+	color: yellow;
+    filter: drop-shadow(0.25rem 0.35rem 0.10rem rgba(0, 0, 0, 0.4));
+    padding-right: 0.5em;
+}
+
+#logGridLogin {
+    grid-area: login;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+#logGridLogin > button > img {
+    height: 100px;
+    padding: 1em 5em 1em 5em;
+    border-radius: 25px;
+    border: 2px var(--blue-bright) solid;
+    background-image: linear-gradient(to bottom, var(--spheal-blue-bright) 5%, var(--blue-bright) 30%, var(--spheal-blue-bright) 98%);
+    filter: drop-shadow(0.25rem 0.35rem 0.10rem rgba(0, 0, 0, 0.4));
+    background-color: #e2ecff;
+}
+
+#logGridSignup {
+    grid-area: signup;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2em;
+    margin-bottom: 1em;
+}
+
+#logGridSignup > button > img {
+    display: block;
+    height: 65px;
 }
