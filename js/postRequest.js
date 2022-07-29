@@ -11,7 +11,7 @@ export function postRequest(url, json, onDone, onHeadersReceived, onLoading) {
   	request.onreadystatechange = readyStateChange;
   	request.onload = load;
 
-	request.open("POST", url, false);
+	request.open("POST", url, true);
 
 	// Setting the header of the API request if there's a json object
 	if (json) {
