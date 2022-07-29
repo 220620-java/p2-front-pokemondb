@@ -1,7 +1,7 @@
 <html>
     <head>
         <!-- metadata -->
-        <title>PokéPost Pokemon</title>
+        <title>PokePost Pokemon Search</title>
         <meta charset="UTF-8">
 		<link rel= "icon" href="images/pokeball.png" type="image/x-icon">
 		<link rel="stylesheet" href="css/mainPokePost.css">
@@ -60,8 +60,11 @@
 			<!-- Row 3 Pokemon Content -->
 			<aside class="aside-left">
 			</aside>
-			<section>
-				<div class="pokemonClass" id="pokemon_output"></div>
+			<section style="max-width: 100%">
+				<div id="pokemon_output">
+					<h1>Text</h1>
+					<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/363.png">
+				</div>
 			</section>
 			<aside class="aside-right">
 			</aside>
@@ -80,8 +83,8 @@
 			}
 		
 			// Send username and password to the backend to check against values in the DB
-			//let url = "http://pokepost-env.eba-jzp4ndpr.us-east-1.elasticbeanstalk.com/pokemon/" + pokemon_name;
-			let url = "http://localhost:8080/pokemon/" + pokemon_name;
+			let url = "http://pokepost-env.eba-jzp4ndpr.us-east-1.elasticbeanstalk.com/pokemon/" + pokemon_name;
+			//let url = "http://localhost:8080/pokemon/" + pokemon_name;
 			getRequest (url, null, createPokemonPage);
 
 			return false;
