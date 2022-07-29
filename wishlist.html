@@ -4,7 +4,7 @@
     <title>PokéPost Wishlist</title>
     <link rel="icon" href="images/pokeball.png" type="image/x-icon">
     <link rel="stylesheet" href="css/wishlist.css">
-    <script src="wishlist.js"></script>
+    <script src="js/wishlist.js" defer></script>
 </head>
 
 <body>
@@ -52,13 +52,16 @@
         document.body.appendChild(img);
     </script>
 
-    <section id="info">
+    <section id="data">
 
     </section>
     <div>
         <p>Enter a Pokémon name or ID:</p>
-        <input value="" type="text" id="pokemon_box">
-        <button type="button" id="button">Get Pokemon</button>
+        <input type="number" id="dataInput">
+        <button type="button" id="getData">Get Pokemon</button>
+        <section id="data">
+
+        </section>
     </div>
 
 

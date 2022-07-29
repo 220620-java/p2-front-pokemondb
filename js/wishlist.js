@@ -1,9 +1,9 @@
-let apiURL = "https://pokeapi.co/api/v2/pokemon/"
+let apiURL = 'https://pokeapi.co/api/v2/pokemon/';
 
-document.getElementById('button').onclick = button;
+document.getElementById('getData').onclick = getData;
 
-function button() {
-    let userInput = document.getElementById('pokemon_box').value;
+function getData() {
+    let userInput = document.getElementById('dataInput').value;
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = receiveData;
     xhttp.open('GET', apiURL + '' + userInput);
@@ -11,7 +11,7 @@ function button() {
 
     function receiveData() {
         if (xhttp.readyState === 4) {
-            let dataSection = document.getElementById('info');
+            let dataSection = document.getElementById('data');
             dataSection.innerHTML = '';
 
             if (xhttp.status === 200) {
@@ -27,7 +27,7 @@ function button() {
     }
 
     function populateData(response) {
-        let dataSection = document.getElementById('info');
+        let dataSection = document.getElementById('data');
 
         let nameTag = document.createElement('h3');
         nameTag.innerHTML = capitalize(response.name);
@@ -44,10 +44,10 @@ function button() {
         dataSection.appendChild(abilities);
 
         let imageUrl = response.sprites;
-        for (let sprite in spritesObject) {
-            if (spritesObject[sprite]) {
+        for (let sprite in imageUrl) {
+            if (imageUrl[sprite]) {
                 let spriteImg = document.createElement('img');
-                imageUrl.src = spritesObject[sprite];
+                spriteImg.src = imageUrl[sprite];
                 dataSection.appendChild(spriteImg);
             }
         }
