@@ -75,68 +75,69 @@ export function createPokemonPage (pokemonJSON) {
 
     // Base Stats
     const baseStatsDiv = document.createElement ("div");
+	baseStatsDiv.id = "stat-circles";
 
-    // let keys = Object.keys(pokemonBaseStats);
+    let keys = Object.keys(pokemonBaseStats);
 
-    // let table = document.createElement('table'); // creates a table element
-    // let rows = 2;
-    // let cols = 6;
-    // for (let i = 0; i < rows; i++) {
-    //     let tr;
-    //     tr = document.createElement('tr'); // creates a table row element
-    //     for (let j = 0; j < cols; j++) {
-    //         let td;
-    //         // if it's the first row, create a table header
-    //         // otherwise, create a table data element
-    //         if (i === 0) {
-    //             td = document.createElement('th');
-    //             td.innerText = keys[j];
-    //             tr.appendChild(td);
-    //         }
-    //         else {
-    //             td = document.createElement('td');
-    //             td.innerText = pokemonBaseStats[keys[j]];
-    //             tr.appendChild(td);
-    //         }
+    let table = document.createElement('table'); // creates a table element
+    let rows = 2;
+    let cols = 6;
+    for (let i = 0; i < rows; i++) {
+        let tr;
+        tr = document.createElement('tr'); // creates a table row element
+        for (let j = 0; j < cols; j++) {
+            let td;
+            // if it's the first row, create a table header
+            // otherwise, create a table data element
+            if (i === 0) {
+                td = document.createElement('th');
+                td.innerText = keys[j];
+                tr.appendChild(td);
+            }
+            else {
+                td = document.createElement('td');
+                td.innerText = pokemonBaseStats[keys[j]];
+                tr.appendChild(td);
+            }
             
-    //     }
+        }
         
-    //     table.appendChild(tr);
-    // }
+        table.appendChild(tr);
+    }
 
-    let instance = new ProgressCircle("#stat-circles", true);
-    let pData = [{
-        text : "HP",
-        percent : 120,
-        color : "green",
-        textColor: "black"
-    },{
-        text : "Attack",
-        percent : 64,
-        color : "red",
-        textColor: "black"
-    },{
-        text : "Defense",
-        percent : 64,
-        color : "blue",
-        textColor: "black"
-    },{
-        text : "Speed",
-        percent : 64,
-        color : "yellow",
-        textColor: "black"
-    },{
-        text : "Sp. Atk",
-        percent : 64,
-        color : "orange",
-        textColor: "black"
-    },{
-        text : "Sp. Def",
-        percent : 64,
-        color : "teal",
-        textColor: "black"
-    }];
-    instance.load(pData);
+    // let instance = new ProgressCircle("#stat-circles", true);
+    // let pData = [{
+    //     text : "HP",
+    //     percent : 120,
+    //     color : "green",
+    //     textColor: "black"
+    // },{
+    //     text : "Attack",
+    //     percent : 64,
+    //     color : "red",
+    //     textColor: "black"
+    // },{
+    //     text : "Defense",
+    //     percent : 64,
+    //     color : "blue",
+    //     textColor: "black"
+    // },{
+    //     text : "Speed",
+    //     percent : 64,
+    //     color : "yellow",
+    //     textColor: "black"
+    // },{
+    //     text : "Sp. Atk",
+    //     percent : 64,
+    //     color : "orange",
+    //     textColor: "black"
+    // },{
+    //     text : "Sp. Def",
+    //     percent : 64,
+    //     color : "teal",
+    //     textColor: "black"
+    // }];
+    // instance.load(pData);
 
     // baseStatsDiv.appendChild(table);
     outputDiv.appendChild (baseStatsDiv);

@@ -85,7 +85,7 @@
 			// Send username and password to the backend to check against values in the DB
 			let url = "http://pokepost-env.eba-jzp4ndpr.us-east-1.elasticbeanstalk.com/pokemon/" + pokemon_name;
 			//let url = "http://localhost:8080/pokemon/" + pokemon_name;
-			getRequest (url, null, createPokemonPage, onHeadersReceived, onLoading);
+			getRequest (url, createPokemonPage, onHeadersReceived, onLoading);
 
 			return false;
 		}
@@ -95,16 +95,19 @@
 			const outputDiv = document.getElementById ("pokemon_output");
 			outputDiv.innerHTML = "";
 			const titleLine = document.createElement("h1");
-			const titleText = document.createTextNode(pokemon_name + " (" + pokemonID + ")");
-			titleDiv.appendChild (titleLine);
+			const titleText = document.createTextNode("Looking for a " + pokemon_name);
 			titleLine.appendChild (titleText);
-			outputDiv.appendChild (titleDiv);
+			outputDiv.appendChild (titleLine);
 		}
 
 		function onLoading () {
+			let pokemon_name = document.getElementById('pokemon_box').value;
 			const outputDiv = document.getElementById ("pokemon_output");
 			outputDiv.innerHTML = "";
-			let pokemon_name = document.getElementById('pokemon_box').value;
+			const titleLine = document.createElement("h1");
+			const titleText = document.createTextNode("Found a " + pokemon_name + "!");
+			titleLine.appendChild (titleText);
+			outputDiv.appendChild (titleLine);
 		}
 	</script>
 </html>
