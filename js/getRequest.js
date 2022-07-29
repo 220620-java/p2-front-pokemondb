@@ -1,7 +1,7 @@
 /**
  * Uses AJAX to send a get request and offers the option to use callback functions
  */
-export function getRequest(url, json, onDone, onHeadersReceived, onLoading) {
+export function getRequest(url, onDone, onHeadersReceived, onLoading) {
   	console.log("PREPARING GET REQUEST TO: " + url);
 
   	// Opening a GET request to the URL by creating XML Http Request object
@@ -11,15 +11,10 @@ export function getRequest(url, json, onDone, onHeadersReceived, onLoading) {
     request.onreadystatechange = readyStateChange;
 	request.onload = load;
 
-  	request.open("GET", url, false);
-
-	// Setting the header of the API request if there's a json object
-	if (json) {
-		request.setRequestHeader("Content-type", "application/json");
-	}
+  	request.open("GET", url, true);
 
 	// Send out request
-	request.send(json);
+	request.send();
 
 	// Asynchronously set up request
 	// For displaying loading information
