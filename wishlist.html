@@ -4,6 +4,7 @@
     <title>PokéPost Wishlist</title>
     <link rel="icon" href="images/pokeball.png" type="image/x-icon">
     <link rel="stylesheet" href="css/wishlist.css">
+    <script src="wishlist.js"></script>
 </head>
 
 <body>
@@ -45,11 +46,20 @@
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8d4WK3GscD4UKRHN63RWpGjhP0P-qVwW6iw&usqp=CAU"
             height="30" width="30" class="pB">n Wish Lists</h2>
 
-    <script>
+    <script id="info">
         let img = document.createElement("img");
         img.src = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/249.png";
         document.body.appendChild(img);
     </script>
+
+    <section id="info">
+
+    </section>
+    <div>
+        <p>Enter a Pokémon name or ID:</p>
+        <input value="" type="text" id="pokemon_box">
+        <button type="button" id="button">Get Pokemon</button>
+    </div>
 
 
     <div class=pokemonClass>
@@ -63,6 +73,7 @@
     <div class="pokemonClass">
         <p style="color:white" id="pokemon_output">
     </div>
+    
 </body>
 
 
