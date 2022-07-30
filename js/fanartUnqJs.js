@@ -62,10 +62,7 @@ function getFanart() {
   	artRequest = new XMLHttpRequest();
 
   	//Initializaing a request to the order
-	artRequest.open("GET", artURL, false);
-
-	// Send out request
-	artRequest.send(null);
+	artRequest.open("GET", artURL, true);
 
   	artRequest.onload = function () {
 			console.log("artRequest.onload is called!");
@@ -83,7 +80,7 @@ function getFanart() {
 
 			//Setting elements
 			fanartTitle.innerHTML = artResponse.title;
-			fanartAuthor.innerHTML = artResponse.author;
+			fanartAuthor.innerHTML = artResponse.author.username;
 			fanartPostDate.innerHTML = artResponse.postDate;
 			fanartTags.innerHTML = artResponse.tags;
 			fanartImg.src = artResponse.url;
@@ -97,12 +94,12 @@ function getFanart() {
 			idRequest = new XMLHttpRequest();
 
 			//Initializaing a request to the order
-			idRequest.open("GET", idURL, false);
+			idRequest.open("GET", idURL, true);
 
 			idRequest.onload = function () {
 				console.log("idRequest.onload is called!");
 				//Request is successful. Store the id limiters
-				if (request.status >= 200 && request.status < 300) {
+				if (idRequest.status >= 200 && idRequest.status < 300) {
 					console.log("Request was successful!");
 					console.log("Response: " + idRequest.response);
 					console.log("Status Text: " + idRequest.statusText);
