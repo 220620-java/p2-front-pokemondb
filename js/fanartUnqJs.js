@@ -20,9 +20,11 @@ let idLowerLimit, idUpperLimit;
 
 /*Event Listeners*/
 
-fanartUnqBody.onload = getFanart();
+fanartUnqBody.onload = function () { getFanart(); }
 rateChk.onchange = function () { rateChkCheckChanged(rateImg) };
 flagChk.onchange = function () { flagChkCheckChanged(flagImg) };
+prevArt.onclick = function () { prevArtClick(); }
+nextArt.onclick = function () { nextArtClick(); }
 
 /*Functions*/
 
@@ -34,10 +36,12 @@ function getArtId() {
 	console.log("getArtId called");
 	let artId;
 	if (typeof sessionStorage.getItem("FANART_ID") != 'number') {
+		console.log("FANART_ID is not a number")
 		sessionStorage.setItem("FANART_ID", 1);
 		artId = 1;
 	} else {
-		artId = sessionStorage.getItem("FANART_ID");
+		console.log("FANART_ID = " + sessionStorage.getItem("FANART_ID"));
+		artId = parseInt(sessionStorage.getItem("FANART_ID"));
 	}
 	console.log("currentArtId: " + artId);
 	return artId;
@@ -49,7 +53,6 @@ function getArtId() {
  *	Upon response, JS feeds the given information into its corresponding location
  */
 function getFanart() {
-	getArtId;
 	//Function Variables
 	let artURL, artRequest, artResponse, idURL, idRequest, idResponse, idSeparatorIdx;
 
@@ -108,7 +111,18 @@ function getFanart() {
 					//Parse response into id values
 					idSeparatorIdx = idResponse.indexOf("/");
 					idLowerLimit = parseInt(idResponse.substring(0, idSeparatorIdx));
-					idUpperLimit = parseInt(idResponse.substring(idSeparatorIdx, 0));
+					idUpperLimit = parseInt(idResponse.substring((idSeparatorIdx + 1), idResponse.size));
+					console.log("idLL: " + idLowerLimit + " | idUL: " + idUpperLimit)
+					if (currentArtId == idLowerLimit) { //Id is of the first available fanart
+						prevArt.hidden = true;
+					} else {
+						prevArt.hidden = false;
+                    } 
+					if (currentArtId == idUpperLimit) { //Id is of the last available fanart
+						nextArt.hidden = true;
+					} else {
+						nextArt.hidden = false;
+                    }
 				} else { //Request failed. Disable nextArt and prevArt buttons
 					nextArt.hidden = true;
 					prevArt.hidden = true;
@@ -172,10 +186,95 @@ function flagChkCheckChanged(imageId){
 	imageId.src = url;
 }
 
+/**Changes the page to display the previous fanart
+ */
 function prevArtClick() {
-	
+	console.log("prevArtClick called")
+	let newArtId = currentArtId;
+	let artAvailable = false;
+	let prevRequest, prevResponse, prevURL;
+	console.log("currentArtID: " + currentArtId + " | idLL: " + idLowerLimit)
+	if (currentArtId > idLowerLimit) {
+		while (newArtId >= idLowerLimit && artAvailable == false) {
+			newArtId = (newArtId - 1);
+			console.log("newArtID: " + newArtId + " | idLL: " + idLowerLimit)
+			sessionStorage.setItem("FANART_ID", newArtId);
+			prevURL = "http:/localhost:8080/fanart/info/" + newArtId;
+			console.log("prevURL is: " + prevURL);
+
+			//Making a bridge to the server through XMLHttpRequest()
+			prevRequest = new XMLHttpRequest();
+
+			//Initializaing a request to the order
+			prevRequest.open("GET", prevURL, false);
+
+			prevRequest.onload = function () {
+				console.log("prevRequest.onload is called!");
+
+				//Request is successful, make changes based on response
+				if (prevRequest.status >= 200 && prevRequest.status < 300) {
+					console.log("Request was successful!");
+					console.log("Response: " + prevRequest.response);
+					console.log("Status Text: " + prevRequest.statusText);
+					prevResponse = prevRequest.response;
+
+					if (prevResponse == 'true') { //Fanart can be shown
+						currentArtId = parseInt(sessionStorage.getItem("FANART_ID"));
+						getFanart();
+						artAvailable = true;
+					}
+				} else { //Request failed. Handle errors and then default to a false response(i.e. do not break the loop)
+					console.log(prevRequest.status);
+                }
+			}
+			prevRequest.send();
+        }
+    }
 }
 
-function nextArtClick() {
 
+/**Changes the page to display the next fanart
+ */
+function nextArtClick() {
+	console.log("nextArtClick called")
+	let newArtId = currentArtId;
+	let artAvailable = false;
+	let nextRequest, nextResponse, nextURL;
+	console.log("currentArtID: " + currentArtId + " | idUL: " + idUpperLimit)
+	if (currentArtId < idUpperLimit) {
+		while (newArtId <= idUpperLimit && artAvailable == false) {
+			newArtId = (newArtId + 1);
+			console.log("newArtID: " + newArtId + " | idUL: " + idUpperLimit)
+			sessionStorage.setItem("FANART_ID", newArtId);
+			nextURL = "http:/localhost:8080/fanart/info/" + newArtId;
+			console.log("nextURL is: " + nextURL);
+
+			//Making a bridge to the server through XMLHttpRequest()
+			nextRequest = new XMLHttpRequest();
+
+			//Initializaing a request to the order
+			nextRequest.open("GET", nextURL, false);
+
+			nextRequest.onload = function () {
+				console.log("nextRequest.onload is called!");
+
+				//Request is successful, make changes based on response
+				if (nextRequest.status >= 200 && nextRequest.status < 300) {
+					console.log("Request was successful!");
+					console.log("Response: " + nextRequest.response);
+					console.log("Status Text: " + nextRequest.statusText);
+					nextResponse = nextRequest.response;
+
+					if (nextResponse == 'true') { //Fanart can be shown
+						currentArtId = parseInt(sessionStorage.getItem("FANART_ID"));
+						getFanart();
+						artAvailable = true;
+					}
+				} else { //Request failed. Handle errors and then default to a false response(i.e. do not break the loop)
+					console.log(nextRequest.status);
+				}
+			}
+			nextRequest.send();
+		}
+	}
 }
