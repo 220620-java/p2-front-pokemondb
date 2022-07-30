@@ -1,4 +1,5 @@
 console.log("Loaded fanartUnqJs.js");
+console.log(document.documentURI);
 
 /*Script Variables*/
 
@@ -14,7 +15,7 @@ let flagChk = document.getElementById('flagChk');
 let flagImg = document.getElementById('flagImg');
 let prevArt = document.getElementById('prevArt');
 let nextArt = document.getElementById('nextArt');
-let currentArtId = function () { getArtID }
+let currentArtId = getArtId();
 let idLowerLimit, idUpperLimit;
 
 /*Event Listeners*/
@@ -26,19 +27,20 @@ flagChk.onchange = function () { flagChkCheckChanged(flagImg) };
 /*Functions*/
 
 /**
- * Retrieves the id value in the URI.
+ * Retrieves the id value in the Session variable.
  * This will be used to retrieve data.
  */
-function getArtId(doc_uri) {
-	//Function Variables
-	let fanart, paramIndex;
-
-	//Determining fanart_id
-	paramIndex = doc_uri.lastIndexOf('/');
-	fanart = doc_uri.substring((paramIndex + 1));
-
-	//Return Id
-	return parseInt(fanart);
+function getArtId() {
+	console.log("getArtId called");
+	let artId;
+	if (typeof sessionStorage.getItem("FANART_ID") != 'number') {
+		sessionStorage.setItem("FANART_ID", 1);
+		artId = 1;
+	} else {
+		artId = sessionStorage.getItem("FANART_ID");
+	}
+	console.log("currentArtId: " + artId);
+	return artId;
 }
 
 /**
@@ -47,17 +49,13 @@ function getArtId(doc_uri) {
  *	Upon response, JS feeds the given information into its corresponding location
  */
 function getFanart() {
+	getArtId;
 	//Function Variables
-	let fanartId, artURL, artRequest, artResponse, idURL, idRequest, idResponse, idSeparatorIdx;
-
-	//Getting current fanartId
-	fanartId = function () {
-		getArtId(document.documentURI)
-	}
+	let artURL, artRequest, artResponse, idURL, idRequest, idResponse, idSeparatorIdx;
 
   	// Opening a connection to the server
-  	console.log("Running fanartUnqJs.js with the id: " + fanartId);
-	artURL = "localhost:8080/fanart/" + fanartId;
+  	console.log("Running fanartUnqJs.js with the id: " + currentArtId);
+	artURL = "http:/localhost:8080/fanart/" + currentArtId;
   	console.log("artURL is: " + artURL);
 
   	//Making a bridge to the server through XMLHttpRequest()
@@ -92,7 +90,7 @@ function getFanart() {
 
 			//Retrieving Id limiters
 			//Opening a new connection to the server
-			idURL = "localhost:8080/fanart/info/";
+			idURL = "http:/localhost:8080/fanart/info/";
 			console.log("idURL is: " + idURL);
 
 			//Making a bridge to the server through XMLHttpRequest()
