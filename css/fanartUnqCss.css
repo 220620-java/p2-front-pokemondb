@@ -6,16 +6,19 @@ body {
 td.nextArt{
 	vertical-align: middle;
 	text-align: left;
+	width: 25%;
 }
 
 td.fanartTitle {
 	vertical-align: middle;
 	text-align: center;
+	width: 50%;
 }
 
 td.prevArt {
 	vertical-align: middle;
 	text-align: right;
+	width: 25%;
 }
 
 .fanartUnqBtn {	
