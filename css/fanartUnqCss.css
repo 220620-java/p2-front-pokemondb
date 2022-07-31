@@ -51,7 +51,8 @@ td.fanartDetails{
 	text-align: center;
 }
 
-.flag {
+.flagImg {
+	cursor: pointer;
 	float: right;
 	position: relative;
 	top: 0%;
@@ -62,13 +63,14 @@ input#flagChk, input#rateChk{
 	display:none;
 }
 
-label#flagLbl, label#rateLbl{
+.rateImg {
 	cursor: pointer;
-}
-
-.rate {
 	float: left;
 	position: relative;
 	top: 0%;
 	left: 45%;
+}
+
+.comments {
+
 }

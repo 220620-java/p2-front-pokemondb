@@ -10,21 +10,22 @@ let fanartPostDate = document.getElementById("fanartPostDate");
 let fanartTags = document.getElementById("fanartTags");
 let fanartImg = document.getElementById("fanartImg");
 let rateChk = document.getElementById("rateChk");
-let rateImg = document.getElementById('rateImg');
 let flagChk = document.getElementById('flagChk');
-let flagImg = document.getElementById('flagImg');
 let prevArt = document.getElementById('prevArt');
 let nextArt = document.getElementById('nextArt');
+let addComment = document.getElementById('addComment');
+let allComments = document.getElementById('allComments');
 let currentArtId = getArtId();
 let idLowerLimit, idUpperLimit;
 
 /*Event Listeners*/
 
 fanartUnqBody.onload = function () { getFanart(); }
-rateChk.onchange = function () { rateChkCheckChanged(rateImg) };
-flagChk.onchange = function () { flagChkCheckChanged(flagImg) };
+rateChk.onchange = function () { rateChkCheckChanged(rateChk.checked, 'rateImg') };
+flagChk.onchange = function () { flagChkCheckChanged(flagChk.checked, 'flagImg') };
 prevArt.onclick = function () { prevArtClick(); }
 nextArt.onclick = function () { nextArtClick(); }
+//addComment.onclick = function () { addComment(); }
 
 /*Functions*/
 
@@ -129,6 +130,7 @@ function getFanart() {
                 }
 			}
 			idRequest.send();
+			getComments();
 		} else { //Request failed. Handle the error and format to default. Disable nextArt and prevArt buttons
 			//Error handling
 			const errorMessage = document.createElement("error");
@@ -157,33 +159,35 @@ function getFanart() {
 /**
  *	Changes the image file between heart.png and heartEmpty.png based on the checked state
  */
-function rateChkCheckChanged(imageId){
+function rateChkCheckChanged(checked, imageId){
 	console.log("rateChk.onchange called");
+	image = document.getElementById(imageId);
 	let url = "";
-	if (rateChk.checked){
+	if (checked){
 		url = "images/heart.png";
 	}
 	else{		
 		url = "images/heartEmpty.png";
 	}
 	console.log(imageId + " src changed to" + url);
-	imageId.src = url;
+	image.src = url;
 }
 
 /**
  *	Changes the image file between flag.png and flagLow.png based on the checked state
  */
-function flagChkCheckChanged(imageId){
+function flagChkCheckChanged(checked, imageId){
 	console.log("rateChk.onchange called");
+	image = document.getElementById(imageId);
 	let url = '';
-	if (flagChk.checked){
+	if (checked){
 		url = 'images/flag.png';
 	}
 	else{		
 		url = 'images/flagLow.png';
 	}
 	console.log(imageId + " src changed to" + url);
-	imageId.src = url;
+	image.src = url;
 }
 
 /**Changes the page to display the previous fanart
@@ -278,3 +282,150 @@ function nextArtClick() {
 		}
 	}
 }
+
+/**Retrieves comments associated with the shown fanart
+ * */
+function getComments() {
+	console.log("getComments called")
+	let getCommRequest, getCommResponse, getCommURL,
+		newComm, newCommText, newCommAuthor,
+		newCommLike, newCommLikeLbl, newCommLikeImg,
+		newCommReport, newCommReportLbl, newCommReportImg;
+
+	//Setup request
+	getCommRequest = new XMLHttpRequest();
+
+	getCommURL = "http:/localhost:8080/artcomm/" + currentArtId;
+
+	getCommRequest.open("GET", getCommURL, true);
+
+	getCommRequest.onload = function () {
+		console.log("getCommRequest.onload called");
+
+		//Request is successful. Add comment objects to the html
+		if (getCommRequest.status >= 200 && getCommRequest.status < 300) {
+			console.log("Request was successful!");
+			console.log("Response: " + getCommRequest.response);
+			console.log("Status Text: " + getCommRequest.statusText);
+			getCommResponse = JSON.parse(getCommRequest.response);
+
+			for (let commentObj of getCommResponse) {
+				//Reset variables
+				newComm = null;
+				newCommText = null;
+				newCommAuthor = null;
+				newCommLike = null;
+				newCommLikeLbl = null;
+				newCommLikeImg = null;
+				newCommReport = null;
+				newCommReportLbl = null;
+				newCommReportImg = null;
+
+				//Creating new elements
+				newComm = document.createElement('div');
+				newCommAuthor = document.createElement('p');
+				newCommText = document.createElement('p');
+				newCommLike = document.createElement('input');
+				newCommLikeImg = document.createElement('img');
+				newCommLikeLbl = document.createElement('label');
+				newCommReport = document.createElement('input');
+				newCommReportImg = document.createElement('img');
+				newCommReportLbl = document.createElement('label');
+
+				//Adding Elements to NewComm
+				newComm.appendChild(newCommAuthor);
+				newComm.appendChild(newCommText);
+				newComm.appendChild(newCommLike);
+				newComm.appendChild(newCommLikeLbl);
+				newComm.appendChild(newCommReport);
+				newComm.appendChild(newCommReportLbl);
+
+				//Adding NewComm to allComments
+				allComments.appendChild(newComm);
+
+				//Setting up a new div
+				newComm.setAttribute("className", "loadedComment");
+
+				//Setting up author label
+				newCommAuthor.setAttribute("className", "commentAuthor")
+				newCommAuthor.innerHTML = commentObj.author.username;
+
+				//Setting up comment text
+				newCommText.setAttribute("className", "commentText");
+				newCommText.innerHTML = commentObj.content;
+
+				//Setting up like button
+				newCommLike.setAttribute("className", "commentLike");
+				newCommLike.setAttribute("id" ,"Like" + commentObj.id);
+				newCommLike.type = "checkbox";
+
+				//Setting up image for like button
+				newCommLikeImg.src = "images/heartEmpty.png";
+				newCommLikeImg.setAttribute("className", "commentLikeImg");
+				newCommLikeImg.setAttribute("id", "LikeImg" + commentObj.id);
+				newCommLikeImg.height = "32";
+				newCommLikeImg.width = "32";
+
+				//Setting up label for like button
+				newCommLikeLbl.setAttribute("className", "commentLikeLbl");
+				newCommLikeLbl.setAttribute("for", newCommLike.id);
+				newCommLikeLbl.appendChild(newCommLikeImg);
+
+				//Setting up report button
+				newCommReport.setAttribute("className", "commentReport");
+				newCommReport.setAttribute("id", "Report" + commentObj.id);
+				newCommReport.type = "checkbox";
+
+				//Setting up image for report button
+				newCommReportImg.src = "images/flagLow.png";
+				newCommReportImg.setAttribute("className","commentReportImg");
+				newCommReportImg.setAttribute("id","ReportImg" + commentObj.id);
+				newCommReportImg.height = "32";
+				newCommReportImg.width = "32";
+
+				//Setting up label for report button
+				newCommReportLbl.setAttribute("className", "commentReportImg");
+				newCommReportLbl.setAttribute("for",newCommReport.id);
+				newCommReportLbl.appendChild(newCommReportImg);
+
+				console.log("New div created");
+
+				//Setting event listeners
+				console.log("New Like Image: " + newCommLikeImg.id);
+				console.log("New Report Image: " + newCommReportImg.id);
+				newCommLike.onchange = function () {
+					rateChkCheckChanged(document.getElementById("Like" + commentObj.id).checked, "LikeImg" + commentObj.id)
+				}
+				newCommReport.onchange = function () {
+					flagChkCheckChanged(document.getElementById("Report" + commentObj.id).checked, "ReportImg" + commentObj.id)
+				}
+            }
+		} else { //Request failed. Handle errors and default to no comments
+			console.log(getCommRequest.statusText);
+        }
+	}
+	//Send the request
+	getCommRequest.send();
+}
+
+/*function addComment(ev) {
+	let commentText;
+	const textBox = document.createElement('div');
+	const replyButton = document.createElement('button');
+	replyButton.className = 'reply';
+	replyButton.innerHTML = 'Reply';
+	const likeButton = document.createElement('button');
+	likeButton.innerHTML = 'Like';
+	likeButton.className = 'likeComment';
+	const deleteButton = document.createElement('button');
+	deleteButton.innerHTML = 'Delete';
+	deleteButton.className = 'deleteComment';
+	const wrapDiv = document.createElement('div');
+	wrapDiv.className = 'wrapper';
+	wrapDiv.style.marginLeft = 0;
+	commentText = document.getElementById('newComment').value;
+	document.getElementById('newComment').value = '';
+	textBox.innerHTML = commentText;
+	wrapDiv.append(textBox, replyButton, likeButton, deleteButton);
+	commentContainer.appendChild(wrapDiv);
+}*/

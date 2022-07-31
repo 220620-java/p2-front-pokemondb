@@ -1,12 +1,13 @@
 ﻿<html>
-	<head>
-		<title>PokéPost</title>
-		<link rel= "icon" href="images/pokeball.png" type="image/x-icon">
-		<link rel="stylesheet" href="css/fanartUnqCss.css">
-		<link rel="stylesheet" href="css/navbar.css">
-		<script src="js/fanartUnqJs.js" defer></script>
-        <meta charset="UTF-8">
-	</head>
+<head>
+	<title>PokéPost</title>
+	<link rel="icon" href="images/pokeball.png" type="image/x-icon">
+	<link rel="stylesheet" href="css/fanartUnqCss.css">
+	<link rel="stylesheet" href="css/navbar.css">
+	<link rel="stylesheet" href="css/comment.css">
+	<script src="js/fanartUnqJs.js" defer></script>
+	<meta charset="UTF-8">
+</head>
 	<body id="fanartUnqBody">
 		<nav>
 			<div id="menuBar">
@@ -28,9 +29,9 @@
 						<div class="fanartImg">
 							<img class="fanartImg" id="fanartImg" src="images/fanart/spheal.png" alt="Spheal With It!"/>
 							<input type="checkbox" class="flag" id="flagChk">
-							<label class="flag" id="flagLbl" for="flagChk"><img id="flagImg" src="images/flagLow.png" height="32" width="32"></label>
+							<label class="flagImg" id="flagLbl" for="flagChk"><img id="flagImg" src="images/flagLow.png" height="32" width="32"></label>
 							<input type="checkbox" class="rate" id="rateChk">
-							<label class="rate" id="rateLbl" for="rateChk"><img id="rateImg" src="images/heartEmpty.png" height="32" width="32"></label>
+							<label class="rateImg" id="rateLbl" for="rateChk"><img id="rateImg" src="images/heartEmpty.png" height="32" width="32"></label>
 						</div>
 					</td>
 				</tr>
@@ -60,6 +61,14 @@
 			</table>
 		</div>
 		<div class="comments">
+			<section>
+				<div class="container">
+					<label for="newComment" name="newComment">Add your comment below-</label>
+					<textarea id="newComment"></textarea>
+					<button id="addComments">Add Comment</button>
+					<div id="allComments"></div>
+				</div>
+			</section>
 		</div>
 	</body>
 </html>
