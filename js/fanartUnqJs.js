@@ -21,8 +21,8 @@ let idLowerLimit, idUpperLimit;
 /*Event Listeners*/
 
 fanartUnqBody.onload = function () { getFanart(); }
-rateChk.onchange = function () { rateChkCheckChanged('rateImg') };
-flagChk.onchange = function () { flagChkCheckChanged('flagImg') };
+rateChk.onchange = function () { rateChkCheckChanged(rateChk.checked, 'rateImg') };
+flagChk.onchange = function () { flagChkCheckChanged(flagChk.checked, 'flagImg') };
 prevArt.onclick = function () { prevArtClick(); }
 nextArt.onclick = function () { nextArtClick(); }
 //addComment.onclick = function () { addComment(); }
@@ -159,11 +159,11 @@ function getFanart() {
 /**
  *	Changes the image file between heart.png and heartEmpty.png based on the checked state
  */
-function rateChkCheckChanged(imageId){
+function rateChkCheckChanged(checked, imageId){
 	console.log("rateChk.onchange called");
 	image = document.getElementById(imageId);
 	let url = "";
-	if (rateChk.checked){
+	if (checked){
 		url = "images/heart.png";
 	}
 	else{		
@@ -176,11 +176,11 @@ function rateChkCheckChanged(imageId){
 /**
  *	Changes the image file between flag.png and flagLow.png based on the checked state
  */
-function flagChkCheckChanged(imageId){
+function flagChkCheckChanged(checked, imageId){
 	console.log("rateChk.onchange called");
 	image = document.getElementById(imageId);
 	let url = '';
-	if (flagChk.checked){
+	if (checked){
 		url = 'images/flag.png';
 	}
 	else{		
@@ -310,6 +310,17 @@ function getComments() {
 			getCommResponse = JSON.parse(getCommRequest.response);
 
 			for (let commentObj of getCommResponse) {
+				//Reset variables
+				newComm = null;
+				newCommText = null;
+				newCommAuthor = null;
+				newCommLike = null;
+				newCommLikeLbl = null;
+				newCommLikeImg = null;
+				newCommReport = null;
+				newCommReportLbl = null;
+				newCommReportImg = null;
+
 				//Creating new elements
 				newComm = document.createElement('div');
 				newCommAuthor = document.createElement('p');
@@ -333,48 +344,48 @@ function getComments() {
 				allComments.appendChild(newComm);
 
 				//Setting up a new div
-				newComm.className = "loadedComment";
+				newComm.setAttribute("className", "loadedComment");
 
 				//Setting up author label
-				newCommAuthor.className = "commentAuthor"
+				newCommAuthor.setAttribute("className", "commentAuthor")
 				newCommAuthor.innerHTML = commentObj.author.username;
 
 				//Setting up comment text
-				newCommText.className - "commentText";
+				newCommText.setAttribute("className", "commentText");
 				newCommText.innerHTML = commentObj.content;
 
 				//Setting up like button
-				newCommLike.className = "commentLike";
-				newCommLike.id = "Like" + commentObj.id;
+				newCommLike.setAttribute("className", "commentLike");
+				newCommLike.setAttribute("id" ,"Like" + commentObj.id);
 				newCommLike.type = "checkbox";
 
 				//Setting up image for like button
 				newCommLikeImg.src = "images/heartEmpty.png";
-				newCommLikeImg.className = "commentLikeImg";
-				newCommLikeImg.id = "LikeImg" + commentObj.id;
+				newCommLikeImg.setAttribute("className", "commentLikeImg");
+				newCommLikeImg.setAttribute("id", "LikeImg" + commentObj.id);
 				newCommLikeImg.height = "32";
 				newCommLikeImg.width = "32";
 
 				//Setting up label for like button
-				newCommLikeLbl.className = "commentLikeImg";
-				newCommLikeLbl.htmlFor = newCommLike.id;
+				newCommLikeLbl.setAttribute("className", "commentLikeLbl");
+				newCommLikeLbl.setAttribute("for", newCommLike.id);
 				newCommLikeLbl.appendChild(newCommLikeImg);
 
 				//Setting up report button
-				newCommReport.className = "commentReport";
-				newCommReport.id = "Report" + commentObj.id;
+				newCommReport.setAttribute("className", "commentReport");
+				newCommReport.setAttribute("id", "Report" + commentObj.id);
 				newCommReport.type = "checkbox";
 
 				//Setting up image for report button
 				newCommReportImg.src = "images/flagLow.png";
-				newCommReportImg.className = "commentReportImg";
-				newCommReportImg.id = "ReportImg" + commentObj.id;
+				newCommReportImg.setAttribute("className","commentReportImg");
+				newCommReportImg.setAttribute("id","ReportImg" + commentObj.id);
 				newCommReportImg.height = "32";
 				newCommReportImg.width = "32";
 
 				//Setting up label for report button
-				newCommReportLbl.className = "commentReportImg";
-				newCommReportLbl.htmlFor = newCommReport.id;
+				newCommReportLbl.setAttribute("className", "commentReportImg");
+				newCommReportLbl.setAttribute("for",newCommReport.id);
 				newCommReportLbl.appendChild(newCommReportImg);
 
 				console.log("New div created");
@@ -382,8 +393,12 @@ function getComments() {
 				//Setting event listeners
 				console.log("New Like Image: " + newCommLikeImg.id);
 				console.log("New Report Image: " + newCommReportImg.id);
-				newCommLike.onchange = function () { rateChkCheckChanged(newCommLikeImg.id) }
-				newCommReport.onchange = function () { flagChkCheckChanged(newCommReportImg.id) }
+				newCommLike.onchange = function () {
+					rateChkCheckChanged(document.getElementById("Like" + commentObj.id).checked, "LikeImg" + commentObj.id)
+				}
+				newCommReport.onchange = function () {
+					flagChkCheckChanged(document.getElementById("Report" + commentObj.id).checked, "ReportImg" + commentObj.id)
+				}
             }
 		} else { //Request failed. Handle errors and default to no comments
 			console.log(getCommRequest.statusText);
