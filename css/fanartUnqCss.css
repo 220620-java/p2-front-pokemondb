@@ -45,6 +45,7 @@ img#fanartImg {
 	width: 80%;
 	margin-left: 10%;
 	margin-right: 10%;
+	margin-bottom: 1em;
 }
 
 td.fanartDetails{
@@ -71,6 +72,114 @@ input#flagChk, input#rateChk{
 	left: 45%;
 }
 
-.comments {
+.container {
+	margin:auto;
+	padding: 0.5em;
+}
 
+.comments {
+	display:block;
+	background: #FFFFFF;
+	color: #000000;
+	width: 95%;
+	margin: auto;
+	padding: 1em;
+	border-radius: 5px;
+	border-left: 0.3em solid #faf506;
+	border-bottom: 0.3em solid #4789d9;
+}
+
+.postComment {
+	margin: auto;
+	margin-bottom: 1em;
+	background: #f5f5dc;
+	padding: 0.5em;
+	border-radius: 5px;
+	border-left: 0.3em solid #faf506;
+	border-bottom: 0.3em solid #4789d9;
+	height: 15%;
+	width: 95%;
+}
+
+#newCommentLbl {
+	float: left;
+	text-decoration: underline;
+	padding-bottom: 0.2em;
+}
+
+#newComment {
+	float: left;
+	clear: left;	
+	width: 99%;
+	height: 75%;
+	margin:auto;
+	resize: none;
+}
+
+#addComments {
+	float: right;
+}
+
+#allComments {
+	border-top: solid 0.3em #7fffd4;
+	padding-top: 1em;
+	margin-top: 1em;
+	margin: auto;
+	padding: 0.5em;
+}
+
+.loadedComment {
+	position: static;
+	border-radius: 5px;
+	border-left: 0.3em solid #faf506;
+	border-bottom: 0.3em solid #4789d9;
+	margin: 0.5em;
+	background: #f5f5dc;
+	text-align: center;
+}
+
+.commentAuthor {
+	width: 95%;
+	margin: auto;
+	padding-left: 1em;
+	text-align: left;
+	text-decoration: underline;
+	background: #7fffd4;
+	display: block;
+	right: 0%;
+	top: 0%;
+}
+
+.commentText {
+	text-align: left;
+	margin: auto;
+	padding: 1em;
+}
+
+.commentLike {
+	display: none;
+}
+
+.commentReport {
+	display: none;
+}
+
+.commentLikeLbl {
+	float: right;
+	position: relative;
+	top: -2em;
+}
+
+.commentReportLbl {
+	float: right;
+	position: relative;
+	top: -2em;
+}
+
+.commentLikeImg {
+	cursor: pointer;
+}
+
+.commentReportImg {
+	cursor: pointer;
 }

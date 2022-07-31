@@ -4,7 +4,6 @@
 	<link rel="icon" href="images/pokeball.png" type="image/x-icon">
 	<link rel="stylesheet" href="css/fanartUnqCss.css">
 	<link rel="stylesheet" href="css/navbar.css">
-	<link rel="stylesheet" href="css/comment.css">
 	<script src="js/fanartUnqJs.js" defer></script>
 	<meta charset="UTF-8">
 </head>
@@ -63,9 +62,11 @@
 		<div class="comments">
 			<section>
 				<div class="container">
-					<label for="newComment" name="newComment">Add your comment below-</label>
-					<textarea id="newComment"></textarea>
-					<button id="addComments">Add Comment</button>
+					<div class="postComment">
+						<label for="newComment" name="newComment" id="newCommentLbl">Add your comment below:</label>
+						<button type="submit" id="addComments">Add Comment</button>
+						<textarea id="newComment"></textarea>
+					</div>
 					<div id="allComments"></div>
 				</div>
 			</section>
