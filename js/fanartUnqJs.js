@@ -344,47 +344,47 @@ function getComments() {
 				allComments.appendChild(newComm);
 
 				//Setting up a new div
-				newComm.setAttribute("className", "loadedComment");
+				newComm.setAttribute("class", "loadedComment");
 
 				//Setting up author label
-				newCommAuthor.setAttribute("className", "commentAuthor")
+				newCommAuthor.setAttribute("class", "commentAuthor")
 				newCommAuthor.innerHTML = commentObj.author.username;
 
 				//Setting up comment text
-				newCommText.setAttribute("className", "commentText");
+				newCommText.setAttribute("class", "commentText");
 				newCommText.innerHTML = commentObj.content;
 
 				//Setting up like button
-				newCommLike.setAttribute("className", "commentLike");
+				newCommLike.setAttribute("class", "commentLike");
 				newCommLike.setAttribute("id" ,"Like" + commentObj.id);
 				newCommLike.type = "checkbox";
 
 				//Setting up image for like button
 				newCommLikeImg.src = "images/heartEmpty.png";
-				newCommLikeImg.setAttribute("className", "commentLikeImg");
+				newCommLikeImg.setAttribute("class", "commentLikeImg");
 				newCommLikeImg.setAttribute("id", "LikeImg" + commentObj.id);
 				newCommLikeImg.height = "32";
 				newCommLikeImg.width = "32";
 
 				//Setting up label for like button
-				newCommLikeLbl.setAttribute("className", "commentLikeLbl");
+				newCommLikeLbl.setAttribute("class", "commentLikeLbl");
 				newCommLikeLbl.setAttribute("for", newCommLike.id);
 				newCommLikeLbl.appendChild(newCommLikeImg);
 
 				//Setting up report button
-				newCommReport.setAttribute("className", "commentReport");
+				newCommReport.setAttribute("class", "commentReport");
 				newCommReport.setAttribute("id", "Report" + commentObj.id);
 				newCommReport.type = "checkbox";
 
 				//Setting up image for report button
 				newCommReportImg.src = "images/flagLow.png";
-				newCommReportImg.setAttribute("className","commentReportImg");
+				newCommReportImg.setAttribute("class","commentReportImg");
 				newCommReportImg.setAttribute("id","ReportImg" + commentObj.id);
 				newCommReportImg.height = "32";
 				newCommReportImg.width = "32";
 
 				//Setting up label for report button
-				newCommReportLbl.setAttribute("className", "commentReportImg");
+				newCommReportLbl.setAttribute("class", "commentReportLbl");
 				newCommReportLbl.setAttribute("for",newCommReport.id);
 				newCommReportLbl.appendChild(newCommReportImg);
 
