@@ -46,37 +46,21 @@
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8d4WK3GscD4UKRHN63RWpGjhP0P-qVwW6iw&usqp=CAU"
             height="30" width="30" class="pB">n Wish Lists</h2>
 
-    <script id="info">
-        let img = document.createElement("img");
-        img.src = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/249.png";
-        document.body.appendChild(img);
-    </script>
-
     <section id="data">
 
     </section>
     <div>
         <p>Enter a Pokémon name or ID:</p>
-        <input type="number" id="dataInput">
+        <input value="" type="text" id="dataInput">
         <button type="button" id="getData">Get Pokemon</button>
-        <section id="data">
-
-        </section>
-    </div>
-
-
-    <div class=pokemonClass>
-        <form class=pokemonClass onsubmit="return sendPokemonRequest(); return false">
-            <p>Enter a Pokémon name or ID:</p>
-            <input value="" type="text" id="pokemon_box">
-            <button id="button" type="button" class="btn btn-primary" onclick="return sendPokemonRequest()">Get
-                Pokemon</button>
-        </form>
-    </div>
-    <div class="pokemonClass">
-        <p style="color:white" id="pokemon_output">
-    </div>
-    
+    </div>     
+    <table id="listPokemon" border="5">
+        <tr>
+            <td></td>
+        </tr>
+    </table>
+    <br>
+    <button type="button" onclick="displayResult()">Pokemon</button>
 </body>
 
 
