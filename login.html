@@ -62,5 +62,31 @@
             </div>
         </section>
     </body>
+    <script>
+        function login() {
+            let username = document.getElementById('username').value;
+            let password = document.getElementById('password').value;
+		
+			// checks username and password for empty credentials
+			if (username == "" || password == "") {
+				alert("Invalid Credentials: Please Fill Out All Inputs");
+				return false;
+			}
+
+            console.log ("Sending Login Request... " + username);
+            let credentials = {username: username, password: password};
+            credentials = JSON.stringify(credentials);
+			let url = "http://ec2-44-202-125-216.compute-1.amazonaws.com:8080/auth/";
+			// let url = "http://localhost:8080/auth/";
+            postRequest (url, credentials, onSuccessfulLogin, onHeadersReceived, onLoading)
+        }
+
+        function onHeadersReceived () {
+
+		}
+
+		function onLoading () {
+
+		}
 
 </html>

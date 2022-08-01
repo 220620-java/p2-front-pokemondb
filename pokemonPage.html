@@ -1,0 +1,114 @@
+<html>
+    <head>
+        <!-- metadata -->
+        <title>PokePost Pokemon Search</title>
+        <meta charset="UTF-8">
+		<link rel= "icon" href="images/pokeball.png" type="image/x-icon">
+		<link rel="stylesheet" href="css/mainPokePost.css">
+		<link rel="stylesheet" href="css/pokemonPage.css">
+		<link rel="stylesheet" href="css/navbar.css" type="text/css">
+		<!-- Progress Circle-->
+		<!-- <link rel="stylesheet" href="css/progresscircle.css" /> -->
+		<!-- <script src="js/progresscircle.js"></script> -->
+
+		<script type="module">
+			import { getRequest } from "./js/getRequest.js";
+			window.getRequest = getRequest;
+		</script>
+		<script type="module">
+			import { createPokemonPage } from "./js/createPokemonPage.js";
+			window.createPokemonPage = createPokemonPage;
+		</script>
+    </head>
+    <body>
+		<!-- Nav bar -->
+		<nav>
+			<div id="menuBar">
+				<ul id="nav">
+					<li><a href="index.html"><img class="navImg" src="images/Home.png"></a></li>
+					<li><a href="pokemonPage.html"><img class="navImg" src="images/Pokemon.png"></a></li>
+					<li><a href="location.html"><img class="navImg" src="images/Locations.png"></a></li>
+					<li><a href="fanartUnq.html"><img class="navImg" src="images/Fanart.png"></a></li>
+					<li><a href="wishlist.html"><img class="navImg" src="images/Wishlist.png"></a></li>
+				</ul>
+				<li id="loginLink"><a  href="login.html"><img class="navImg" src="images/log-in.png"></a></li>
+			</div>
+		</nav>
+		<div class="grid">
+			<!-- Row 1 Header -->
+			<aside class="aside-left">
+			</aside>
+			<section>
+				<div><h1 style="text-align: center">Pokémon Page</h1></div>
+			</section>
+			<aside class="aside-right">
+			</aside>
+			<!-- Row 2 Search Bar -->
+			<aside class="aside-left">
+			</aside>
+			<section>
+				<div class=pokemonClass>
+					<form class=pokemonClass onsubmit="return sendPokemonRequest(); return false">
+						<p>Enter a Pokémon name or ID:</p>
+						<input value="Pikachu" type="text" id="pokemon_box">
+						<button id="button" type="button" class="btn btn-primary" onclick="return sendPokemonRequest()">Get Pokemon</button>
+					</form>
+				</div>
+			</section>
+			<aside class="aside-right">
+			</aside>
+			<!-- Row 3 Pokemon Content -->
+			<aside class="aside-left">
+			</aside>
+			<section style="max-width: 100%">
+				<div id="pokemon_output">
+					<h1>Text</h1>
+					<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/363.png">
+				</div>
+			</section>
+			<aside class="aside-right">
+			</aside>
+		</div>
+    </body>
+    <script>
+		// Send the pokemon get request
+		function sendPokemonRequest() {
+			let pokemon_name = document.getElementById('pokemon_box').value;
+			console.log ("Sending Pokemon Request... " + pokemon_name);
+		
+			//checks username and password for empty credentials
+			if (pokemon_name == "") {
+				alert("Invalid Credentials: Please Fill Out All Inputs");
+				return false;
+			}
+		
+			// Send username and password to the backend to check against values in the DB
+			//let url = "http://pokepost-env.eba-jzp4ndpr.us-east-1.elasticbeanstalk.com/pokemon/" + pokemon_name;
+			let url = "http://172.31.85.124:8080/pokemon/" + pokemon_name;
+			//let url = "http://ec2-44-202-125-216.compute-1.amazonaws.com:8080/pokemon/" + pokemon_name;
+			getRequest (url, createPokemonPage, onHeadersReceived, onLoading);
+
+			return false;
+		}
+
+		function onHeadersReceived () {
+			let pokemon_name = document.getElementById('pokemon_box').value;
+			const outputDiv = document.getElementById ("pokemon_output");
+			outputDiv.innerHTML = "";
+			const titleLine = document.createElement("h1");
+			const titleText = document.createTextNode("Looking for a " + pokemon_name);
+			titleLine.appendChild (titleText);
+			outputDiv.appendChild (titleLine);
+		}
+
+		function onLoading () {
+			let pokemon_name = document.getElementById('pokemon_box').value;
+			const outputDiv = document.getElementById ("pokemon_output");
+			outputDiv.innerHTML = "";
+			const titleLine = document.createElement("h1");
+			const titleText = document.createTextNode("Found a " + pokemon_name + "!");
+			titleLine.appendChild (titleText);
+			outputDiv.appendChild (titleLine);
+		}
+	</script>
+</html>
