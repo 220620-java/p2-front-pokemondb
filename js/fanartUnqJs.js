@@ -55,7 +55,7 @@ let rateArt = {
 
 let rateArtComm = {
 	'id': null,
-	'comment_id': artCommDto,
+	'commentId': artCommDto,
 	'author': userIdDto,
 	'isLiked': true
 };
@@ -70,7 +70,7 @@ let reportArt = {
 
 let reportArtComm = {
 	'id': null,
-	'comment_id': artCommDto,
+	'commentId': artCommDto,
 	'author': userIdDto,
 	'isReported': false,
 	'reportReason': "Explicit/ Offensive Content"
@@ -234,7 +234,7 @@ function rateChkCheckChanged(chkId, imageId, type){
 		console.log("CommID: " + commentId);
 		postURL = "http:/localhost:8080/rateartcomm/";
 		postBody = rateArtComm;
-		postBody.comment_id = parseInt(commentId);
+		postBody.commentId = parseInt(commentId);
 	}
 	postUser = userIdDto;
 	//TODO User Recognition
@@ -298,11 +298,11 @@ function flagChkCheckChanged(chkId, imageId, type) {
 		postBody = reportArt;
 		postBody.fanartId.id = currentArtId
 	} else if (type == 'comment') {
-		let commentId = chkId.substring(4);//Naming convention for comments is Like{id}. Getting comment id by removing "Like"
+		let commentId = chkId.substring(6);//Naming convention for comments is Report{id}. Getting comment id by removing "Like"
 		console.log("CommID: " + commentId);
 		postURL = "http:/localhost:8080/reportartcomm/";
 		postBody = reportArtComm;
-		postBody.comment_id = parseInt(commentId);
+		postBody.commentId = parseInt(commentId);
 	}
 	postUser = userIdDto;
 	//TODO User Recognition
