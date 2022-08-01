@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "p2-front-pokemondb",
+			"path": ".."
+		},
+		{
+			"name": "p2-html",
+			"path": "../.."
+		}
+	],
+	"settings": {}
+}
