@@ -19,15 +19,26 @@ let allComments = document.getElementById('allComments');
 let currentArtId = getArtId();
 let idLowerLimit, idUpperLimit;
 
-/*Objects*/
+/*JSON Objects*/
+
+let userIdDto = {
+	'id': 1
+};
+
+let fanartDto = {
+	'id': currentArtId
+};
+
+let artCommDto = {
+	'id': null
+};
+
 let artComment = {
 	'fanartId': {
 		'id': currentArtId
 	},
 	//TODO: User recognition
-	/*author: {
-		'id': null
-    }*/
+	author: userIdDto,
 	'content': "",
 	'likes': 0,
 	'reports': 0,
@@ -35,11 +46,41 @@ let artComment = {
 	'postDate': Date.now()
 };
 
+let rateArt = {
+	'id': null,
+	'fanart_id': fanartDto,
+	'author': userIdDto,
+	'isLiked': true
+};
+
+let rateArtComm = {
+	'id': null,
+	'comment_id': artCommDto,
+	'author': userIdDto,
+	'isLiked': true
+};
+
+let reportArt = {
+	'id': null,
+	'fanart_id': fanartDto,
+	'author': userIdDto,
+	'isReported': false,
+	'reportReason': "Explicit/ Offensive Content"
+};
+
+let reportArtComm = {
+	'id': null,
+	'comment_id': artCommDto,
+	'author': userIdDto,
+	'isReported': false,
+	'reportReason': "Explicit/ Offensive Content"
+};
+
 /*Event Listeners*/
 
 fanartUnqBody.onload = function () { getFanart(); }
-rateChk.onchange = function () { rateChkCheckChanged(rateChk.checked, 'rateImg') };
-flagChk.onchange = function () { flagChkCheckChanged(flagChk.checked, 'flagImg') };
+rateChk.onchange = function () { rateChkCheckChanged('rateChk', 'rateImg', 'art') };
+flagChk.onchange = function () { flagChkCheckChanged('flagChk', 'flagImg', 'art') };
 prevArt.onclick = function () { prevArtClick(); }
 nextArt.onclick = function () { nextArtClick(); }
 addComments.onclick = function () { postComment(); }
@@ -142,6 +183,7 @@ function getFanart() {
 						nextArt.hidden = false;
                     }
 				} else { //Request failed. Disable nextArt and prevArt buttons
+					console.log(idRequest.statusText);
 					nextArt.hidden = true;
 					prevArt.hidden = true;
                 }
@@ -152,7 +194,7 @@ function getFanart() {
 			//Error handling
 			const errorMessage = document.createElement("error");
 			errorMessage.textContent = "Connection Error!";
-			console.log(artRequest.status);
+			console.log(artRequest.statusText);
 			alert(
 				"FAILED: Getting Pokemon Failed!, Please Try Again or Contact Support."
 			);
@@ -176,18 +218,65 @@ function getFanart() {
 /**
  *	Changes the image file between heart.png and heartEmpty.png based on the checked state
  */
-function rateChkCheckChanged(checked, imageId){
-	console.log("rateChk.onchange called");
+function rateChkCheckChanged(chkId, imageId, type){
+	console.log("rateChkCheckChanged called");
 	image = document.getElementById(imageId);
-	let url = "";
-	if (checked){
-		url = "images/heart.png";
+	chk = document.getElementById(chkId);
+	let imgURL, postURL, postRequest, postUser, postBody;
+
+	//Setup postURL and postBody
+	if (type == 'art') {
+		postURL = "http:/localhost:8080/rateart/";
+		postBody = rateArt;
+		postBody.fanart_id = currentArtId
+	} else if (type == 'comment') {
+		let commentId = chkId.substring(4);//Naming convention for comments is Like{id}. Getting comment id by removing "Like"
+		console.log("CommID: " + commentId);
+		postURL = "http:/localhost:8080/rateartcomm/";
+		postBody = rateArtComm;
+		postBody.comment_id = parseInt(commentId);
 	}
-	else{		
-		url = "images/heartEmpty.png";
+	postUser = userIdDto;
+	//TODO User Recognition
+	//postUser.id = sessionStorage.getItem("USER_ID");
+	postBody.author = postUser;
+	postBody.isLiked = chk.checked;
+
+	//Setup request
+	postRequest = new XMLHttpRequest();
+	postRequest.open("POST", postURL, true);
+	postRequest.setRequestHeader("Content-Type", "application/json");
+
+	//TODO User recognition
+	//postUser.id = sessionStorage.getItem("USER_ID");
+
+	postRequest.onload = function () {
+		//Request is successful. Change image to reflect
+		if (postRequest.status >= 200 && postRequest.status < 300) {
+			console.log("Request was successful!");
+			console.log("Response: " + postRequest.response);
+			console.log("Status Text: " + postRequest.statusText);
+			if (chk.checked) {
+				imgURL = "images/heart.png";
+			}
+			else {
+				imgURL = "images/heartEmpty.png";
+			}
+			console.log(imageId + " src changed to" + imgURL);
+			image.src = imgURL;
+		} else { //Request failed. Handle errors
+			console.log(postRequest.statusText);
+
+			//Error handling
+			const errorMessage = document.createElement("error");
+			errorMessage.textContent = "Connection Error!";
+			alert(
+				"FAILED: Rating failed to post. Please Try Again or Contact Support."
+			);
+        }
 	}
-	console.log(imageId + " src changed to" + url);
-	image.src = url;
+	//Send request
+	postRequest.send(postBody);
 }
 
 /**
@@ -416,10 +505,10 @@ function getComments() {
 				console.log("New Like Image: " + newCommLikeImg.id);
 				console.log("New Report Image: " + newCommReportImg.id);
 				newCommLike.onchange = function () {
-					rateChkCheckChanged(document.getElementById("Like" + commentObj.id).checked, "LikeImg" + commentObj.id)
+					rateChkCheckChanged("Like" + commentObj.id, "LikeImg" + commentObj.id, 'comment')
 				}
 				newCommReport.onchange = function () {
-					flagChkCheckChanged(document.getElementById("Report" + commentObj.id).checked, "ReportImg" + commentObj.id)
+					flagChkCheckChanged("Report" + commentObj.id, "ReportImg" + commentObj.id, 'comment')
 				}
             }
 		} else { //Request failed. Handle errors and default to no comments
@@ -431,16 +520,17 @@ function getComments() {
 }
 
 function postComment() {
-	let postComm, postCommJSON, postURL, postRequest;
+	let postComm, postCommJSON, postURL, postRequest, postUser;
 
 	//Creating object for request body
 	postComm = artComment;
+	postUser = userIdDto;
+	//TODO: User recognition
+	//postUser.id = seesionStorage.getItem("USER_ID");
 	postComm.content = newComment.value;
 	postCommJSON = JSON.stringify(postComm);
 	console.log(newComment.value);
 	console.log(postCommJSON);
-	//TODO: User recognition
-	//postComm.author.id = null
 
 	//Setting up request
 	postURL = "http:/localhost:8080/artcomm/create";
