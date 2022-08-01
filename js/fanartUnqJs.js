@@ -13,10 +13,27 @@ let rateChk = document.getElementById("rateChk");
 let flagChk = document.getElementById('flagChk');
 let prevArt = document.getElementById('prevArt');
 let nextArt = document.getElementById('nextArt');
-let addComment = document.getElementById('addComment');
+let newComment = document.getElementById('newComment');
+let addComments = document.getElementById('addComments');
 let allComments = document.getElementById('allComments');
 let currentArtId = getArtId();
 let idLowerLimit, idUpperLimit;
+
+/*Objects*/
+let artComment = {
+	'fanartId': {
+		'id': currentArtId
+	},
+	//TODO: User recognition
+	/*author: {
+		'id': null
+    }*/
+	'content': "",
+	'likes': 0,
+	'reports': 0,
+	'isFlagged': false,
+	'postDate': Date.now()
+};
 
 /*Event Listeners*/
 
@@ -25,7 +42,7 @@ rateChk.onchange = function () { rateChkCheckChanged(rateChk.checked, 'rateImg')
 flagChk.onchange = function () { flagChkCheckChanged(flagChk.checked, 'flagImg') };
 prevArt.onclick = function () { prevArtClick(); }
 nextArt.onclick = function () { nextArtClick(); }
-//addComment.onclick = function () { addComment(); }
+addComments.onclick = function () { postComment(); }
 
 /*Functions*/
 
@@ -308,6 +325,7 @@ function getComments() {
 			console.log("Response: " + getCommRequest.response);
 			console.log("Status Text: " + getCommRequest.statusText);
 			getCommResponse = JSON.parse(getCommRequest.response);
+			allComments.innerHTML = null;
 
 			for (let commentObj of getCommResponse) {
 				//Reset variables
@@ -348,7 +366,11 @@ function getComments() {
 
 				//Setting up author label
 				newCommAuthor.setAttribute("class", "commentAuthor")
-				newCommAuthor.innerHTML = commentObj.author.username;
+				if (commentObj.author == null) {
+					newCommAuthor.innerHTML = "Anonymous";
+				} else {
+					newCommAuthor.innerHTML = commentObj.author.username;
+                }
 
 				//Setting up comment text
 				newCommText.setAttribute("class", "commentText");
@@ -408,24 +430,43 @@ function getComments() {
 	getCommRequest.send();
 }
 
-/*function addComment(ev) {
-	let commentText;
-	const textBox = document.createElement('div');
-	const replyButton = document.createElement('button');
-	replyButton.className = 'reply';
-	replyButton.innerHTML = 'Reply';
-	const likeButton = document.createElement('button');
-	likeButton.innerHTML = 'Like';
-	likeButton.className = 'likeComment';
-	const deleteButton = document.createElement('button');
-	deleteButton.innerHTML = 'Delete';
-	deleteButton.className = 'deleteComment';
-	const wrapDiv = document.createElement('div');
-	wrapDiv.className = 'wrapper';
-	wrapDiv.style.marginLeft = 0;
-	commentText = document.getElementById('newComment').value;
-	document.getElementById('newComment').value = '';
-	textBox.innerHTML = commentText;
-	wrapDiv.append(textBox, replyButton, likeButton, deleteButton);
-	commentContainer.appendChild(wrapDiv);
-}*/
+function postComment() {
+	let postComm, postCommJSON, postURL, postRequest;
+
+	//Creating object for request body
+	postComm = artComment;
+	postComm.content = newComment.value;
+	postCommJSON = JSON.stringify(postComm);
+	console.log(newComment.value);
+	console.log(postCommJSON);
+	//TODO: User recognition
+	//postComm.author.id = null
+
+	//Setting up request
+	postURL = "http:/localhost:8080/artcomm/create";
+	postRequest = new XMLHttpRequest();
+	postRequest.open("POST", postURL, true);
+	postRequest.setRequestHeader('Content-Type', 'application/json');
+
+	postRequest.onload = function () {
+		console.log("postRequest.onload is called!");
+
+		//Request is successful, update the comments
+		if (postRequest.status >= 200 && postRequest.status < 300) {
+			console.log("Request was successful!");
+			console.log("Response: " + postRequest.response);
+			console.log("Status Text: " + postRequest.statusText);
+			getComments();
+		} else { //Request failed. Handle errors
+			console.log(postRequest.statusText);
+			//Error handling
+			const errorMessage = document.createElement("error");
+			errorMessage.textContent = "Connection Error!";
+			alert(
+				"FAILED: Comment failed to post. Please Try Again or Contact Support."
+			);
+		}
+	}
+	//Send request
+	postRequest.send(postCommJSON);
+}
