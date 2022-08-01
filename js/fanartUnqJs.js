@@ -48,7 +48,7 @@ let artComment = {
 
 let rateArt = {
 	'id': null,
-	'fanart_id': fanartDto,
+	'fanartId': fanartDto,
 	'author': userIdDto,
 	'isLiked': true
 };
@@ -62,7 +62,7 @@ let rateArtComm = {
 
 let reportArt = {
 	'id': null,
-	'fanart_id': fanartDto,
+	'fanartId': fanartDto,
 	'author': userIdDto,
 	'isReported': false,
 	'reportReason': "Explicit/ Offensive Content"
@@ -216,7 +216,7 @@ function getFanart() {
 }
 
 /**
- *	Changes the image file between heart.png and heartEmpty.png based on the checked state
+ *	Changes the image file between heart.png and heartEmpty.png and saves to the database based on the checked state
  */
 function rateChkCheckChanged(chkId, imageId, type){
 	console.log("rateChkCheckChanged called");
@@ -228,7 +228,7 @@ function rateChkCheckChanged(chkId, imageId, type){
 	if (type == 'art') {
 		postURL = "http:/localhost:8080/rateart/";
 		postBody = rateArt;
-		postBody.fanart_id = currentArtId
+		postBody.fanartId.id = currentArtId
 	} else if (type == 'comment') {
 		let commentId = chkId.substring(4);//Naming convention for comments is Like{id}. Getting comment id by removing "Like"
 		console.log("CommID: " + commentId);
@@ -240,7 +240,9 @@ function rateChkCheckChanged(chkId, imageId, type){
 	//TODO User Recognition
 	//postUser.id = sessionStorage.getItem("USER_ID");
 	postBody.author = postUser;
-	postBody.isLiked = chk.checked;
+	postBody.isLiked = chk.checked
+	postBody = JSON.stringify(postBody);
+	console.log(postBody);
 
 	//Setup request
 	postRequest = new XMLHttpRequest();
@@ -280,20 +282,71 @@ function rateChkCheckChanged(chkId, imageId, type){
 }
 
 /**
- *	Changes the image file between flag.png and flagLow.png based on the checked state
+ *	Changes the image file between flag.png and flagLow.png and saves to the database based on the checked state
  */
-function flagChkCheckChanged(checked, imageId){
-	console.log("rateChk.onchange called");
+function flagChkCheckChanged(chkId, imageId, type) {
+	console.log("flagChkCheckChanged called");
 	image = document.getElementById(imageId);
-	let url = '';
-	if (checked){
-		url = 'images/flag.png';
+	chk = document.getElementById(chkId);
+	let imgURL, postURL, postRequest, postUser, postBody;
+
+	//TODO prompt user for report reason
+
+	//Setup postURL and postBody
+	if (type == 'art') {
+		postURL = "http:/localhost:8080/reportart/";
+		postBody = reportArt;
+		postBody.fanartId.id = currentArtId
+	} else if (type == 'comment') {
+		let commentId = chkId.substring(4);//Naming convention for comments is Like{id}. Getting comment id by removing "Like"
+		console.log("CommID: " + commentId);
+		postURL = "http:/localhost:8080/reportartcomm/";
+		postBody = reportArtComm;
+		postBody.comment_id = parseInt(commentId);
 	}
-	else{		
-		url = 'images/flagLow.png';
+	postUser = userIdDto;
+	//TODO User Recognition
+	//postUser.id = sessionStorage.getItem("USER_ID");
+	postBody.author = postUser;
+	postBody.isLiked = chk.checked
+	postBody = JSON.stringify(postBody);
+	console.log(postBody);
+
+	//Setup request
+	postRequest = new XMLHttpRequest();
+	postRequest.open("POST", postURL, true);
+	postRequest.setRequestHeader("Content-Type", "application/json");
+
+	//TODO User recognition
+	//postUser.id = sessionStorage.getItem("USER_ID");
+
+	postRequest.onload = function () {
+		//Request is successful. Change image to reflect
+		if (postRequest.status >= 200 && postRequest.status < 300) {
+			console.log("Request was successful!");
+			console.log("Response: " + postRequest.response);
+			console.log("Status Text: " + postRequest.statusText);
+			if (chk.checked) {
+				imgURL = "images/flag.png";
+			}
+			else {
+				imgURL = "images/flagLow.png";
+			}
+			console.log(imageId + " src changed to" + imgURL);
+			image.src = imgURL;
+		} else { //Request failed. Handle errors
+			console.log(postRequest.statusText);
+
+			//Error handling
+			const errorMessage = document.createElement("error");
+			errorMessage.textContent = "Connection Error!";
+			alert(
+				"FAILED: Rating failed to post. Please Try Again or Contact Support."
+			);
+		}
 	}
-	console.log(imageId + " src changed to" + url);
-	image.src = url;
+	//Send request
+	postRequest.send(postBody);
 }
 
 /**Changes the page to display the previous fanart
