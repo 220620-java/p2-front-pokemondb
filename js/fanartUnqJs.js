@@ -183,7 +183,7 @@ function rateChkCheckChanged(checked, imageId){
 	if (checked){
 		url = "images/heart.png";
 	}
-	else{		
+	else {
 		url = "images/heartEmpty.png";
 	}
 	console.log(imageId + " src changed to" + url);
@@ -200,7 +200,7 @@ function flagChkCheckChanged(checked, imageId){
 	if (checked){
 		url = 'images/flag.png';
 	}
-	else{		
+	else {
 		url = 'images/flagLow.png';
 	}
 	console.log(imageId + " src changed to" + url);

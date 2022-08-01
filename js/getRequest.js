@@ -43,20 +43,20 @@ export function getRequest(url, onDone, onHeadersReceived, onLoading) {
 				onDone(response);
 				return;
 			}
-		} 
+		}
 
-        // if request is a redirect, return an unexpected error
-        else if (request.status >= 300 && request.status < 400) {
+		// if request is a redirect, return an unexpected error
+		else if (request.status >= 300 && request.status < 400) {
 			console.log(request.status);
 			alert("UNEXPECTED REDIRECT RESPONSE! " + request.status);
-            return null;
-        } 
-        
-        //Error handling
-        else {
+			return null;
+		}
+
+		//Error handling
+		else {
 			console.log(request.status);
-			alert("GET REQUEST FAILED! " + request.status );
-            return null;
+			alert("GET REQUEST FAILED! " + request.status);
+			return null;
 		}
 	}
 }
