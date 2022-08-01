@@ -1,89 +1,75 @@
 ﻿<html>
-
 <head>
 	<title>PokéPost</title>
 	<link rel="icon" href="images/pokeball.png" type="image/x-icon">
 	<link rel="stylesheet" href="css/fanartUnqCss.css">
+	<link rel="stylesheet" href="css/navbar.css">
 	<script src="js/fanartUnqJs.js" defer></script>
 	<meta charset="UTF-8">
 </head>
+	<body id="fanartUnqBody">
+		<nav>
+			<div id="menuBar">
+				<ul id="nav">
+					<li><a href="index.html"><img class="navImg" src="images/Home.png"></a></li>
+					<li><a href="pokemonPage.html"><img class="navImg" src="images/Pokemon.png"></a></li>
+					<li><a href="location.html"><img class="navImg" src="images/Locations.png"></a></li>
+					<li><a href="fanartUnq.html"><img class="navImg" src="images/Fanart.png"></a></li>
+					<li><a href="wishlist.html"><img class="navImg" src="images/Wishlist.png"></a></li>
+				</ul>
+				<li id="loginLink"><a  href="login.html"><img class="navImg" src="images/log-in.png"></a></li>
+			</div>
+		</nav>
+		<div class="fanartShow">
+			<table>
+				<tr>
 
-<body id="fanartUnqBody">
-	<nav>
-		<table>
-			<tr>
-				<td class="siteLogo">
-					<a id="siteLogo" href="index.html"><img class="navLogo" src="images/PokePost.png" height="80"
-							width="200" /></a>
-				</td>
-				<td class="navPages">
-					<table>
-						<tr>
-							<td class="navPg">
-								<a href="pokemon.html"><img class="navImg" src="images/Pokemon.png"></a>
-							</td>
-							<td class="navPg">
-								<a href="fanart.html"><img class="navImg" src="images/Fanart.png"></a>
-							</td>
-							<td class="navPg">
-								<a href="wishlist.html"><img class="navImg" src="images/Wishlist.png"></a>
-							</td>
-						</tr>
-					</table>
-				</td>
-				<td class="userArea">
-					<a id="loginLink" href="login.html"><img class="navImg" src="images/log-in.png"></a>
-					<p id="userAvatar">username
-					<p>
-				</td>
-			</tr>
-		</table>
-	</nav>
-	<div class="fanartShow">
-		<table>
-			<tr>
-
-				<td colspan="3" class="fanartImg">
-					<div class="fanartImg">
-						<img class="fanartImg" id="fanartImg" src="images/fanart/spheal.png" alt="Spheal With It!" />
-						<input type="checkbox" class="flag" id="flagChk">
-						<label class="flag" id="flagLbl" for="flagChk"><img id="flagImg" src="images/flagLow.png"
-								height="32" width="32"></label>
-						<input type="checkbox" class="rate" id="rateChk">
-						<label class="rate" id="rateLbl" for="rateChk"><img id="rateImg" src="images/heartEmpty.png"
-								height="32" width="32"></label>
+					<td colspan="3" class="fanartImg">
+						<div class="fanartImg">
+							<img class="fanartImg" id="fanartImg" src="images/fanart/spheal.png" alt="Spheal With It!"/>
+							<input type="checkbox" class="flag" id="flagChk">
+							<label class="flagImg" id="flagLbl" for="flagChk"><img id="flagImg" src="images/flagLow.png" height="32" width="32"></label>
+							<input type="checkbox" class="rate" id="rateChk">
+							<label class="rateImg" id="rateLbl" for="rateChk"><img id="rateImg" src="images/heartEmpty.png" height="32" width="32"></label>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td class="prevArt"><button type="button" class="fanartUnqBtn" id="prevArt"><<</button></td>
+					<td class="fanartTitle"><label id="fanartTitle" for="fanartImg">Spheal With It!</label></td>
+					<td class="nextArt"><button type="button" class="fanartUnqBtn" id="nextArt">>></button></td>
+				</tr>
+			</table>
+		</div>
+		<div class="fanartDetails">
+			<table>
+				<tr>
+					<th>Author:</th>
+					<th>Posted On:</th>
+				</tr>
+				<tr>
+					<td class="fanartDetails" id="fanartAuthor">Leanardo DeVinci</td>
+					<td class="fanartDetails" id="fanartPostDate">07/06/1841</td>
+				</tr>
+				<tr>
+					<th colspan="2">Tags</th>
+				</tr>
+				<tr>
+					<td colspan="2"  class="fanartDetails" id="fanartTags">spheal, leanardodevinci</td>
+				</tr>
+			</table>
+		</div>
+		<div class="comments">
+			<section>
+				<div class="container">
+					<div class="postComment">
+						<label for="newComment" name="newComment" id="newCommentLbl">Add your comment below:</label>
+						<button type="submit" id="addComments">Add Comment</button>
+						<textarea id="newComment"></textarea>
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td class="prevArt"><button class="fanartUnqBtn" id="prevArt">
-						<<< /button>
-				</td>
-				<td class="fanartTitle"><label id="fanartTitle" for="fanartImg">Spheal With It!</label></td>
-				<td class="nextArt"><button class="fanartUnqBtn" id="nextArt">>></button></td>
-			</tr>
-		</table>
-	</div>
-	<div class="fanartDetails">
-		<table>
-			<tr>
-				<th>Author:</th>
-				<th>Posted On:</th>
-			</tr>
-			<tr>
-				<td class="fanartDetails" id="fanartAuthor">Leanardo DeVinci</td>
-				<td class="fanartDetails" id="fanartPostDate">07/06/1841</td>
-			</tr>
-			<tr>
-				<th colspan="2">Tags</th>
-			</tr>
-			<tr>
-				<td colspan="2" class="fanartDetails" id="fanartTags">spheal, leanardodevinci</td>
-			</tr>
-		</table>
-	</div>
-	<div class="comments">
-	</div>
-</body>
-
+					<div id="allComments"></div>
+				</div>
+			</section>
+		</div>
+	</body>
 </html>

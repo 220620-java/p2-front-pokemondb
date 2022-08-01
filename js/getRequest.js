@@ -1,26 +1,46 @@
-export function getRequest(url, json, callback) {
-	console.log("SENDING GET REQUEST TO: " + url);
+/**
+ * Uses AJAX to send a get request and offers the option to use callback functions
+ */
+export function getRequest(url, onDone, onHeadersReceived, onLoading) {
+  	console.log("PREPARING GET REQUEST TO: " + url);
 
-	// Opening a GET request to the URL
-	let request = new XMLHttpRequest();
-	request.open("GET", url, false);
+  	// Opening a GET request to the URL by creating XML Http Request object
+  	let request = new XMLHttpRequest();
 
-	// Setting the header of the API request
-	if (json != null) {
-		request.setRequestHeader("Content-type", "application/json");
-	}
+	// Set a callback function for the readystatechange and load events
+    request.onreadystatechange = readyStateChange;
+	request.onload = load;
+
+  	request.open("GET", url, true);
+
+	// Send out request
+	request.send();
 
 	// Asynchronously set up request
-	request.onload = function () {
-		console.log("GET Request is sent!");
-
+	// For displaying loading information
+	function readyStateChange () {
+		// HEADERS RECEIVED - send() has been called, and headers and status are available.
+		if (request.readyState === 2) {
+			console.log("GET Request is sent!");
+			onHeadersReceived();
+		}
+		// LOADING - Downloading; responseText holds partial data.
+		else if (request.readyState === 3) {
+			console.log("Got response, loading it...");
+			onLoading();
+		}
+		// DONE ready state is handled by onload
+	}
+  	
+	// DONE Ready State
+  	function load () {
 		// if the request is good and valid, return the response
 		if (request.status >= 200 && request.status < 300) {
 			console.log("Status Text: " + request.status);
 			let response = request.response;
 			console.log("Response: " + response);
-			if (callback != null) {
-				callback(response);
+			if (onDone != null) {
+				onDone(response);
 				return;
 			}
 		}
@@ -38,8 +58,5 @@ export function getRequest(url, json, callback) {
 			alert("GET REQUEST FAILED! " + request.status);
 			return null;
 		}
-	};
-
-	// Send out request
-	request.send(json);
+	}
 }

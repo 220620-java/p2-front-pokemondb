@@ -4,61 +4,70 @@
 <!-- Author: Team Synergy -->
 <html>
     <head>
-        <!-- metadata -->
-        <title>PokéPost Home</title>
+        <!-- Metadata -->
+        <title>PokePost Main Page</title>
         <meta charset="UTF-8">
 		<link rel= "icon" href="images/pokeball.png" type="image/x-icon">
-		<link rel="stylesheet" href="css/template.css">
+
+        <!-- Stylesheets -->
+		<link rel="stylesheet" href="css/mainPokePost.css">
+		<link rel="stylesheet" href="css/navbar.css" type="text/css">
     </head>
 
     <body>
-		<nav>
-			<table>
-				<tr>
-					<td class="siteLogo">
-						<a id="siteLogo" href="index.html"><img class="navLogo" src="images/PokePost.png" height="80" width="200"/></a>
-					</td>
-					<td class="navPages">
-						<table>
-							<tr>
-								<td class="navPg">
-									<a href="pokemon_page.html">Pokemon Page</a>
-								</td>
-								<td class="navPg">
-									<a href="login.html">Login</a>
-                </td>
-                <td class="navPg">
-									<a href="pokemon.html"><img class="navImg" src="images/Pokemon.png"></a>
-								</td>
-								<td class="navPg">
-									<a href="fanart.html"><img class="navImg" src="images/Fanart.png"></a>
-								</td>
-								<td class="navPg">
-									<a href="wishlist.html"><img class="navImg" src="images/Wishlist.png"></a>
-								</td>
-							</tr>
-						</table>
-					</td>
-					<td class="userArea">
-						<a id="loginLink" href="login.html"><img class="navImg" src="images/log-in.png"></a>
-						<p id="userAvatar">username<p>
-					</td>
-				</tr>
-			</table>
-		</nav>
-        <h1>Pokemon Database</h1>
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" alt="pikachu">
-        <p>Under construction...</p>
-        <p>This database uses the PokéAPI to pull information about a pokemon.</p>
-        <a href="https://github.com/220620-java/p2-front-pokemondb">Link to Repo</a>
-        <br>
-        <br>
-		<div >
-			
+		<!-- Site Logo -->
+		<div class="siteHeader">
+			<a href="index.html"><img id="sitelogo" src="images/PokePost.png"/></a>
 		</div>
+		<!-- Nav bar -->
+		<nav>
+			<div id="menuBar">
+				<ul id="nav">
+					<li><a href="index.html"><img class="navImg" src="images/Home.png"></a></li>
+					<li><a href="pokemonPage.html"><img class="navImg" src="images/Pokemon.png"></a></li>
+					<li><a href="location.html"><img class="navImg" src="images/Locations.png"></a></li>
+					<li><a href="fanartUnq.html"><img class="navImg" src="images/Fanart.png"></a></li>
+					<li><a href="wishlist.html"><img class="navImg" src="images/Wishlist.png"></a></li>
+				</ul>
+				<li id="loginLink"><a  href="login.html"><img class="navImg" src="images/log-in.png"></a></li>
+			</div>
+		</nav>
+		<!-- Body -->
+		<div class="grid">
+			<aside class="aside-left">
+				<div>
+					<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/363.png">
+					<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/363.png">
+				</div>
+			</aside>
+			<section>
+				<div>
+					<h1>Pokemon Database</h1>
+					<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" alt="pikachu">
+					<p>Under construction...</p>
+					<p>This database uses the PokéAPI to pull information about a pokemon.</p>
+					<a href="https://github.com/220620-java/p2-front-pokemondb">Link to Repo</a>
+				</div>
 		
+				<!-- This div is for stretching the page out to test the nav bar sticky functionality -->
+				<div>
+					<p>These images are for stretching the page out to test the nav bar sticky functionality</p>
+					<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/104.png">
+					<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/363.png">
+				</div>
+				<div>
+					<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/363.png">
+					<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/363.png">
+				</div>
+			</section>
+			<aside class="aside-right">
+				<div>
+					<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/363.png">
+					<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/363.png">
+				</div>
+			</aside>
+		</div>
+		<!-- Body Content -->
+
     </body>
-
-	<!-- Javascript -->
-
 </html>

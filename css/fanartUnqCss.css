@@ -3,62 +3,22 @@ body {
 	color: #f5f5dc;
 }
 
-nav {
-	position: sticky;
-	background-image: linear-gradient(to bottom, #5d8aa8, #7fffd4);
-	top: 1%;
-	padding: 0.5em;
-	vertical-align: middle;
-	text-align: center;
-	border: solid 0.1em #000000;
-}
-
-nav table{
-	width: 100%;
-}
-
-nav td{
-	padding-left: 0.8em;
-	padding-right: 0.8em;
-}
-
-td.siteLogo, td.nextArt{
+td.nextArt{
 	vertical-align: middle;
 	text-align: left;
+	width: 25%;
 }
 
-td.siteLogo, td.userArea{
-	width: 15%;
-}
-
-td.navPages, td.navPg, td.fanartTitle {
+td.fanartTitle {
 	vertical-align: middle;
 	text-align: center;
-}
-
-td.navPages{
-	width: 70%;
-}
-
-.navImg{
 	width: 50%;
 }
 
-.navImg:hover {
-	transform: scale(1.1); 
-}
-
-td.userArea, td.prevArt {
+td.prevArt {
 	vertical-align: middle;
 	text-align: right;
-}
-
-a#loginLink {
-	display: none;
-}
-
-p#userAvatar{
-	/*display: none;*/
+	width: 25%;
 }
 
 .fanartUnqBtn {	
@@ -85,13 +45,15 @@ img#fanartImg {
 	width: 80%;
 	margin-left: 10%;
 	margin-right: 10%;
+	margin-bottom: 1em;
 }
 
 td.fanartDetails{
 	text-align: center;
 }
 
-.flag {
+.flagImg {
+	cursor: pointer;
 	float: right;
 	position: relative;
 	top: 0%;
@@ -102,13 +64,122 @@ input#flagChk, input#rateChk{
 	display:none;
 }
 
-label#flagLbl, label#rateLbl{
+.rateImg {
 	cursor: pointer;
-}
-
-.rate {
 	float: left;
 	position: relative;
 	top: 0%;
 	left: 45%;
+}
+
+.container {
+	margin:auto;
+	padding: 0.5em;
+}
+
+.comments {
+	display:block;
+	background: #FFFFFF;
+	color: #000000;
+	width: 95%;
+	margin: auto;
+	padding: 1em;
+	border-radius: 5px;
+	border-left: 0.3em solid #faf506;
+	border-bottom: 0.3em solid #4789d9;
+}
+
+.postComment {
+	margin: auto;
+	margin-bottom: 1em;
+	background: #f5f5dc;
+	padding: 0.5em;
+	border-radius: 5px;
+	border-left: 0.3em solid #faf506;
+	border-bottom: 0.3em solid #4789d9;
+	height: 15%;
+	width: 95%;
+}
+
+#newCommentLbl {
+	float: left;
+	text-decoration: underline;
+	padding-bottom: 0.2em;
+}
+
+#newComment {
+	float: left;
+	clear: left;	
+	width: 99%;
+	height: 75%;
+	margin:auto;
+	resize: none;
+}
+
+#addComments {
+	float: right;
+}
+
+#allComments {
+	border-top: solid 0.3em #7fffd4;
+	padding-top: 1em;
+	margin-top: 1em;
+	margin: auto;
+	padding: 0.5em;
+}
+
+.loadedComment {
+	position: static;
+	border-radius: 5px;
+	border-left: 0.3em solid #faf506;
+	border-bottom: 0.3em solid #4789d9;
+	margin: 0.5em;
+	background: #f5f5dc;
+	text-align: center;
+}
+
+.commentAuthor {
+	width: 95%;
+	margin: auto;
+	padding-left: 1em;
+	text-align: left;
+	text-decoration: underline;
+	background: #7fffd4;
+	display: block;
+	right: 0%;
+	top: 0%;
+}
+
+.commentText {
+	text-align: left;
+	margin: auto;
+	padding: 1em;
+}
+
+.commentLike {
+	display: none;
+}
+
+.commentReport {
+	display: none;
+}
+
+.commentLikeLbl {
+	float: right;
+	position: relative;
+	top: -2em;
+}
+
+.commentReportLbl {
+	float: right;
+	position: relative;
+	top: -2em;
+}
+
+.commentLikeImg {
+	cursor: pointer;
+}
+
+.commentReportImg {
+	cursor: pointer;
 }

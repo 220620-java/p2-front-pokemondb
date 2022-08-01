@@ -1,63 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>
-            PokePost Login
-        </title>
+        <title>PokePost Login</title>
 		<link rel= "icon" href="images/pokeball.png" type="image/x-icon">
         <link rel="stylesheet" href="css/loginCss.css" type="text/css">
-        <div class="container"><img id="siteLogo" src="images/PokePost.png"/></div>
+		<script type="module">
+			import { postRequest } from "./js/postRequest.js";
+			window.postRequest = postRequest;
+		</script>
+        <script type="module">
+			import { getRequest } from "./js/getRequest.js";
+			window.getRequest = getRequest;
+		</script>
     </head>
 
     <body>
-        <nav>
-			<table>
-				<tr>
-					<td class="siteLogo">
-						<a id="siteLogo" href="index.html"><img src="images/PokePost.png" height="80" width="200"></a>
-					</td>
-					<td class="navPages">
-						<table>
-							<tr>
-								<td class="navPg">
-									<a href="index.html">Home Page</a>
-								</td>
-								<td class="navPg">
-                                    <a href="pokemon_page.html">Pokemon Page</a>
-								</td>
-								<td class="navPg">
-									<a href="page.html">Page 3</a>
-								</td>
-							</tr>
-						</table>
-					</td>
-					<td class="userArea">
-						<a id="loginLink" href="login.html">Login</a>
-						<p id="userAvatar">username<p>
-					</td>
-				</tr>
-			</table>
-		</nav>
-        <section>
-            <div class="logBox">
-                <div>
-					<table>
-						<tr>
-						<td colspan="2"><img src="images/Welcome.png"></td>
-						</tr>
-                        <tr>
-							<td><label for="username">Username:</label></td>
-                            <td><input class="inputBox" id="username" type="text" placeholder="Username"></td>
-                        </tr>
-                        <tr>
-							<td><label for="password">Password:</label></td>
-                            <td><input class="inputBox" id="password" type="password" placeholder="Password"></td>
-                        </tr>
-						<tr>
-							<td class="liBtn"><button class="pokeButt"><img src="images/log-in.png"></button></td>
-							<td class="suBtn"><button class="pokeButt"><img src="images/sign-up.png"></button></td>
-						</tr>
-                    </table>
+        <div class="container"><a href="index.html"><img id="siteLogo" src="images/PokePost.png"/></a></div>
+        <section class="sectionLogin">
+            <div class="logBox" id="logGrid">
+                <div id="logGridHead">
+                    <img src="images/Welcome.png">
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/363.png">
+                </div>
+                <div id="logGridUser">
+                    <label for="username">Username</label></td>
+                    <input class="inputBox" id="username" type="text" placeholder="Username">
+                </div>
+                <div id="logGridPass">
+                    <label for="password">Password</label>
+                    <input class="inputBox" id="password" type="password" placeholder="Password">
+                    <br><br>
+                    <a style="float:left" href="">Forgot password?</a>
+                </div>
+                <div id="logGridLogin">
+                    <button class="pokeButt" onclick="return login()"><img src="images/log-in.png"></button>
+                </div>
+                <div id="logGridSignup">
+                    <button class="pokeButt"><img src="images/sign-up.png"></button>
                 </div>
             </div>
         </section>
@@ -76,8 +55,8 @@
             console.log ("Sending Login Request... " + username);
             let credentials = {username: username, password: password};
             credentials = JSON.stringify(credentials);
-			let url = "http://ec2-44-202-125-216.compute-1.amazonaws.com:8080/auth/";
-			// let url = "http://localhost:8080/auth/";
+			//let url = "http://pokepost-env.eba-jzp4ndpr.us-east-1.elasticbeanstalk.com/auth/";
+			let url = "http://localhost:8080/auth/";
             postRequest (url, credentials, onSuccessfulLogin, onHeadersReceived, onLoading)
         }
 
@@ -89,4 +68,9 @@
 
 		}
 
+        function onSuccessfulLogin() {
+            alert ("LOGIN SUCCESSFUL");
+            window.location.href = "/";
+        }
+    </script>
 </html>
