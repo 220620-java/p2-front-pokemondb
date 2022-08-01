@@ -7,6 +7,7 @@
 		<link rel="stylesheet" href="css/mainPokePost.css">
 		<link rel="stylesheet" href="css/pokemonPage.css">
 		<link rel="stylesheet" href="css/navbar.css" type="text/css">
+		<link rel="stylesheet" href="comments/comment.css">
 		<!-- Progress Circle-->
 		<!-- <link rel="stylesheet" href="css/progresscircle.css" /> -->
 		<!-- <script src="js/progresscircle.js"></script> -->
@@ -64,6 +65,45 @@
 				<div id="pokemon_output">
 					<h1>Text</h1>
 					<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/363.png">
+				</div>
+				<div class="container">
+					<label for="newComment" name="newComment">Add your comment below-</label>
+					<textarea id="newComment"></textarea>
+					<button id="addComments">Add Comment</button>
+					<div id="allComments"></div>
+					<script>
+						const commentContainer = document.getElementById('allComments');
+						document.getElementById('addComments').addEventListener('click', function (ev) {
+						addComment(ev);
+						});
+						let commentId = 0;
+						async function addComment(ev) {
+							let commentText;
+							let username = 'testUser';
+							const textBox = document.createElement('div');
+							const userbox= document.createElement('div');
+							const likeButton = document.createElement('button');
+							likeButton.innerHTML = 'Like';
+							likeButton.className = 'likeComment';
+							const deleteButton = document.createElement('button');
+							deleteButton.innerHTML = 'Delete';
+							deleteButton.className = 'deleteComment';
+							const wrapDiv = document.createElement('div');
+							wrapDiv.className = 'wrapper';
+							wrapDiv.style.marginLeft = 0;
+							commentText = document.getElementById('newComment').value;
+							document.getElementById('newComment').value = '';
+							textBox.innerHTML = commentText;
+							textBox.style.padding = 3;
+							userbox.innerHTML = username;
+							userbox.style.borderBottom = 3;
+							userbox.style.borderBottom = "#fff solid 3px";
+							userbox.style.padding = 3;
+							wrapDiv.append(userbox, textBox, likeButton, deleteButton);
+							
+							commentContainer.appendChild(wrapDiv);
+						}
+					</script>
 				</div>
 			</section>
 			<aside class="aside-right">

@@ -6,6 +6,15 @@
     padding: 20px;
 }
 
+.wrapper {
+    height: auto;
+    width: auto;
+    margin: 5px;
+    background: rgb(148, 154, 154);
+    padding: 5px;
+    border-radius: 5px;
+}
+
 .comment {
     display: block;
     transition: all 1s;
@@ -21,7 +30,7 @@
     border: none;
     background: #E8E8E8;
     padding: 5px 10px;
-    height: 50%;
+    max-height: fit-content;
     border-radius: 7px;
     border-bottom: 2px solid #016BA8;
     border-left: 3px solid #016BA8;
