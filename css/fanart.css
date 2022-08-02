@@ -1,0 +1,57 @@
+body {
+	background: #6e7f80;
+	color: #f5f5dc;
+}
+
+#filterSection {
+	display: block;
+	float: left;
+	background: #FFFFFF;
+	color: #000000;
+	width: 20%;
+	height: 100%;
+	padding: 1em;
+	border-radius: 5px;
+	border-left: 0.3em solid #faf506;
+	border-bottom: 0.3em solid #4789d9;
+}
+
+#filterOptions, #filterText, #filterDate {
+	margin-top: 0.2em;
+	margin-bottom: 0.2em;
+}
+
+#filterTxtBx, #filterDateCal {
+	width: 80%;
+}
+
+.filterLbl, #filterSlct {
+	width: 40%;
+}
+
+#imageSection {
+	display:block;
+	width: 70%;
+	padding: 1em;
+	float: right;
+}
+
+#pageSelectors table {
+	margin: auto;
+}
+
+#pageSelectors td {
+	width: 33%;
+}
+
+#pgLft {
+	text-align: left;
+}
+
+#pgTitle {
+	text-align: center;
+}
+
+#pgRgt {
+	text-align: right;
+}

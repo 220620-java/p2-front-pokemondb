@@ -1,5 +1,4 @@
 console.log("Loaded fanartUnqJs.js");
-console.log(document.documentURI);
 
 /*Script Variables*/
 
