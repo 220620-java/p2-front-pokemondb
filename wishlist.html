@@ -1,0 +1,67 @@
+<html>
+
+<head>
+    <title>PokéPost Wishlist</title>
+    <link rel="icon" href="images/pokeball.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/wishlist.css">
+    <script src="js/wishlist.js" defer></script>
+</head>
+
+<body>
+    <nav>
+        <table>
+            <tr>
+                <td class="siteLogo">
+                    <a id="siteLogo" href="index.html"><img class="navLogo" src="images/PokePost.png" height="80"
+                            width="200" /></a>
+                </td>
+                <td class="navPages">
+                    <table>
+                        <tr>
+                            <td class="navPg">
+                                <a href="pokemon.html"><img class="navImg" src="images/Pokemon.png"></a>
+                            </td>
+                            <td class="navPg">
+                                <a href="fanart.html"><img class="navImg" src="images/Fanart.png"></a>
+                            </td>
+                            <td class="navPg">
+                                <a href="wishlist.html"><img class="navImg" src="images/Wishlist.png"></a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td class="userArea">
+                    <a id="loginLink" href="login.html"><img class="navImg" src="images/log-in.png"></a>
+                    <p id="userAvatar">username
+                    <p>
+                </td>
+            </tr>
+        </table>
+    </nav>
+    <h1 style="color: yellow">Gotta Catch Em All!</h1>
+
+    <h2 style="color: rgb(243, 243, 12)">username's P<img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8d4WK3GscD4UKRHN63RWpGjhP0P-qVwW6iw&usqp=CAU"
+            height="30" width="30" class="pB">kem<img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8d4WK3GscD4UKRHN63RWpGjhP0P-qVwW6iw&usqp=CAU"
+            height="30" width="30" class="pB">n Wish Lists</h2>
+
+    <section id="data">
+
+    </section>
+    <div>
+        <p>Enter a Pokémon name or ID:</p>
+        <input value="" type="text" id="dataInput">
+        <button type="button" id="getData">Get Pokemon</button>
+    </div>     
+    <table id="listPokemon" border="5">
+        <tr>
+            <td></td>
+        </tr>
+    </table>
+    <br>
+    <button type="button" onclick="displayResult()">Pokemon</button>
+</body>
+
+
+</html>

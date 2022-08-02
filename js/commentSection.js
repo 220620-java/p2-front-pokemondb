@@ -1,6 +1,6 @@
 const commentContainer = document.getElementById('allComments');
 document.getElementById('addComments').addEventListener('click', function (ev) {
-   addComment(ev);
+    addComment(ev);
 });
 let commentId = 0;
 async function addComment(ev) {
