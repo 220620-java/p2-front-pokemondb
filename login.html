@@ -4,14 +4,7 @@
         <title>PokePost Login</title>
 		<link rel= "icon" href="images/pokeball.png" type="image/x-icon">
         <link rel="stylesheet" href="css/loginCss.css" type="text/css">
-		<script type="module">
-			import { postRequest } from "./js/postRequest.js";
-			window.postRequest = postRequest;
-		</script>
-        <script type="module">
-			import { getRequest } from "./js/getRequest.js";
-			window.getRequest = getRequest;
-		</script>
+		<script src="js/postRequest.js"></script>
     </head>
 
     <body>
@@ -36,7 +29,7 @@
                     <button class="pokeButt" onclick="return login()"><img src="images/log-in.png"></button>
                 </div>
                 <div id="logGridSignup">
-                    <button class="pokeButt"><img src="images/sign-up.png"></button>
+                    <button class="pokeButt" onclick="return onSignUp()"><img src="images/sign-up.png"></button>
                 </div>
             </div>
         </section>
@@ -71,6 +64,10 @@
         function onSuccessfulLogin() {
             alert ("LOGIN SUCCESSFUL");
             window.location.href = "/";
+        }
+
+        function onSignUp () {
+            window.location.href = "signUp.html";
         }
     </script>
 </html>

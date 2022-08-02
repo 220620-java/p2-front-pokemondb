@@ -1,7 +1,7 @@
 /**
  * Uses AJAX to send a get request and offers the option to use callback functions
  */
-export function getRequest(url, onDone, onHeadersReceived, onLoading) {
+function getRequest(url, onDone, onHeadersReceived, onLoading) {
   	console.log("PREPARING GET REQUEST TO: " + url);
 
   	// Opening a GET request to the URL by creating XML Http Request object
@@ -43,20 +43,20 @@ export function getRequest(url, onDone, onHeadersReceived, onLoading) {
 				onDone(response);
 				return;
 			}
-		} 
+		}
 
-        // if request is a redirect, return an unexpected error
-        else if (request.status >= 300 && request.status < 400) {
+		// if request is a redirect, return an unexpected error
+		else if (request.status >= 300 && request.status < 400) {
 			console.log(request.status);
 			alert("UNEXPECTED REDIRECT RESPONSE! " + request.status);
-            return null;
-        } 
-        
-        //Error handling
-        else {
+			return null;
+		}
+
+		//Error handling
+		else {
 			console.log(request.status);
-			alert("GET REQUEST FAILED! " + request.status );
-            return null;
+			alert("GET REQUEST FAILED! " + request.status);
+			return null;
 		}
 	}
 }
