@@ -24,7 +24,7 @@ h2 {
     background-image: linear-gradient(to bottom, #acfae0,  #cbf5e7);
 }
 
-nav {
+/* nav {
 	position: sticky;
 	background-image: linear-gradient(to bottom, #5d8aa8, #7fffd4);
 	top: 1%;
@@ -41,8 +41,8 @@ nav table{
 nav td{
 	padding-left: 0.8em;
 	padding-right: 0.8em;
-}
-
+} */
+/* 
 td.siteLogo, td.nextArt{
 	vertical-align: middle;
 	text-align: left;
@@ -72,7 +72,7 @@ td.navPages{
 td.userArea, td.prevArt {
 	vertical-align: middle;
 	text-align: right;
-}
+} */
 
 img.pB {
 	border-radius: 50%;

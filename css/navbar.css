@@ -1,9 +1,9 @@
 :root {
 	--blue: #284fce;
 	--soft-blue: rgb(96, 167, 196);
-    --spheal-blue-bright:#9ec9f8;
-    --spheal-blue:#7aa8d9;
-    --spheal-blue-dark:#4472a3;
+	--spheal-blue-bright: #9ec9f8;
+	--spheal-blue: #7aa8d9;
+	--spheal-blue-dark: #4472a3;
 	--pikachu-yellow-bright: #fffc3e;
 	--pikachu-yellow: #fff235;
 	--pikachu-yellow-dark: #e0cd22;
@@ -15,16 +15,16 @@ nav {
 	background-color: var(--spheal-blue-bright);
 	height: 3%;
 	top: 0%;
-  	left: 0;
-  	right: 0;
+	left: 0;
+	right: 0;
 	padding: 0.5em;
 	vertical-align: middle;
 	text-align: center;
-    filter: drop-shadow(0 0.4rem 0.25rem rgba(0, 0, 0, 0.2));
+	filter: drop-shadow(0 0.4rem 0.25rem rgba(0, 0, 0, 0.2));
 }
 
 nav img {
-	display:block;
+	display: block;
 	width: auto;
 	height: 100%;
 	max-height: 100%;
@@ -38,7 +38,7 @@ nav img {
 }
 
 .navButton {
-	float:right;
+	float: right;
 	height: 100%;
 	text-align: center;
 }
@@ -54,12 +54,12 @@ nav img {
 }
 
 #sitelogo {
-	display:block;
+	display: block;
 	text-align: center;
 	max-width: 100%;
 	height: auto;
-	margin-left:auto;
-	margin-right:auto;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 #sitelogo:hover {
@@ -69,16 +69,16 @@ nav img {
 
 #nav {
 	/* width:33%; */
-	margin:0 auto;
-	list-style:none;
+	margin: 0 auto;
+	list-style: none;
 }
 
 #nav li {
-	float:left;
+	float: left;
 }
 
 #loginLink {
-	list-style:none;
+	list-style: none;
 	text-decoration: none;
 	float: right;
 }
