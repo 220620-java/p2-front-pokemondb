@@ -60,8 +60,8 @@ td.fanartDetails{
 	right: 45%;
 }
 
-input#flagChk, input#rateChk{
-	display:none;
+input#flagChk, input#rateChk. .commentLike, .commentReport{
+	/*display:none;*/
 }
 
 .rateImg {
@@ -154,14 +154,6 @@ input#flagChk, input#rateChk{
 	text-align: left;
 	margin: auto;
 	padding: 1em;
-}
-
-.commentLike {
-	display: none;
-}
-
-.commentReport {
-	display: none;
 }
 
 .commentLikeLbl {
