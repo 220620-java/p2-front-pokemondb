@@ -10,7 +10,8 @@ h1 {
     text-align: center;
     font-family: Ravie;
     font-size: 55px;
-    background-image: linear-gradient(to bottom, #7fffd4, #acfae0);
+    /* background-image: linear-gradient(to bottom, #7fffd4, #acfae0); */
+    background-image: linear-gradient(to bottom, #9ec9f8, #b9d7f8);
 }
 
 h2 {
@@ -21,10 +22,27 @@ h2 {
     font-family: snap itc;
     text-shadow: 4px 4px 8px rgb(11, 11, 242);
     font-size: 40px;
-    background-image: linear-gradient(to bottom, #acfae0,  #cbf5e7);
+    /* background-image: linear-gradient(to bottom, #acfae0,  #cbf5e7); */
+    background-image: linear-gradient(to bottom, #b9d7f8, #c8def6);
 }
 
 img.pB {
-	border-radius: 50%;
+    border-radius: 50%;
 }
 
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 4px;
+}
+
+/* Create two equal columns that sits next to each other */
+.column {
+    flex: 50%;
+    padding: 0 4px;
+}
+
+.column img {
+    margin-top: 8px;
+    vertical-align: middle;
+}

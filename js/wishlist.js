@@ -1,5 +1,5 @@
 // let apiURL = 'https://pokeapi.co/api/v2/pokemon/';
-let url = "http://pokepost-env.eba-jzp4ndpr.us-east-1.elasticbeanstalk.com/pokemon/" + pokemon_name;
+// let url = "http://pokepost-env.eba-jzp4ndpr.us-east-1.elasticbeanstalk.com/pokemon/" + pokemon_name;
 
 document.getElementById('getData').onclick = getData;
 
@@ -62,11 +62,11 @@ function capitalize(str) {
         return '';
 }
 
-for (let i = 0; i < 10; i++) {
-const img = document.createElement("img");
-img.src = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/006.png";
-document.body.appendChild(img);
-}
+// for (let i = 0; i < 10; i++) {
+// const img = document.createElement("img");
+// img.src = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/006.png";
+// document.body.appendChild(img);
+// }
 
 function displayResult() {
     var firstRow=document.getElementById('listPokemon').rows[0];
@@ -77,3 +77,4 @@ function displayResult() {
     img.src = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/006.png";
     x.appendChild(img);
 }
+
