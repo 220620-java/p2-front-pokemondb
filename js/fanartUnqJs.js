@@ -17,6 +17,7 @@ let newComment = document.getElementById('newComment');
 let addComments = document.getElementById('addComments');
 let allComments = document.getElementById('allComments');
 let currentArtId = getArtId();
+let currentUserId = getUserId();
 let idLowerLimit, idUpperLimit;
 
 /*JSON Objects*/
@@ -88,8 +89,8 @@ addComments.onclick = function () { postComment(); }
 /*Functions*/
 
 /**
- * Retrieves the id value in the Session variable.
- * This will be used to retrieve data.
+ * Retrieves the art id value in the Session variable.
+ * This will be used to retrieve and post data.
  */
 function getArtId() {
 	console.log("getArtId called");
@@ -107,13 +108,35 @@ function getArtId() {
 }
 
 /**
+ * Retrieves the user id value in the Session variable.
+ * This will be used to retrieve and post data.
+ */
+function getUserId() {
+	console.log("getUserId called");
+	let userId;
+	if (typeof sessionStorage.getItem("USER_ID") != 'number') {
+		console.log("USER_ID is not a number")
+		sessionStorage.setItem("USER_ID", 1);
+		userId = 1;
+	} else {
+		console.log("USER_ID = " + sessionStorage.getItem("USER_ID"));
+		userId = parseInt(sessionStorage.getItem("USER_ID"));
+	}
+	console.log("currentUserId: " + userId);
+	return userId;
+}
+
+/**
  *	Sends a GET request with an ID for a specific fanart. 
  *	The response is expected to have details specific to that fanart (i.e. url, author, etc.)
  *	Upon response, JS feeds the given information into its corresponding location
  */
 function getFanart() {
 	//Function Variables
-	let artURL, artRequest, artResponse, idURL, idRequest, idResponse, idSeparatorIdx;
+	let artURL, artRequest, artResponse,
+		idURL, idRequest, idResponse, idSeparatorIdx,
+		rateURL, rateRequest, rateResponse, rateUser,
+		reportURL, reportRequest, reportResponse, reportUser;
 
   	// Opening a connection to the server
   	console.log("Running fanartUnqJs.js with the id: " + currentArtId);
@@ -188,6 +211,72 @@ function getFanart() {
 					prevArt.hidden = true;
                 }
 			}
+
+			//Retrieving rate on fanart by user
+			//Setup request
+			rateURL = "http:/localhost:8080/rateart/params/?artId=" + currentArtId + "&userId=" + currentUserId;
+			console.log("rateURL: " + rateURL);
+			rateRequest = new XMLHttpRequest();
+			rateRequest.open("GET", rateURL, true);
+			rateRequest.setRequestHeader("Content-Type", "application/json");
+
+			//Setup request body
+			rateUser = userIdDto;
+			rateUser.id = currentUserId;
+
+			rateRequest.onload = function () {
+				console.log("rateRequest.onload called");
+
+				//Request is successful. Update the relevant checkbox
+				if (rateRequest.status >= 200 && rateRequest.status < 300) {
+					console.log("Request was successful!");
+					console.log("Response: " + rateRequest.response);
+					console.log("Status Text: " + rateRequest.statusText);
+					rateResponse = rateRequest.response;
+					rateResponse = JSON.parse(rateResponse);
+					if (rateResponse.isLiked) {
+						rateChk.checked = true;
+						rateImg.src = "images/heart.png"
+					} else {
+						rateChk.checked = false;
+					}
+				} else { //Request failed. Handle errors
+					console.log(rateRequest.statusText);
+                }
+			}
+
+			//Retrieving report on fanart by user
+			//Setup request
+			reportURL = "http:/localhost:8080/reportart/params/?artId=" + currentArtId + "&userId=" + currentUserId;
+			console.log("reportURL: " + reportURL);
+			reportRequest = new XMLHttpRequest();
+			reportRequest.open("GET", reportURL, true);
+			reportRequest.setRequestHeader("Content-Type", "application/json");
+
+			reportRequest.onload = function () {
+				console.log("reportRequest.onload called");
+
+				//Request is successful. Update the relevant checkbox
+				if (reportRequest.status >= 200 && reportRequest.status < 300) {
+					console.log("Request was successful!");
+					console.log("Response: " + reportRequest.response);
+					console.log("Status Text: " + reportRequest.statusText);
+					reportResponse = reportRequest.response;
+					reportResponse = JSON.parse(reportResponse);
+					if (reportResponse.isReported) {
+						flagChk.checked = true;
+						flagImg.src = "images/flag.png"
+					} else {
+						flagChk.checked = false;
+                    }
+				} else { //Request failed. Handle errors
+					console.log(reportRequest.statusText);
+				}
+			}
+
+			//Send Requests
+			rateRequest.send();
+			reportRequest.send();
 			idRequest.send();
 			getComments();
 		} else { //Request failed. Handle the error and format to default. Disable nextArt and prevArt buttons
@@ -238,7 +327,7 @@ function rateChkCheckChanged(chkId, imageId, type){
 	}
 	postUser = userIdDto;
 	//TODO User Recognition
-	//postUser.id = sessionStorage.getItem("USER_ID");
+	postUser.id = currentUserId;
 	postBody.author = postUser;
 	postBody.isLiked = chk.checked
 	postBody = JSON.stringify(postBody);
@@ -248,9 +337,6 @@ function rateChkCheckChanged(chkId, imageId, type){
 	postRequest = new XMLHttpRequest();
 	postRequest.open("POST", postURL, true);
 	postRequest.setRequestHeader("Content-Type", "application/json");
-
-	//TODO User recognition
-	//postUser.id = sessionStorage.getItem("USER_ID");
 
 	postRequest.onload = function () {
 		//Request is successful. Change image to reflect
@@ -306,9 +392,9 @@ function flagChkCheckChanged(chkId, imageId, type) {
 	}
 	postUser = userIdDto;
 	//TODO User Recognition
-	//postUser.id = sessionStorage.getItem("USER_ID");
+	postUser.id = currentUserId;
 	postBody.author = postUser;
-	postBody.isLiked = chk.checked
+	postBody.isReported = chk.checked
 	postBody = JSON.stringify(postBody);
 	console.log(postBody);
 
@@ -316,9 +402,6 @@ function flagChkCheckChanged(chkId, imageId, type) {
 	postRequest = new XMLHttpRequest();
 	postRequest.open("POST", postURL, true);
 	postRequest.setRequestHeader("Content-Type", "application/json");
-
-	//TODO User recognition
-	//postUser.id = sessionStorage.getItem("USER_ID");
 
 	postRequest.onload = function () {
 		//Request is successful. Change image to reflect
@@ -443,7 +526,7 @@ function nextArtClick() {
 }
 
 /**Retrieves comments associated with the shown fanart
- * */
+ */
 function getComments() {
 	console.log("getComments called")
 	let getCommRequest, getCommResponse, getCommURL,
@@ -572,6 +655,8 @@ function getComments() {
 	getCommRequest.send();
 }
 
+/** Saves a comment to the database based on the fanart's id and the user's id
+ */
 function postComment() {
 	let postComm, postCommJSON, postURL, postRequest, postUser;
 
@@ -579,7 +664,7 @@ function postComment() {
 	postComm = artComment;
 	postUser = userIdDto;
 	//TODO: User recognition
-	//postUser.id = seesionStorage.getItem("USER_ID");
+	postUser.id = currentUserId;
 	postComm.content = newComment.value;
 	postCommJSON = JSON.stringify(postComm);
 	console.log(newComment.value);
