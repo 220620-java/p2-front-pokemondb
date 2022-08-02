@@ -1,7 +1,7 @@
 /**
  * Uses AJAX to send a get request and offers the option to use callback functions
  */
-export function getRequest(url, onDone, onHeadersReceived, onLoading) {
+function getRequest(url, onDone, onHeadersReceived, onLoading) {
   	console.log("PREPARING GET REQUEST TO: " + url);
 
   	// Opening a GET request to the URL by creating XML Http Request object

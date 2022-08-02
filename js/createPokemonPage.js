@@ -1,7 +1,7 @@
 console.log("Loaded createPokemonPage.js");
 // import ProgressCircle from './progresscircle'; 
 
-export function createPokemonPage (pokemonJSON) {
+function createPokemonPage (pokemonJSON) {
 
     pokemonJSON = JSON.parse(pokemonJSON);
 
