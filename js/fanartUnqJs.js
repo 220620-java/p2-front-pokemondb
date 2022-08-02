@@ -214,7 +214,7 @@ function getFanart() {
 
 			//Retrieving rate on fanart by user
 			//Setup request
-			rateURL = "http:/localhost:8080/rateart/params/?artId=" + currentArtId + "&userId=" + currentUserId;
+			rateURL = "http:/localhost:8080/rateart?artId=" + currentArtId + "&userId=" + currentUserId;
 			console.log("rateURL: " + rateURL);
 			rateRequest = new XMLHttpRequest();
 			rateRequest.open("GET", rateURL, true);
@@ -247,7 +247,7 @@ function getFanart() {
 
 			//Retrieving report on fanart by user
 			//Setup request
-			reportURL = "http:/localhost:8080/reportart/params/?artId=" + currentArtId + "&userId=" + currentUserId;
+			reportURL = "http:/localhost:8080/reportart?artId=" + currentArtId + "&userId=" + currentUserId;
 			console.log("reportURL: " + reportURL);
 			reportRequest = new XMLHttpRequest();
 			reportRequest.open("GET", reportURL, true);
@@ -634,6 +634,68 @@ function getComments() {
 				newCommReportLbl.setAttribute("class", "commentReportLbl");
 				newCommReportLbl.setAttribute("for",newCommReport.id);
 				newCommReportLbl.appendChild(newCommReportImg);
+
+				//Retrieving rate on comment by user
+				//Setup request
+				rateURL = "http:/localhost:8080/rateartcomm?commId=" + commentObj.id + "&userId=" + currentUserId;
+				console.log("rateURL: " + rateURL);
+				rateRequest = new XMLHttpRequest();
+				rateRequest.open("GET", rateURL, false);
+				rateRequest.setRequestHeader("Content-Type", "application/json");
+
+				//Setup request body
+				rateUser = userIdDto;
+				rateUser.id = currentUserId;
+
+				rateRequest.onload = function () {
+					console.log("rateRequest.onload called");
+
+					//Request is successful. Update the relevant checkbox
+					if (rateRequest.status >= 200 && rateRequest.status < 300) {
+						console.log("Request was successful!");
+						console.log("Response: " + rateRequest.response);
+						console.log("Status Text: " + rateRequest.statusText);
+						rateResponse = rateRequest.response;
+						rateResponse = JSON.parse(rateResponse);
+						if (rateResponse.isLiked) {
+							newCommLike.checked = true;
+							newCommLikeImg.src = "images/heart.png"
+						}
+					} else { //Request failed. Handle errors
+						console.log(rateRequest.statusText);
+					}
+				}
+
+				//Retrieving report on fanart by user
+				//Setup request
+				reportURL = "http:/localhost:8080/reportartcomm?commId=" + commentObj.id + "&userId=" + currentUserId;
+				console.log("reportURL: " + reportURL);
+				reportRequest = new XMLHttpRequest();
+				reportRequest.open("GET", reportURL, false);
+				reportRequest.setRequestHeader("Content-Type", "application/json");
+
+				reportRequest.onload = function () {
+					console.log("reportRequest.onload called");
+
+					//Request is successful. Update the relevant checkbox
+					if (reportRequest.status >= 200 && reportRequest.status < 300) {
+						console.log("Request was successful!");
+						console.log("Response: " + reportRequest.response);
+						console.log("Status Text: " + reportRequest.statusText);
+						reportResponse = reportRequest.response;
+						reportResponse = JSON.parse(reportResponse);
+						if (reportResponse.isReported) {
+							newCommReport.checked = true;
+							newCommReportImg.src = "images/flag.png"
+						}
+					} else { //Request failed. Handle errors
+						console.log(reportRequest.statusText);
+					}
+				}
+
+				//Send Requests
+				rateRequest.send();
+				reportRequest.send();
 
 				console.log("New div created");
 
