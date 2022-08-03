@@ -25,7 +25,7 @@ async function addComment(_ev) {
     let commentText = document.getElementById('newComment').value;
     document.getElementById('newComment').value = '';
     textBox.innerHTML = commentText;
-    let node = {user_id:'10', pokemon_id:'1', comment_content:commentText, is_flagged: false, likes:0, reports:0};
+    let node = {user_id: getUserId(), pokemon_id: getPokemonId(), comment_content:commentText, is_flagged: false, likes:0, reports:0};
     let resp = storeComment(node);
     reportButton.id = resp.id;
     likeButton.addEventListener('click', _like_ev => likeComment(node, _like_ev) && likeButton.removeEventListener);
