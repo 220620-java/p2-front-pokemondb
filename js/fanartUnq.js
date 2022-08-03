@@ -94,10 +94,10 @@ addComments.onclick = function () { postComment(); }
 function getArtId() {
 	console.log("getArtId called");
 	let artId;
-	if (typeof sessionStorage.getItem("FANART_ID") != 'number') {
+	if (typeof sessionStorage.getItem("FANART_ID") == 'undefined') {
 		console.log("FANART_ID is not a number")
-		sessionStorage.setItem("FANART_ID", 1);
-		artId = 1;
+		sessionStorage.setItem("FANART_ID", 44);//44 is the first fanart in the DB
+		artId = 44;
 	} else {
 		console.log("FANART_ID = " + sessionStorage.getItem("FANART_ID"));
 		artId = parseInt(sessionStorage.getItem("FANART_ID"));
@@ -233,12 +233,16 @@ function getFanart() {
 					console.log("Status Text: " + rateRequest.statusText);
 					rateResponse = rateRequest.response;
 					rateResponse = JSON.parse(rateResponse);
-					if (rateResponse.isLiked) {
-						rateChk.checked = true;
-						rateImg.src = "images/heart.png"
-					} else {
-						rateChk.checked = false;
-					}
+					try {
+						if (rateResponse.isLiked) {
+							rateChk.checked = true;
+							rateImg.src = "images/heart.png"
+						} else {
+							rateChk.checked = false;
+						}
+					} catch {
+						console.log("Null response");
+                    }
 				} else { //Request failed. Handle errors
 					console.log(rateRequest.statusText);
                 }
@@ -262,12 +266,16 @@ function getFanart() {
 					console.log("Status Text: " + reportRequest.statusText);
 					reportResponse = reportRequest.response;
 					reportResponse = JSON.parse(reportResponse);
-					if (reportResponse.isReported) {
-						flagChk.checked = true;
-						flagImg.src = "images/flag.png"
-					} else {
-						flagChk.checked = false;
-                    }
+					try {
+						if (reportResponse.isReported) {
+							flagChk.checked = true;
+							flagImg.src = "images/flag.png"
+						} else {
+							flagChk.checked = false;
+						}
+					} catch {
+						console.log("Null response");
+					}
 				} else { //Request failed. Handle errors
 					console.log(reportRequest.statusText);
 				}
@@ -510,7 +518,11 @@ function nextArtClick() {
 					console.log("Status Text: " + nextRequest.statusText);
 					nextResponse = nextRequest.response;
 
-					if (nextResponse == 'true') { //Fanart can be shown
+					if (nextResponse == 'true') { //Fanart can be shown. Set checkboxes to unchecked
+						rateChk.checked = false;
+						rateImg.src = "images/heartEmpty.png";
+						flagChk.checked = false;
+						flagImg.src = "images/flagLow.png";
 						currentArtId = parseInt(sessionStorage.getItem("FANART_ID"));
 						getFanart();
 						artAvailable = true;
@@ -656,10 +668,14 @@ function getComments() {
 						console.log("Status Text: " + rateRequest.statusText);
 						rateResponse = rateRequest.response;
 						rateResponse = JSON.parse(rateResponse);
-						if (rateResponse.isLiked) {
-							newCommLike.checked = true;
-							newCommLikeImg.src = "images/heart.png"
-						}
+						try {
+							if (rateResponse.isLiked) {
+								newCommLike.checked = true;
+								newCommLikeImg.src = "images/heart.png"
+							}
+						} catch {
+							console.log("Null response")
+                        }
 					} else { //Request failed. Handle errors
 						console.log(rateRequest.statusText);
 					}
@@ -681,11 +697,17 @@ function getComments() {
 						console.log("Request was successful!");
 						console.log("Response: " + reportRequest.response);
 						console.log("Status Text: " + reportRequest.statusText);
-						reportResponse = reportRequest.response;
+						reportResponse = reportRequest.response
 						reportResponse = JSON.parse(reportResponse);
-						if (reportResponse.isReported) {
-							newCommReport.checked = true;
-							newCommReportImg.src = "images/flag.png"
+						try {
+							if (!reportResponse.body == null) {
+								if (reportResponse.isReported) {
+									newCommReport.checked = true;
+									newCommReportImg.src = "images/flag.png"
+								}
+							}
+						} catch {
+							console.log("Null response")
 						}
 					} else { //Request failed. Handle errors
 						console.log(reportRequest.statusText);

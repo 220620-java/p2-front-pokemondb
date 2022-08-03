@@ -99,28 +99,24 @@ function displayPage(pageNum) {
 	let newArt, newArtTitle, newArtAuthor, newArtImg, newArtLink;
 
 	for (let i = startIdx; i <= endIdx && i < fanartSize; i++) {
+		fanartObj = null;
 		fanartObj = storedFanart.getElement(i);
 
 		//Reset variables
 		newArt = null;
 		newArtTitle = null;
 		newArtAuthor = null;
-		newArtLink = null;
 
 		//Creating new elements
 		newArt = document.createElement('div');
 		newArtTitle = document.createElement('p');
-		newArtLink = document.createElement('a');
 		newArtImg = document.createElement('img');
 		newArtAuthor = document.createElement('p');
 
 		//Adding Elements to newArt
 		newArt.appendChild(newArtTitle);
-		newArt.appendChild(newArtLink);
+		newArt.appendChild(newArtImg);
 		newArt.appendChild(newArtAuthor);
-
-		//Adding newArtImg to newArtLink
-		newArtLink.appendChild(newArtImg);
 
 		//Adding newArt to imageDisplay
 		imageDisplay.appendChild(newArt);
@@ -131,7 +127,7 @@ function displayPage(pageNum) {
 		} else {
 			newArt.setAttribute("class", "ArtDisplayRgt");
         }
-		newArt.setAttribute("id", fanartObj.id);
+		newArt.setAttribute("id", "Art" + fanartObj.id);
 
 		//Setting up newArtAuthor
 		newArtAuthor.setAttribute("class", "fanartAuthor")
@@ -145,10 +141,6 @@ function displayPage(pageNum) {
 		newArtTitle.setAttribute("class", "fanartTitle");
 		newArtTitle.innerHTML = fanartObj.title;
 
-		//Setting up newArtLink
-		newArtLink.setAttribute("class", "fanartLink");
-		newArtLink.setAttribute("href", "fanartUnq.html")
-
 		//Setting up newArtImg
 		newArtImg.src = fanartObj.url;
 		newArtImg.setAttribute("class", "fanartImg");
@@ -157,7 +149,9 @@ function displayPage(pageNum) {
 		newArtImg.width = "100";
 
 		//Setting event listeners
-		newArtImg.addEventListener("click", setFanartId(fanartObj.id))
+		newArtImg.onclick = function () { setFanartId(storedFanart.getElement(i).id) }
+
+		console.log("New div created: " + newArt.id)
 	}
 }
 
@@ -165,5 +159,7 @@ function displayPage(pageNum) {
  * @param {any} id
  */
 function setFanartId(id) {
+	console.log("setFanartId(" + id + ") called");
 	sessionStorage.setItem("FANART_ID", id);
+	return window.location.href = "fanartUnq.html";
 }
