@@ -1,114 +1,63 @@
 console.log("Loaded fanartUnqJs.js");
 
 /*Script Variables*/
+
 let fanartBody = document.getElementById("fanartBody")
 let imageDisplay = document.getElementById("imageDisplay");
 let pgLftBtn = document.getElementById("pgLftBtn");
 let pgRgtBtn = document.getElementById("pgRgtBtn");
+let storedFanart = new List();
 
-/*Event Listeners*/
-fanartBody.onload = getFanart();
+/*Objects*/
 
-/*Functions*/
-
-/**Changes the page to display the previous fanart
+/** Full Disclosure: This is a modified copy of a list model from
+ * https://learnersbucket.com/tutorials/data-structures/list-data-structure-in-javascript/
+ * because I couldn't be bothered to make this myself - Barry Norton
  */
-function prevArtClick() {
-	console.log("prevArtClick called")
-	let newArtId = currentArtId;
-	let artAvailable = false;
-	let prevRequest, prevResponse, prevURL;
-	console.log("currentArtID: " + currentArtId + " | idLL: " + idLowerLimit)
-	if (currentArtId > idLowerLimit) {
-		while (newArtId >= idLowerLimit && artAvailable == false) {
-			newArtId = (newArtId - 1);
-			console.log("newArtID: " + newArtId + " | idLL: " + idLowerLimit)
-			sessionStorage.setItem("FANART_ID", newArtId);
-			prevURL = "http:/localhost:8080/fanart/info/" + newArtId;
-			console.log("prevURL is: " + prevURL);
+function List() {
+    //Initialize the list
+    this.listSize = 0;
+    this.pos = 0;
+    this.items = [];
 
-			//Making a bridge to the server through XMLHttpRequest()
-			prevRequest = new XMLHttpRequest();
+    //Add item to the list
+	this.append = (element) => {
+		console.log("List.append called: Added " + element);
+        this.items[this.listSize++] = element;
+    }
 
-			//Initializaing a request to the order
-			prevRequest.open("GET", prevURL, false);
+    //Get current item from the list
+	this.getElement = (index) => {
+		console.log("List.getElement(" + index + ") called: Returned " + this.items[index]);
+        return this.items[index];
+    }
 
-			prevRequest.onload = function () {
-				console.log("prevRequest.onload is called!");
+    //Get the size list
+	this.size = () => {
+		console.log("List.size called: Returned " + this.listSize);
+        return this.listSize;
+    }
 
-				//Request is successful, make changes based on response
-				if (prevRequest.status >= 200 && prevRequest.status < 300) {
-					console.log("Request was successful!");
-					console.log("Response: " + prevRequest.response);
-					console.log("Status Text: " + prevRequest.statusText);
-					prevResponse = prevRequest.response;
-
-					if (prevResponse == 'true') { //Fanart can be shown
-						currentArtId = parseInt(sessionStorage.getItem("FANART_ID"));
-						getFanart();
-						artAvailable = true;
-					}
-				} else { //Request failed. Handle errors and then default to a false response(i.e. do not break the loop)
-					console.log(prevRequest.status);
-                }
-			}
-			prevRequest.send();
-        }
+    //Clear the list
+	this.clear = () => {
+		console.log("List.clear called");
+        this.listSize = 0;
+        this.pos = 0;
+        this.items = [];
     }
 }
 
-/**Changes the page to display the next fanart
- */
-function nextArtClick() {
-	console.log("nextArtClick called")
-	let newArtId = currentArtId;
-	let artAvailable = false;
-	let nextRequest, nextResponse, nextURL;
-	console.log("currentArtID: " + currentArtId + " | idUL: " + idUpperLimit)
-	if (currentArtId < idUpperLimit) {
-		while (newArtId <= idUpperLimit && artAvailable == false) {
-			newArtId = (newArtId + 1);
-			console.log("newArtID: " + newArtId + " | idUL: " + idUpperLimit)
-			sessionStorage.setItem("FANART_ID", newArtId);
-			nextURL = "http:/localhost:8080/fanart/info/" + newArtId;
-			console.log("nextURL is: " + nextURL);
+/*Event Listeners*/
+fanartBody.addEventListener("load", getAllFanart());
+fanartBody.addEventListener("load", displayPage(0));
 
-			//Making a bridge to the server through XMLHttpRequest()
-			nextRequest = new XMLHttpRequest();
-
-			//Initializaing a request to the order
-			nextRequest.open("GET", nextURL, false);
-
-			nextRequest.onload = function () {
-				console.log("nextRequest.onload is called!");
-
-				//Request is successful, make changes based on response
-				if (nextRequest.status >= 200 && nextRequest.status < 300) {
-					console.log("Request was successful!");
-					console.log("Response: " + nextRequest.response);
-					console.log("Status Text: " + nextRequest.statusText);
-					nextResponse = nextRequest.response;
-
-					if (nextResponse == 'true') { //Fanart can be shown
-						currentArtId = parseInt(sessionStorage.getItem("FANART_ID"));
-						getFanart();
-						artAvailable = true;
-					}
-				} else { //Request failed. Handle errors and then default to a false response(i.e. do not break the loop)
-					console.log(nextRequest.status);
-				}
-			}
-			nextRequest.send();
-		}
-	}
-}
+/*Functions*/
 
 /**Retrieves comments associated with the shown fanart
  */
-function getFanart() {
+function getAllFanart() {
 	console.log("getFanart called")
-	let getArtRequest, getArtResponse, getArtURL,
-		newArt, newArtTitle, newArtAuthor, newArtImg;
+	let getArtRequest, getArtResponse, getArtURL;
 
 	//Setup request
 	getArtRequest = new XMLHttpRequest();
@@ -126,57 +75,95 @@ function getFanart() {
 			console.log("Response: " + getArtRequest.response);
 			console.log("Status Text: " + getArtRequest.statusText);
 			getArtResponse = JSON.parse(getArtRequest.response);
-			imageDisplay.innerHTML = null;
+			storedFanart.clear();
 
 			for (let fanartObj of getArtResponse) {
-				//Reset variables
-				newArt = null;
-				newArtTitle = null;
-				newArtAuthor = null;
-
-				//Creating new elements
-				newArt = document.createElement('div');
-				newArtTitle = document.createElement('p');
-				newArtImg = document.createElement('img');
-				newArtAuthor = document.createElement('p');
-
-				//Adding Elements to NewArt
-				newArt.appendChild(newArtTitle);
-				newArt.appendChild(newArtImg);
-				newArt.appendChild(newArtAuthor);
-
-				//Adding NewComm to allComments
-				imageDisplay.appendChild(newArt);
-
-				//Setting up a new div
-				newArt.setAttribute("class", "loadedFanart");
-				newArt.setAttribute("id", fanartObj.id);
-
-				//Setting up author label
-				newArtAuthor.setAttribute("class", "fanartAuthor")
-				if (fanartObj.author == null) {
-					newArtAuthor.innerHTML = "Anonymous";
-				} else {
-					newArtAuthor.innerHTML = fanartObj.author.username;
-                }
-
-				//Setting up title label
-				newArtTitle.setAttribute("class", "fanartTitle");
-				newArtTitle.innerHTML = fanartObj.title;
-
-				//Setting up fanart image
-				newArtImg.src = fanartObj.url;
-				newArtImg.setAttribute("class", "fanartImg");
-				newArtImg.setAttribute("id", "Img" + fanartObj.id);
-				newArtImg.height = "100";
-				newArtImg.width = "100";
-
-				//Setting event listeners
-            }
+				storedFanart.append(fanartObj);
+			}
+				
 		} else { //Request failed. Handle errors and default to no comments
 			console.log(getArtRequest.statusText);
         }
 	}
 	//Send the request
 	getArtRequest.send();
+}
+
+/**Displays a set of 10 or fewer fanarts based on the given page number
+ */
+function displayPage(pageNum) {
+	//Function Variables
+	let startIdx = (10 * pageNum);
+	let endIdx = startIdx + 9;
+	let fanartSize = storedFanart.size();
+	let newArt, newArtTitle, newArtAuthor, newArtImg, newArtLink;
+
+	for (let i = startIdx; i <= endIdx && i < fanartSize; i++) {
+		fanartObj = storedFanart.getElement(i);
+
+		//Reset variables
+		newArt = null;
+		newArtTitle = null;
+		newArtAuthor = null;
+		newArtLink = null;
+
+		//Creating new elements
+		newArt = document.createElement('div');
+		newArtTitle = document.createElement('p');
+		newArtLink = document.createElement('a');
+		newArtImg = document.createElement('img');
+		newArtAuthor = document.createElement('p');
+
+		//Adding Elements to newArt
+		newArt.appendChild(newArtTitle);
+		newArt.appendChild(newArtLink);
+		newArt.appendChild(newArtAuthor);
+
+		//Adding newArtImg to newArtLink
+		newArtLink.appendChild(newArtImg);
+
+		//Adding newArt to imageDisplay
+		imageDisplay.appendChild(newArt);
+
+		//Setting up newArt. Giving it a class based on the id being even/odd
+		if (fanartObj.id % 2 == 0) {
+			newArt.setAttribute("class", "ArtDisplayLft");
+		} else {
+			newArt.setAttribute("class", "ArtDisplayRgt");
+        }
+		newArt.setAttribute("id", fanartObj.id);
+
+		//Setting up newArtAuthor
+		newArtAuthor.setAttribute("class", "fanartAuthor")
+		if (fanartObj.author == null) {
+			newArtAuthor.innerHTML = "Anonymous";
+		} else {
+			newArtAuthor.innerHTML = fanartObj.author.username;
+		}
+
+		//Setting up newArtTitle
+		newArtTitle.setAttribute("class", "fanartTitle");
+		newArtTitle.innerHTML = fanartObj.title;
+
+		//Setting up newArtLink
+		newArtLink.setAttribute("class", "fanartLink");
+		newArtLink.setAttribute("href", "fanartUnq.html")
+
+		//Setting up newArtImg
+		newArtImg.src = fanartObj.url;
+		newArtImg.setAttribute("class", "fanartImg");
+		newArtImg.setAttribute("id", "Img" + fanartObj.id);
+		newArtImg.height = "100";
+		newArtImg.width = "100";
+
+		//Setting event listeners
+		newArtImg.addEventListener("click", setFanartId(fanartObj.id))
+	}
+}
+
+/**Sets the session storage variable "FANART_ID" to be referenced by fanartUnq.html
+ * @param {any} id
+ */
+function setFanartId(id) {
+	sessionStorage.setItem("FANART_ID", id);
 }
