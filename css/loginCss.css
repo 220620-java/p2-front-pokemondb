@@ -8,7 +8,10 @@
     --spheal-blue-dark:#4472a3;
 	--pikachu-yellow-bright: #fffc3e;
 	--pikachu-yellow: #fff235;
-	--pikachu-yellow-dark: #e0cd22;
+	--pikachu-yellow-soft: #fff780;
+	--pikachu-yellow-soft-bright: #fffcd2;
+	--pikachu-yellow-gold: #e0cd22;
+	--pikachu-yellow-dark: #dfc13f;
 	--white: #ffffff;
 	--white-blue: #e2ecff;
 }
@@ -113,7 +116,7 @@ body {
     float: left;
     font-size: 1.5em;
 	color: yellow;
-    filter: drop-shadow(0.25rem 0.35rem 0.10rem rgba(0, 0, 0, 0.4));
+    filter: drop-shadow(0.15rem 0.15rem 0.10rem rgba(0, 0, 0, 0.4));
     padding-right: 0.5em;
 }
 
@@ -136,9 +139,10 @@ body {
     float: left;
     font-size: 1.5em;
 	color: yellow;
-    filter: drop-shadow(0.25rem 0.35rem 0.10rem rgba(0, 0, 0, 0.4));
+    filter: drop-shadow(0.15rem 0.15rem 0.10rem rgba(0, 0, 0, 0.4));
     padding-right: 0.5em;
 }
+
 
 #logGridLogin {
     grid-area: login;
@@ -168,4 +172,99 @@ body {
 #logGridSignup > button > img {
     display: block;
     height: 50px;
+}
+
+/* Sign Up Page Specific Style */
+
+#signUpGrid {
+    color: var(--spheal-blue-dark);
+    border: var(--pikachu-yellow-dark) solid;
+
+    display: grid;
+    grid-template-areas: "head head"
+                         "user user"
+                         "pass pass"
+                         "login login"
+                         "back back";
+    grid-template-rows: 1fr 0.35fr 0.35fr 0.15fr 0.15fr;
+    grid-template-columns: 1fr 1fr;
+
+    background-color: var(--pikachu-yellow-dark);
+    background-image: linear-gradient(to bottom, var(--pikachu-yellow-soft-bright) 1%, var(--pikachu-yellow-soft) 50%, var(--pikachu-yellow-dark) 90%);
+}
+
+#signUpGridUser {
+    grid-area: user;
+    margin: auto;
+}
+
+#signUpGridUser > input {
+    width: 90%;
+    height: 50%;
+    margin-top: 0.25em;
+    border-radius: 5px;
+    font-size: 1.5em;
+}
+
+#signUpGridUser > label {
+    float: left;
+    font-size: 1.5em;
+	color: var(--blue);
+    filter: drop-shadow(0.15rem 0.15rem 0.10rem rgba(0, 0, 0, 0.4));
+    padding-right: 0.5em;
+}
+
+#signUpGridPass {
+    grid-area: pass;
+    padding-top: 0.5em;
+    padding-bottom: 1em;
+    margin: auto;
+}
+
+#signUpGridPass > input {
+    width: 80%;
+    height: 50%;
+    margin-top: 0.25em;
+    border-radius: 5px;
+    font-size: 1.5em;
+}
+
+#signUpGridPass > label {
+    float: left;
+    font-size: 1.5em;
+	color: var(--blue);
+    filter: drop-shadow(0.15rem 0.15rem 0.10rem rgba(0, 0, 0, 0.4));
+    padding-right: 0.5em;
+    padding-left: 1.5em;
+}
+
+#signUpGridSubmit {
+    grid-area: login;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+#signUpGridSubmit > button > img {
+    height: 70px;
+    padding: 0.5em 3em 0.25em 3em;
+    border-radius: 15px;
+    border: 2px var(--pikachu-yellow-bright) solid;
+    background-image: linear-gradient(to bottom, var(--pikachu-yellow-dark) 5%, var(--pikachu-yellow-bright) 20%, var(--pikachu-yellow-dark) 98%);
+    filter: drop-shadow(0.25rem 0.35rem 0.10rem rgba(0, 0, 0, 0.4));
+    background-color: #fffce2;
+}
+
+#goBack {
+    grid-area: back;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+#goBack > button > img {
+    height: 50px;
+    padding: 0.5em 3em 0.25em 3em;
 }

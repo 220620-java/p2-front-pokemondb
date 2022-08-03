@@ -1,7 +1,7 @@
 /**
  * Uses AJAX to send a POST request and offers the option to use callback functions
  */
- export function putRequest(url, json, onDone, onHeadersReceived, onLoading) {
+function putRequest(url, json, onDone, onHeadersReceived, onLoading) {
 	console.log("PREPARING PUT REQUEST TO: " + url);
 
 	// Opening a GET request to the URL by creating XML Http Request object
