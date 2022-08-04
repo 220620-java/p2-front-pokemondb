@@ -175,3 +175,5 @@ input#flagChk, input#rateChk, .commentLike, .commentReport{
 .commentReportImg {
 	cursor: pointer;
 }
+
+nav {}

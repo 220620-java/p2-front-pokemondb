@@ -3,7 +3,7 @@ let USER = "http://localhost:8080/user/";
 
 const commentContainer = document.getElementById('allComments');
 document.getElementById('addComments').addEventListener('click', function (ev) {
-    addComment(ev);});
+    addComment(ev)});
 
 async function addComment(_ev) {
     const textBox = document.createElement('div');
@@ -25,7 +25,7 @@ async function addComment(_ev) {
     let commentText = document.getElementById('newComment').value;
     document.getElementById('newComment').value = '';
     textBox.innerHTML = commentText;
-    let node = {user_id:'10', pokemon_id:'1', comment_content:commentText, is_flagged: false, likes:0, reports:0};
+    let node = {user_id: 1, pokemon_id: 5, comment_content:commentText, is_flagged: false, likes:0, reports:0};
     let resp = storeComment(node);
     reportButton.id = resp.id;
     likeButton.addEventListener('click', _like_ev => likeComment(node, _like_ev) && likeButton.removeEventListener);
@@ -151,6 +151,14 @@ async function deleteComment(json, _delete_ev) {
     } else {
         console.log('BAD');
     }
+}
+
+function getUserId() {
+    return sessionStorage.getItem("USER_ID");
+}
+
+function getPokemonId() {
+    return sessionStorage.getItem("POKEMON_ID");   
 }
 
 getAll();

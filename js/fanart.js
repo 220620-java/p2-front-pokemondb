@@ -7,6 +7,8 @@ let imageDisplay = document.getElementById("imageDisplay");
 let pgLftBtn = document.getElementById("pgLftBtn");
 let pgRgtBtn = document.getElementById("pgRgtBtn");
 let storedFanart = new List();
+let lastPage;
+let currentPage;
 
 /*Objects*/
 
@@ -17,7 +19,8 @@ let storedFanart = new List();
 function List() {
     //Initialize the list
     this.listSize = 0;
-    this.pos = 0;
+	this.pos = 0;
+	this.pgCount = 0;
     this.items = [];
 
     //Add item to the list
@@ -44,12 +47,34 @@ function List() {
         this.listSize = 0;
         this.pos = 0;
         this.items = [];
-    }
+	}
+
+	//Determine page count for the list
+	this.pages = () => {
+		if (this.listSize % 10 == 0) {//ListSize can be divided evenly by 10
+			//Subtracting by 1 because of how the variable is used. 
+			//A List with only 10 fanarts would only display on one page,
+			//but leaving pgCount as 1 would allow pgRgtBtn to show, 
+			//implying that there is another page to display
+			this.pgCount = (this.listSize / 10) - 1;
+		} else {
+			//Math.floor omits the decimal value(unless it is a negative number),
+			//A list with greater than 1 and less than 10 fanarts would still need one page to display,
+			//but Math floor would return zero in that case.
+			//However, that is the value needed in this case,
+			//although the true page count is 1
+			this.pgCount = Math.floor(this.listSize / 10);
+		}
+		console.log("List.pages called: Returned " + this.pgCount);
+		return this.pgCount;
+	}
 }
 
 /*Event Listeners*/
 fanartBody.addEventListener("load", getAllFanart());
 fanartBody.addEventListener("load", displayPage(0));
+pgLftBtn.addEventListener("click", function () { displayPage((currentPage - 1)) });
+pgRgtBtn.addEventListener("click", function () { displayPage((currentPage + 1)) });
 
 /*Functions*/
 
@@ -96,7 +121,11 @@ function displayPage(pageNum) {
 	let startIdx = (10 * pageNum);
 	let endIdx = startIdx + 9;
 	let fanartSize = storedFanart.size();
-	let newArt, newArtTitle, newArtAuthor, newArtImg, newArtLink;
+	let lastPage = storedFanart.pages();
+	let newArt, newArtTitle, newArtAuthor, newArtImg;
+
+	//Empty imageDisplay
+	imageDisplay.innerHTML = null;
 
 	for (let i = startIdx; i <= endIdx && i < fanartSize; i++) {
 		fanartObj = null;
@@ -152,6 +181,23 @@ function displayPage(pageNum) {
 		newArtImg.onclick = function () { setFanartId(storedFanart.getElement(i).id) }
 
 		console.log("New div created: " + newArt.id)
+	}
+
+	//Setting currentPage
+	currentPage = pageNum;
+
+	//Hiding buttons based on first and last page
+	//pgLftBtn
+	if (pageNum <= 0) {//Page displayed is the first page
+		pgLftBtn.hidden = true;
+	} else {
+		pgLftBtn.hidden = false;
+	}
+	//pgRgtBtn
+	if (pageNum >= lastPage) {//Page displayed is the last page
+		pgRgtBtn.hidden = true;
+	} else {
+		pgRgtBtn.hidden = false;
 	}
 }
 
