@@ -5,6 +5,7 @@ console.log("Loaded fanartUnqJs.js");
 let fanartBody = document.getElementById("fanartBody")
 let imageDisplay = document.getElementById("imageDisplay");
 let pgLftBtn = document.getElementById("pgLftBtn");
+let pgTitleLbl = document.getElementById('pgTitleLbl');
 let pgRgtBtn = document.getElementById("pgRgtBtn");
 let storedFanart = new List();
 let lastPage;
@@ -174,8 +175,8 @@ function displayPage(pageNum) {
 		newArtImg.src = fanartObj.url;
 		newArtImg.setAttribute("class", "fanartImg");
 		newArtImg.setAttribute("id", "Img" + fanartObj.id);
-		newArtImg.height = "100";
-		newArtImg.width = "100";
+		newArtImg.height = "250";
+		newArtImg.width = "250";
 
 		//Setting event listeners
 		newArtImg.onclick = function () { setFanartId(storedFanart.getElement(i).id) }
@@ -185,6 +186,9 @@ function displayPage(pageNum) {
 
 	//Setting currentPage
 	currentPage = pageNum;
+
+	//Setting page label
+	pgTitleLbl.innerHTML = "Page " + (pageNum + 1) + " of " + (lastPage + 1);
 
 	//Hiding buttons based on first and last page
 	//pgLftBtn
