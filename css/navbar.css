@@ -11,30 +11,40 @@
 }
 
 nav {
-	position: sticky;
+	position: fixed;
+	z-index: 9900;
 	background-color: var(--spheal-blue-bright);
 	height: 3%;
 	top: 0%;
-  	left: 0;
-  	right: 0;
+	left: 0;
+	right: 0;
 	padding: 0.5em;
 	vertical-align: middle;
 	text-align: center;
-    filter: drop-shadow(0 0.4rem 0.25rem rgba(0, 0, 0, 0.2));
+	filter: drop-shadow(0 0.4rem 0.25rem rgba(0, 0, 0, 0.2));
 }
 
-nav img {
-	display:block;
-	width: auto;
-	height: 100%;
-	max-height: 100%;
-	margin-right: 1em;
-}
+	nav img {
+		position: relative;
+		z-index: 9907;
+		display: block;
+		width: auto;
+		height: 100%;
+		max-height: 100%;
+		margin-right: 1em;
+	}
 
 .menuBar {
+	position: relative;
+	z-index: 9901;
 	width: 100%;
 	vertical-align: middle;
 	text-align: center;
+}
+
+.menuBar a{
+	position:relative;
+	z-index: 9906;
 }
 
 .navButton {
@@ -68,16 +78,36 @@ nav img {
 }
 
 #nav {
-	margin:0 auto;
-	list-style:none;
-}
-
-#nav li {
+	display: block;
+	width: 70%;
+	position: relative;
+	z-index: 9902;
+	margin: 0 auto;
+	list-style: none;
 	float:left;
 }
 
-#loginLink {
-	list-style:none;
+	#nav li {
+		position: relative;
+		z-index: 9904;
+		float: left;
+		display: normal;
+	}
+
+#userArea {
+	display: inline-block;
+	width: 30%;
+	/* position: absolute; */
+	right: 0%;
+	z-index: 9903;
+	list-style: none;
 	text-decoration: none;
 	float: right;
 }
+
+	#userArea li {
+		position: relative;
+		z-index: 9905;
+		float: right;
+		display: initial;
+	}

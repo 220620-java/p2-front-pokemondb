@@ -3,6 +3,8 @@ console.log("Loaded fanartUnqJs.js");
 /*Script Variables*/
 
 let fanartUnqBody = document.getElementById("fanartUnqBody");
+let loginLink = document.getElementById("loginLink");
+let loggedUN = document.getElementById("loggedUN");
 let fanartTitle = document.getElementById("fanartTitle");
 let fanartAuthor = document.getElementById("fanartAuthor");
 let fanartPostDate = document.getElementById("fanartPostDate");
@@ -112,16 +114,18 @@ function getArtId() {
  */
 function getUserId() {
 	console.log("getUserId called");
-	let userId;
-	if (typeof sessionStorage.getItem("USER_ID") != 'number') {
-		console.log("USER_ID is not a number")
-		sessionStorage.setItem("USER_ID", 1);
-		userId = 1;
+	let userId = null;
+	if (typeof sessionStorage.getItem("USER_ID") == 'undefined') {
+		loginLink.hidden = false;
+		loggedUN.hidden = true;
 	} else {
+		loginLink.hidden = true;
+		loggedUN.hidden = true;
+		loggedUN.innerHTML = sessionStorage.getItem("USERNAME");
 		console.log("USER_ID = " + sessionStorage.getItem("USER_ID"));
 		userId = parseInt(sessionStorage.getItem("USER_ID"));
+		console.log("currentUserId: " + userId);
 	}
-	console.log("currentUserId: " + userId);
 	return userId;
 }
 
