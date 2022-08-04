@@ -10,6 +10,7 @@
 		<!-- Progress Circle-->
 		<!-- <link rel="stylesheet" href="css/progresscircle.css" /> -->
 		<!-- <script src="js/progresscircle.js"></script> -->
+		<script src="js/commentSection.js" defer></script>
 
 		<script src="js/postRequest.js"></script>
 		<script src="js/createPokemonPage.js"></script>
@@ -63,16 +64,18 @@
 					<label for="newComment" name="newComment">Add your comment below-</label>
 					<textarea id="newComment"></textarea>
 					<button id="addComments">Add Comment</button>
-					<div id="allComments"></div>
-					<script>
+					<!----<script>
 						const commentContainer = document.getElementById('allComments');
 						document.getElementById('addComments').addEventListener('click', function (ev) {
 						addComment(ev);
 						});
 						let commentId = 0;
 						async function addComment(ev) {
+							let url = "http://localhost:8080/pokemon-comment";
+							fetch(url)
+
 							let commentText;
-							let username = 'testUser';
+							let username = pastComments.username;
 							const textBox = document.createElement('div');
 							const userbox= document.createElement('div');
 							const likeButton = document.createElement('button');
@@ -82,7 +85,7 @@
 							deleteButton.innerHTML = 'Delete';
 							deleteButton.className = 'deleteComment';
 							const wrapDiv = document.createElement('div');
-							wrapDiv.className = 'wrapper';
+							wrapDiv.className = pastComments.id;
 							wrapDiv.style.marginLeft = 0;
 							commentText = document.getElementById('newComment').value;
 							document.getElementById('newComment').value = '';
@@ -93,10 +96,27 @@
 							userbox.style.borderBottom = "#fff solid 3px";
 							userbox.style.padding = 3;
 							wrapDiv.append(userbox, textBox, likeButton, deleteButton);
+
+							let jsonContent = {
+							//	"pokemonId": 
+							};
 							
 							commentContainer.appendChild(wrapDiv);
+							fetch(url, {
+								method: "POST",
+								headers: {
+									"Content-Type": "application/json"
+								},
+								body: jsonContent,
+								credentials:"omit"
+							}).then(function(response) {
+									response.status
+									return response.text()
+								}, function(error) {
+									error.message
+							});
 						}
-					</script>
+					</script>-->
 				</div>
 			</section>
 			<aside class="aside-right">

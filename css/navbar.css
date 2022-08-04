@@ -1,9 +1,9 @@
 :root {
 	--blue: #284fce;
 	--soft-blue: rgb(96, 167, 196);
-    --spheal-blue-bright:#9ec9f8;
-    --spheal-blue:#7aa8d9;
-    --spheal-blue-dark:#4472a3;
+	--spheal-blue-bright: #9ec9f8;
+	--spheal-blue: #7aa8d9;
+	--spheal-blue-dark: #4472a3;
 	--pikachu-yellow-bright: #fffc3e;
 	--pikachu-yellow: #fff235;
 	--pikachu-yellow-dark: #e0cd22;
@@ -11,8 +11,7 @@
 }
 
 nav {
-	position: fixed;
-	z-index: 9900;
+	position: sticky;
 	background-color: var(--spheal-blue-bright);
 	height: 3%;
 	top: 0%;
@@ -24,31 +23,22 @@ nav {
 	filter: drop-shadow(0 0.4rem 0.25rem rgba(0, 0, 0, 0.2));
 }
 
-	nav img {
-		position: relative;
-		z-index: 9907;
-		display: block;
-		width: auto;
-		height: 100%;
-		max-height: 100%;
-		margin-right: 1em;
-	}
+nav img {
+	display: block;
+	width: auto;
+	height: 100%;
+	max-height: 100%;
+	margin-right: 1em;
+}
 
 .menuBar {
-	position: relative;
-	z-index: 9901;
 	width: 100%;
 	vertical-align: middle;
 	text-align: center;
 }
 
-.menuBar a{
-	position:relative;
-	z-index: 9906;
-}
-
 .navButton {
-	float:right;
+	float: right;
 	height: 100%;
 	text-align: center;
 }
@@ -64,12 +54,12 @@ nav {
 }
 
 #sitelogo {
-	display:block;
+	display: block;
 	text-align: center;
 	max-width: 100%;
 	height: auto;
-	margin-left:auto;
-	margin-right:auto;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 #sitelogo:hover {
@@ -78,36 +68,16 @@ nav {
 }
 
 #nav {
-	display: block;
-	width: 70%;
-	position: relative;
-	z-index: 9902;
-	margin: 0 auto;
-	list-style: none;
-	float:left;
+	margin:0 auto;
+	list-style:none;
 }
 
-	#nav li {
-		position: relative;
-		z-index: 9904;
-		float: left;
-		display: normal;
-	}
+#nav li {
+	float: left;
+}
 
-#userArea {
-	display: inline-block;
-	width: 30%;
-	/* position: absolute; */
-	right: 0%;
-	z-index: 9903;
+#loginLink {
 	list-style: none;
 	text-decoration: none;
 	float: right;
 }
-
-	#userArea li {
-		position: relative;
-		z-index: 9905;
-		float: right;
-		display: initial;
-	}

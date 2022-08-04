@@ -39,8 +39,7 @@ let artComment = {
 	'fanartId': {
 		'id': currentArtId
 	},
-	//TODO: User recognition
-	author: userIdDto,
+	'author': userIdDto,
 	'content': "",
 	'likes': 0,
 	'reports': 0,
@@ -141,19 +140,19 @@ function getFanart() {
 		rateURL, rateRequest, rateResponse, rateUser,
 		reportURL, reportRequest, reportResponse, reportUser;
 
-  	// Opening a connection to the server
-  	console.log("Running fanartUnqJs.js with the id: " + currentArtId);
+	// Opening a connection to the server
+	console.log("Running fanartUnqJs.js with the id: " + currentArtId);
 	artURL = "http:/localhost:8080/fanart/" + currentArtId;
-  	console.log("artURL is: " + artURL);
+	console.log("artURL is: " + artURL);
 
-  	//Making a bridge to the server through XMLHttpRequest()
-  	artRequest = new XMLHttpRequest();
+	//Making a bridge to the server through XMLHttpRequest()
+	artRequest = new XMLHttpRequest();
 
-  	//Initializaing a request to the order
+	//Initializaing a request to the order
 	artRequest.open("GET", artURL, true);
 
-  	artRequest.onload = function () {
-			console.log("artRequest.onload is called!");
+	artRequest.onload = function () {
+		console.log("artRequest.onload is called!");
 
 		//Request is successful, parse the object and use it to format the page
 		if (artRequest.status >= 200 && artRequest.status < 300) {
@@ -202,17 +201,17 @@ function getFanart() {
 						prevArt.hidden = true;
 					} else {
 						prevArt.hidden = false;
-                    } 
+					}
 					if (currentArtId == idUpperLimit) { //Id is of the last available fanart
 						nextArt.hidden = true;
 					} else {
 						nextArt.hidden = false;
-                    }
+					}
 				} else { //Request failed. Disable nextArt and prevArt buttons
 					console.log(idRequest.statusText);
 					nextArt.hidden = true;
 					prevArt.hidden = true;
-                }
+				}
 			}
 
 			//Retrieving rate on fanart by user
@@ -482,11 +481,11 @@ function prevArtClick() {
 					}
 				} else { //Request failed. Handle errors and then default to a false response(i.e. do not break the loop)
 					console.log(prevRequest.status);
-                }
+				}
 			}
 			prevRequest.send();
-        }
-    }
+		}
+	}
 }
 
 
@@ -610,7 +609,7 @@ function getComments() {
 					newCommAuthor.innerHTML = "Anonymous";
 				} else {
 					newCommAuthor.innerHTML = commentObj.author.username;
-                }
+				}
 
 				//Setting up comment text
 				newCommText.setAttribute("class", "commentText");
@@ -618,7 +617,7 @@ function getComments() {
 
 				//Setting up like button
 				newCommLike.setAttribute("class", "commentLike");
-				newCommLike.setAttribute("id" ,"Like" + commentObj.id);
+				newCommLike.setAttribute("id", "Like" + commentObj.id);
 				newCommLike.type = "checkbox";
 
 				//Setting up image for like button
@@ -640,14 +639,14 @@ function getComments() {
 
 				//Setting up image for report button
 				newCommReportImg.src = "images/flagLow.png";
-				newCommReportImg.setAttribute("class","commentReportImg");
-				newCommReportImg.setAttribute("id","ReportImg" + commentObj.id);
+				newCommReportImg.setAttribute("class", "commentReportImg");
+				newCommReportImg.setAttribute("id", "ReportImg" + commentObj.id);
 				newCommReportImg.height = "32";
 				newCommReportImg.width = "32";
 
 				//Setting up label for report button
 				newCommReportLbl.setAttribute("class", "commentReportLbl");
-				newCommReportLbl.setAttribute("for",newCommReport.id);
+				newCommReportLbl.setAttribute("for", newCommReport.id);
 				newCommReportLbl.appendChild(newCommReportImg);
 
 				//Retrieving rate on comment by user
@@ -733,10 +732,10 @@ function getComments() {
 				newCommReport.onchange = function () {
 					flagChkCheckChanged("Report" + commentObj.id, "ReportImg" + commentObj.id, 'comment')
 				}
-            }
+			}
 		} else { //Request failed. Handle errors and default to no comments
 			console.log(getCommRequest.statusText);
-        }
+		}
 	}
 	//Send the request
 	getCommRequest.send();
