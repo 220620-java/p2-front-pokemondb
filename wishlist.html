@@ -32,20 +32,19 @@
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8d4WK3GscD4UKRHN63RWpGjhP0P-qVwW6iw&usqp=CAU"
             height="30" width="30" class="pB">n Wish Lists</h2>
 
-    <section id="data">
-
-    </section>
-    <div>
-        <p>Enter a Pokémon name or ID:</p>
-        <input value="" type="text" id="dataInput">
-        <button type="button" id="getData">Get Pokemon</button>
-    </div>
-
+    <main>
+        <div class="searchBox">
+            <input id="pokemonName" type="text" placeholder="Enter Pokemon Name or ID">
+            <button id="search"><img
+                src="https://emojis.slackmojis.com/emojis/images/1643514151/1126/poke_pika.png?1643514151" height="30" width="30"></button> <!-- windows + . for emoji-->
+        </div>
+        <div class="pokemonBox"></div>
+    </main>
     <div class="wishlist">
         <table>
             <!--tr stand for table row, th stands for table header, td stands for table data cell -->
             <tr>
-                <td id="pokemon_name">Charmeleon</td>
+                <td id="pokemon_name">Pokemon Name</td>
             </tr>
             <tr>
                 <td class="wishlist_image">

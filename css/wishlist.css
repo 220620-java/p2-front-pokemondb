@@ -30,35 +30,54 @@ img.pB {
     border-radius: 50%;
 }
 
-#Discription {
+.searchBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchBox input {
+    border-radius: 8px 0 0 8px;
+    border: 0;
+    outline: none;
+    height: 36px;
+    padding: 4px 16px;
+    background-color: rgb(241, 245, 248);
+    color: #000;
+}
+
+.searchBox button {
+    border-radius: 0 8px 8px 0;
+    border: 0;
+    height: 36px;
+    padding: 4px 16px;
+    background-color: rgb(241, 245, 248);
+}
+
+.pokemonBox {
+    display: flex;
+    margin-top: 2rem;
+    justify-content: center;
+}
+
+.pokemonBox img {
+    width: 200px;
+}
+
+.pokemonBox p {
+    margin-top: 1rem;
+}
+
+.pokemonBox .pokemonInfos {
+    padding: 2rem;
+}
+
+main {
+    justify-content: center;
+    margin: auto;
+    padding-top: 20px;
+}
+
+h3 {
     text-align: center;
-}
-
-#container {
-    margin: auto;
-}
-
-#poke-container {
-    margin: auto;
-    width: 90%;
-    padding: 10px;
-}
-
-#header-container {
-    border-radius: 0px !important;
-}
-
-#header-text{
-    margin: 0 auto;
-}
-
-#generate-pokemon {
-    margin: 0 auto;
-}
-
-#delete-btn {
-    position: absolute;
-    left: 85%;
-    display: none;
-    margin-bottom: 5%;
 }
