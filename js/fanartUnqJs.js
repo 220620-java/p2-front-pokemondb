@@ -27,7 +27,7 @@ let artComment = {
 	//TODO: User recognition
 	/*author: {
 		'id': null
-    }*/
+	}*/
 	'content': "",
 	'likes': 0,
 	'reports': 0,
@@ -74,19 +74,19 @@ function getFanart() {
 	//Function Variables
 	let artURL, artRequest, artResponse, idURL, idRequest, idResponse, idSeparatorIdx;
 
-  	// Opening a connection to the server
-  	console.log("Running fanartUnqJs.js with the id: " + currentArtId);
+	// Opening a connection to the server
+	console.log("Running fanartUnqJs.js with the id: " + currentArtId);
 	artURL = "http:/localhost:8080/fanart/" + currentArtId;
-  	console.log("artURL is: " + artURL);
+	console.log("artURL is: " + artURL);
 
-  	//Making a bridge to the server through XMLHttpRequest()
-  	artRequest = new XMLHttpRequest();
+	//Making a bridge to the server through XMLHttpRequest()
+	artRequest = new XMLHttpRequest();
 
-  	//Initializaing a request to the order
+	//Initializaing a request to the order
 	artRequest.open("GET", artURL, true);
 
-  	artRequest.onload = function () {
-			console.log("artRequest.onload is called!");
+	artRequest.onload = function () {
+		console.log("artRequest.onload is called!");
 
 		//Request is successful, parse the object and use it to format the page
 		if (artRequest.status >= 200 && artRequest.status < 300) {
@@ -135,16 +135,16 @@ function getFanart() {
 						prevArt.hidden = true;
 					} else {
 						prevArt.hidden = false;
-                    } 
+					}
 					if (currentArtId == idUpperLimit) { //Id is of the last available fanart
 						nextArt.hidden = true;
 					} else {
 						nextArt.hidden = false;
-                    }
+					}
 				} else { //Request failed. Disable nextArt and prevArt buttons
 					nextArt.hidden = true;
 					prevArt.hidden = true;
-                }
+				}
 			}
 			idRequest.send();
 			getComments();
@@ -176,11 +176,11 @@ function getFanart() {
 /**
  *	Changes the image file between heart.png and heartEmpty.png based on the checked state
  */
-function rateChkCheckChanged(checked, imageId){
+function rateChkCheckChanged(checked, imageId) {
 	console.log("rateChk.onchange called");
 	image = document.getElementById(imageId);
 	let url = "";
-	if (checked){
+	if (checked) {
 		url = "images/heart.png";
 	}
 	else {
@@ -193,11 +193,11 @@ function rateChkCheckChanged(checked, imageId){
 /**
  *	Changes the image file between flag.png and flagLow.png based on the checked state
  */
-function flagChkCheckChanged(checked, imageId){
+function flagChkCheckChanged(checked, imageId) {
 	console.log("rateChk.onchange called");
 	image = document.getElementById(imageId);
 	let url = '';
-	if (checked){
+	if (checked) {
 		url = 'images/flag.png';
 	}
 	else {
@@ -246,11 +246,11 @@ function prevArtClick() {
 					}
 				} else { //Request failed. Handle errors and then default to a false response(i.e. do not break the loop)
 					console.log(prevRequest.status);
-                }
+				}
 			}
 			prevRequest.send();
-        }
-    }
+		}
+	}
 }
 
 
@@ -370,7 +370,7 @@ function getComments() {
 					newCommAuthor.innerHTML = "Anonymous";
 				} else {
 					newCommAuthor.innerHTML = commentObj.author.username;
-                }
+				}
 
 				//Setting up comment text
 				newCommText.setAttribute("class", "commentText");
@@ -378,7 +378,7 @@ function getComments() {
 
 				//Setting up like button
 				newCommLike.setAttribute("class", "commentLike");
-				newCommLike.setAttribute("id" ,"Like" + commentObj.id);
+				newCommLike.setAttribute("id", "Like" + commentObj.id);
 				newCommLike.type = "checkbox";
 
 				//Setting up image for like button
@@ -400,14 +400,14 @@ function getComments() {
 
 				//Setting up image for report button
 				newCommReportImg.src = "images/flagLow.png";
-				newCommReportImg.setAttribute("class","commentReportImg");
-				newCommReportImg.setAttribute("id","ReportImg" + commentObj.id);
+				newCommReportImg.setAttribute("class", "commentReportImg");
+				newCommReportImg.setAttribute("id", "ReportImg" + commentObj.id);
 				newCommReportImg.height = "32";
 				newCommReportImg.width = "32";
 
 				//Setting up label for report button
 				newCommReportLbl.setAttribute("class", "commentReportLbl");
-				newCommReportLbl.setAttribute("for",newCommReport.id);
+				newCommReportLbl.setAttribute("for", newCommReport.id);
 				newCommReportLbl.appendChild(newCommReportImg);
 
 				console.log("New div created");
@@ -421,10 +421,10 @@ function getComments() {
 				newCommReport.onchange = function () {
 					flagChkCheckChanged(document.getElementById("Report" + commentObj.id).checked, "ReportImg" + commentObj.id)
 				}
-            }
+			}
 		} else { //Request failed. Handle errors and default to no comments
 			console.log(getCommRequest.statusText);
-        }
+		}
 	}
 	//Send the request
 	getCommRequest.send();

@@ -6,6 +6,7 @@
     <link rel="icon" href="images/pokeball.png" type="image/x-icon">
     <link rel="stylesheet" href="css/wishlist.css">
     <link rel="stylesheet" href="css/navbar.css">
+
     <script src="js/wishlist.js" defer></script>
 </head>
 
@@ -31,7 +32,7 @@
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8d4WK3GscD4UKRHN63RWpGjhP0P-qVwW6iw&usqp=CAU"
             height="30" width="30" class="pB">n Wish Lists</h2>
 
-    <!-- <section id="data">
+    <section id="data">
 
     </section>
     <div>
@@ -39,38 +40,25 @@
         <input value="" type="text" id="dataInput">
         <button type="button" id="getData">Get Pokemon</button>
     </div>
-    <br>    
-    <table id="listPokemon" border="5">
-        <tr>
-        
-        </tr>
-    </table>
-    <br>
-    <button type="button" onclick="displayResult()">Pokemon</button> -->
-    <table>
-        <!-- tr stand for table row, th stands for table header, td stands for table data cell  -->
-        <tr id="tblHeader">
-            <th>Charmeleon</th>
-            <th>Vulpix</th>
-            <th>Karrablast</th>
-            <th>Foongus</th>
-            <th>Cyndaquil</th>
-        </tr>
-        <tr id="pokemon_image">
-            <td><img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/005.png" class="ImgProperty"></td>
-            <td><img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/037.png" class="ImgProperty"></td>
-            <td><img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/588.png" class="ImgProperty"></td>
-            <td><img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/590.png" class="ImgProperty"></td>
-            <td><img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/155.png" class="ImgProperty"></td>
-        </tr>
-        <tr id="Discription">
-            <td id="data1">Stats</td>
-            <td id="data2">Stats</td>
-            <td id="data2">Stats</td>
-            <td id="data2">Stats</td>
-            <td id="data2">Stats</td>
-        </tr>
-    </table>
+
+    <div class="wishlist">
+        <table>
+            <!--tr stand for table row, th stands for table header, td stands for table data cell -->
+            <tr>
+                <td id="pokemon_name">Charmeleon</td>
+            </tr>
+            <tr>
+                <td class="wishlist_image">
+                    <img class="pokemon_image" id="pokemon_image"
+                        src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/005.png">
+                </td>
+            </tr>
+            <tr>
+                <td id="wishlist_data">Stats</td>
+            </tr>
+        </table>
+    </div>
+
 </body>
 
 
