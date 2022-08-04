@@ -98,6 +98,9 @@ function displayPage(pageNum) {
 	let fanartSize = storedFanart.size();
 	let newArt, newArtTitle, newArtAuthor, newArtImg, newArtLink;
 
+	//Empty imageDisplay
+	imageDisplay.innerHTML = null;
+
 	for (let i = startIdx; i <= endIdx && i < fanartSize; i++) {
 		fanartObj = null;
 		fanartObj = storedFanart.getElement(i);
