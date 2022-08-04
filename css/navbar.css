@@ -68,9 +68,14 @@ nav img {
 }
 
 #nav {
+<<<<<<< HEAD
 	/* width:33%; */
 	margin: 0 auto;
 	list-style: none;
+=======
+	margin:0 auto;
+	list-style:none;
+>>>>>>> 953566970df06e6a8883f6d21ec9acefc951c35b
 }
 
 #nav li {

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>PokePost Sign Up</title>
+		<link rel= "icon" href="images/pokeball.png" type="image/x-icon">
+        <link rel="stylesheet" href="css/loginCss.css" type="text/css">
+		<script src="js/postRequest.js"></script>
+    </head>
+
+    <body>
+        <div class="container"><a href="index.html"><img id="siteLogo" src="images/PokePost.png"/></a></div>
+        
+        <section class="sectionLogin">
+            <div class="logBox" id="signUpGrid">
+                <div id="logGridHead">
+                    <img src="images/sign-up.png">
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png">
+                </div>
+                <div id="signUpGridUser">
+                    <label for="username">Username</label></td>
+                    <input class="inputBox" id="username" type="text" placeholder="Username">
+                    <br><br>
+                    <label for="username">Email</label></td>
+                    <input class="inputBox" id="email" type="email" placeholder="email@email.com">
+                    <br><br>
+                </div>
+                <div id="signUpGridPass">
+                    <label for="password">Password</label>
+                    <input class="inputBox" id="password" type="password" placeholder="Password">
+                    <br><br>
+                    <label for="password">Verify Password</label>
+                    <input class="inputBox" id="verifyPassword" type="password" placeholder="Verify Password">
+                </div>
+                <div id="signUpGridSubmit">
+                    <button class="pokeButt" onclick="return register()"><img src="images/Submit.png"></button>
+                </div>
+                <div id="goBack">
+                    <button class="pokeButt" onclick="return onGoBack()"><img src="images/Go-Back.png"></button>
+                </div>
+            </div>
+        </section>
+    </body>
+    <script>
+        function register() {
+            let username = document.getElementById('username').value;
+            let email = document.getElementById('email').value;
+            let password = document.getElementById('password').value;
+            let verifyPassword = document.getElementById('verifyPassword').value;
+		
+			// checks username and password for empty credentials
+			if (username == "" || email == "" || password == "" || verifyPassword == "") {
+				alert("Invalid Credentials: Please Fill Out All Inputs");
+				return false;
+			}
+
+            if (password != verifyPassword) {
+                alert("Passwords do not match!");
+				return false;
+            }
+
+            console.log ("Sending Register Request... " + username);
+            let credentials = {username: username, email: email, password: password};
+            credentials = JSON.stringify(credentials);
+			//let url = "http://pokepost-env.eba-jzp4ndpr.us-east-1.elasticbeanstalk.com/auth/";
+			let url = "http://localhost:8080/user/";
+            postRequest (url, credentials, onSuccess, onHeadersReceived, onLoading)
+        }
+
+        function onHeadersReceived () {
+
+		}
+
+		function onLoading () {
+
+		}
+
+        function onSuccess() {
+            alert ("REGISTRATION SUCCESSFUL");
+            window.location.href = "/";
+        }
+
+        function onGoBack () {
+            window.location.href = "login.html";
+        }
+    </script>
+</html>
