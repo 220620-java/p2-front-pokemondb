@@ -30,10 +30,44 @@ body {
 }
 
 #imageSection {
-	display:block;
+	display: block;
 	width: 70%;
 	padding: 1em;
+	margin: auto;
 	float: right;
+	background: #FFFFFF;
+	border-radius: 5px;
+	border-left: 0.3em solid #faf506;
+	border-bottom: 0.3em solid #4789d9;
+}
+
+.ArtDisplayLft, .ArtDisplayRgt {
+	width: 45%;
+	text-align: center;
+	color: yellow;
+	background: #222121;
+	border-left: solid 0.2em #000000;
+	border-bottom: solid 0.2em #d4cfcf;
+	margin-top: 0.8em;
+	border-radius: 5px;
+}
+
+.ArtDisplayLft {
+	float: left;
+}
+
+.ArtDisplayRgt {
+	float: right;
+}
+
+.fanartImg {
+	width: 95%;
+	margin: auto;
+	border: solid 0.2em #7fffd4;
+}
+
+#pageSelectors {
+	clear: left;
 }
 
 #pageSelectors table {
@@ -50,6 +84,7 @@ body {
 
 #pgTitle {
 	text-align: center;
+	color: #4789d9;
 }
 
 #pgRgt {
