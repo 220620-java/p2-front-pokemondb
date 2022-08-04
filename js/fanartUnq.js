@@ -96,7 +96,7 @@ addComments.onclick = function () { postComment(); }
 function getArtId() {
 	console.log("getArtId called");
 	let artId;
-	if (typeof sessionStorage.getItem("FANART_ID") == 'undefined') {
+	if (typeof sessionStorage.getItem("FANART_ID") != 'number') {
 		console.log("FANART_ID is not a number")
 		sessionStorage.setItem("FANART_ID", 44);//44 is the first fanart in the DB
 		artId = 44;
@@ -115,7 +115,7 @@ function getArtId() {
 function getUserId() {
 	console.log("getUserId called");
 	let userId = null;
-	if (typeof sessionStorage.getItem("USER_ID") == 'undefined') {
+	if (typeof sessionStorage.getItem("USER_ID") != 'number') {
 		loginLink.hidden = false;
 		loggedUN.hidden = true;
 	} else {
