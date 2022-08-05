@@ -38,13 +38,7 @@ let artComment = {
 		'id': currentArtId
 	},
 	//TODO: User recognition
-<<<<<<< HEAD:js/fanartUnqJs.js
-	/*author: {
-		'id': null
-	}*/
-=======
 	author: userIdDto,
->>>>>>> 953566970df06e6a8883f6d21ec9acefc951c35b:js/fanartUnq.js
 	'content': "",
 	'likes': 0,
 	'reports': 0,

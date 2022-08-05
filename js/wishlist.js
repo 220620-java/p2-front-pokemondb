@@ -58,3 +58,8 @@ function getPokemon(e) {
 
     e.preventDefault();
 }
+
+
+function createWishlist () {
+    
+}
