@@ -5,6 +5,10 @@ const commentContainer = document.getElementById('allComments');
 document.getElementById('addComments').addEventListener('click', function (ev) {
     addComment(ev)});
 
+document.getElementById('search').addEventListener('click', function (ev) {
+    displayPokemon(ev)
+});
+
 async function addComment(_ev) {
     const textBox = document.createElement('div');
     const likeButton = document.createElement('button');
@@ -26,7 +30,7 @@ async function addComment(_ev) {
     document.getElementById('newComment').value = '';
     textBox.innerHTML = commentText;
     let node = {user_id: 1, pokemon_id: 5, comment_content:commentText, is_flagged: false, likes:0, reports:0};
-    let resp = storeComment(node);
+    let resp = await storeComment(node);
     reportButton.id = resp.id;
     likeButton.addEventListener('click', _like_ev => likeComment(node, _like_ev) && likeButton.removeEventListener);
     deleteButton.addEventListener('click', _delete_ev => deleteComment(node, _delete_ev));
@@ -84,7 +88,7 @@ async function storeComment(json) {
         },
        
         body: JSON.stringify(json)
-    });
+    }).then(getAll());
     const response = request.body;
     console.log(json);
     if (request.ok) {
@@ -159,6 +163,18 @@ function getUserId() {
 
 function getPokemonId() {
     return sessionStorage.getItem("POKEMON_ID");   
+}
+
+async function displayPokemon(ev) {
+    const pokemonName = document.getElementById('query').value;
+    let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
+    let pokeString = await response.text();
+    let pokemonData = JSON.parse(pokeString);
+    let sprite = document.createElement('img');
+    sprite.src = pokemonData.sprites.other["official-artwork"].front_default;
+    const spriteContainer = document.getElementById("pokemonSpriteContainer");
+    spriteContainer.innerHTML = null;
+    spriteContainer.appendChild(sprite);
 }
 
 getAll();

@@ -1,19 +1,8 @@
-﻿<html lang="en">
+<html>
     <head>
-        <!-- metadata -->
-        <title>PokePost Pokemon Search</title>
-        <meta charset="UTF-8">
-		<link rel= "icon" href="images/pokeball.png" type="image/x-icon">
-		<link rel="stylesheet" href="css/mainPokePost.css">
-		<link rel="stylesheet" href="css/pokemonPage.css">
-		<link rel="stylesheet" href="css/navbar.css" type="text/css">
-		<link rel="stylesheet" href="css/comment.css" type="text/css">
-		<!-- Progress Circle-->
-		<!-- <link rel="stylesheet" href="css/progresscircle.css" /> -->
-		<!-- <script src="js/progresscircle.js"></script> -->
-		<script src="ComComp/getAllComments.js" defer></script>
-		<script src="js/postRequest.js"></script>
-		<script src="js/createPokemonPage.js"></script>
+        <link rel="stylesheet" href="p2-testTemplates\NavigationBar\nav.css">
+        <link rel="stylesheet" href="p2-testTemplates\PokemonPage\PokemonPage.css">
+        <script src="ComComp\pokemonPage.js" defer></script>
     </head>
 	<body>
 		<!-- Nav bar -->
@@ -27,88 +16,54 @@
 				<div id="navUser" class="profile"><a class="navAnchor"><img src="images/log-in.png" alt="Profile" class="logImg" /></a></div>
 			</div>
 		</div>
-		<div class="grid">
-			<!-- Row 1 Header -->
-			<aside class="aside-left">
-			</aside>
-			<section>
-				<div><h1 style="text-align: center">Pokémon Page</h1></div>
-			</section>
-			<aside class="aside-right">
-			</aside>
-			<!-- Row 2 Search Bar -->
-			<aside class="aside-left">
-			</aside>
-			<section>
-				<div class=pokemonClass>
-					<form class=pokemonClass onsubmit="return sendPokemonRequest(); return false">
-						<p>Enter a Pokémon name or ID:</p>
-						<input value="Pikachu" type="text" id="pokemon_box">
-						<button id="button" type="button" class="btn btn-primary" onclick="return sendPokemonRequest()">Get Pokemon</button>
-					</form>
-				</div>
-			</section>
-			<aside class="aside-right">
-			</aside>
-			<!-- Row 3 Pokemon Content -->
-			<aside class="aside-left">
-			</aside>
-			<section style="max-width: 100%">
-				<div id="pokemon_output">
-					<h1>Text</h1>
-					<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/363.png">
-				</div>
-				<div class="container">
-					<div class="container">
-						<div class="newComment">
-							<label for="newComment" name="newComment">Add your comment below-</label>
-							<textarea id="newComment"></textarea>
-							<button id="addComments">Add Comment</button>
-							<div id="allComments"></div>
-						</div>
-			</section>
-			<aside class="aside-right">
-			</aside>
-		</div>
-	</body>
-    <script>
-		// Send the pokemon get request
-		function sendPokemonRequest() {
-			let pokemon_name = document.getElementById('pokemon_box').value;
-			console.log ("Sending Pokemon Request... " + pokemon_name);
-		
-			//checks username and password for empty credentials
-			if (pokemon_name == "") {
-				alert("Invalid Credentials: Please Fill Out All Inputs");
-				return false;
-			}
-		
-			// Send username and password to the backend to check against values in the DB
-			//let url = "http://pokepost-env.eba-jzp4ndpr.us-east-1.elasticbeanstalk.com/pokemon/" + pokemon_name;
-			let url = "http://localhost:8080/pokemon/" + pokemon_name;
-			getRequest (url, createPokemonPage, onHeadersReceived, onLoading);
-
-			return false;
-		}
-
-		function onHeadersReceived () {
-			let pokemon_name = document.getElementById('pokemon_box').value;
-			const outputDiv = document.getElementById ("pokemon_output");
-			outputDiv.innerHTML = "";
-			const titleLine = document.createElement("h1");
-			const titleText = document.createTextNode("Looking for a " + pokemon_name);
-			titleLine.appendChild (titleText);
-			outputDiv.appendChild (titleLine);
-		}
-
-		function onLoading () {
-			let pokemon_name = document.getElementById('pokemon_box').value;
-			const outputDiv = document.getElementById ("pokemon_output");
-			outputDiv.innerHTML = "";
-			const titleLine = document.createElement("h1");
-			const titleText = document.createTextNode("Found a " + pokemon_name + "!");
-			titleLine.appendChild (titleText);
-			outputDiv.appendChild (titleLine);
-		}
-	</script>
+    <body>
+        <section class="PageContainer">
+            <div class="queryContainer">
+                <div class="querySection">
+                    <textarea id="query" class="query" placeholder="enter a pokemon name/id"></textarea>
+                    <button id="search" class="search">Search</button>
+                </div>
+            </div>
+            <div class="page">
+                <div id="pokemonContainer" class="pokemonContainer">
+                    <div id="pokemonSpriteContainer" class="pokemonSpriteContainer">
+                    
+                    </div>
+                    <div class="pokemonStatsContainer">
+                        <div class="statsGraphic">
+                            <div class="HP">
+                                <div></div>
+                            </div>
+                            <div id="stats" class="Atk">
+                                <div class="atkchild"></div>
+                            </div>
+                            <div id="stats" class="Def">
+                                <div class="defchild"></div>
+                            </div>
+                            <div id="stats" class="SpecAtk">
+                                <div class="SAchild"></div>
+                            </div>
+                            <div id="stats" class="SpecDef">
+                                <div class="SDchild"></div>
+                            </div>
+                            <div id="stats" class="Speed">
+                                <div class="speedChild"></div>
+                            </div>
+                        </div>
+                        <div class="information">
+                            <div class="type"></div>
+                            <div class="weakness"></div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <div class="commentContainer">
+                <div class="newComment">
+                    <label for="newComment" name="newComment">Add your comment below-</label>
+                    <textarea id="newComment"></textarea>
+                    <button id="addComments">Add Comment</button>
+                    <div id="allComments"></div>
+                </div>
+             </div>
+        </section>
 </html>
