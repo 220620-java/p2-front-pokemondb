@@ -26,7 +26,7 @@ async function addComment(_ev) {
     document.getElementById('newComment').value = '';
     textBox.innerHTML = commentText;
     let node = {user_id: 1, pokemon_id: 5, comment_content:commentText, is_flagged: false, likes:0, reports:0};
-    let resp = storeComment(node);
+    let resp = await storeComment(node);
     reportButton.id = resp.id;
     likeButton.addEventListener('click', _like_ev => likeComment(node, _like_ev) && likeButton.removeEventListener);
     deleteButton.addEventListener('click', _delete_ev => deleteComment(node, _delete_ev));
@@ -84,7 +84,7 @@ async function storeComment(json) {
         },
        
         body: JSON.stringify(json)
-    });
+    }).then(getAll());
     const response = request.body;
     console.log(json);
     if (request.ok) {
