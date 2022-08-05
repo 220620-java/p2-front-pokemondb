@@ -9,8 +9,9 @@ h1 {
     padding-right: 50px;
     text-align: center;
     font-family: Ravie;
-    font-size: 75px;
-    background-image: linear-gradient(to bottom, #7fffd4, #acfae0);
+    font-size: 55px;
+    /* background-image: linear-gradient(to bottom, #7fffd4, #acfae0); */
+    background-image: linear-gradient(to bottom, #9ec9f8, #b9d7f8);
 }
 
 h2 {
@@ -20,60 +21,63 @@ h2 {
     text-align: center;
     font-family: snap itc;
     text-shadow: 4px 4px 8px rgb(11, 11, 242);
-    font-size: 45px;
-    background-image: linear-gradient(to bottom, #acfae0,  #cbf5e7);
-}
-
-nav {
-	position: sticky;
-	background-image: linear-gradient(to bottom, #5d8aa8, #7fffd4);
-	top: 1%;
-	padding: 0.5em;
-	vertical-align: middle;
-	text-align: center;
-	border: solid 0.1em #000000;
-}
-
-nav table{
-	width: 100%;
-}
-
-nav td{
-	padding-left: 0.8em;
-	padding-right: 0.8em;
-}
-
-td.siteLogo, td.nextArt{
-	vertical-align: middle;
-	text-align: left;
-}
-
-td.siteLogo, td.userArea{
-	width: 15%;
-}
-
-td.navPages, td.navPg, td.fanartTitle {
-	vertical-align: middle;
-	text-align: center;
-}
-
-td.navPages{
-	width: 70%;
-}
-
-.navImg{
-	width: 50%;
-}
-
-.navImg:hover {
-	transform: scale(1.1); 
-}
-
-td.userArea, td.prevArt {
-	vertical-align: middle;
-	text-align: right;
+    font-size: 40px;
+    /* background-image: linear-gradient(to bottom, #acfae0,  #cbf5e7); */
+    background-image: linear-gradient(to bottom, #b9d7f8, #c8def6);
 }
 
 img.pB {
-	border-radius: 50%;
+    border-radius: 50%;
+}
+
+.searchBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchBox input {
+    border-radius: 8px 0 0 8px;
+    border: 0;
+    outline: none;
+    height: 36px;
+    padding: 4px 16px;
+    background-color: rgb(241, 245, 248);
+    color: #000;
+}
+
+.searchBox button {
+    border-radius: 0 8px 8px 0;
+    border: 0;
+    height: 36px;
+    padding: 4px 16px;
+    background-color: rgb(241, 245, 248);
+}
+
+.pokemonBox {
+    display: flex;
+    margin-top: 2rem;
+    justify-content: center;
+}
+
+.pokemonBox img {
+    width: 200px;
+}
+
+.pokemonBox p {
+    margin-top: 1rem;
+}
+
+.pokemonBox .pokemonInfos {
+    padding: 2rem;
+}
+
+main {
+    justify-content: center;
+    margin: auto;
+    padding-top: 20px;
+}
+
+h3 {
+    text-align: center;
 }

@@ -1,6 +1,6 @@
 .navContainer {
     margin-top: 0px;
-    position: sticky top;
+    position: sticky;
     display: flex;
     min-height: 10%;
     min-width: 90%;
