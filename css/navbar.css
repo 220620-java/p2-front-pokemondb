@@ -1,83 +1,139 @@
-:root {
-	--blue: #284fce;
-	--soft-blue: rgb(96, 167, 196);
-	--spheal-blue-bright: #9ec9f8;
-	--spheal-blue: #7aa8d9;
-	--spheal-blue-dark: #4472a3;
-	--pikachu-yellow-bright: #fffc3e;
-	--pikachu-yellow: #fff235;
-	--pikachu-yellow-dark: #e0cd22;
-	--white: #ffffff;
+.navContainer {
+	margin-top: 0px;
+	position: fixed;
+	display: flex;
+	min-height: 10%;
+	min-width: 98%;
+	align-self: center;
+	justify-content: center;
+	background-color: rgb(39, 138, 224);
+	border: 3px;
+	border-radius: 18px 18px 18px 18px;
 }
 
-nav {
-	position: sticky;
-	background-color: var(--spheal-blue-bright);
-	height: 3%;
-	top: 0%;
-	left: 0;
-	right: 0;
-	padding: 0.5em;
-	vertical-align: middle;
-	text-align: center;
-	filter: drop-shadow(0 0.4rem 0.25rem rgba(0, 0, 0, 0.2));
+.navBar {
+	margin: 5px;
+	display: flex;
+	align-content: space-between;
+	min-height: 70px;
+	min-width: 98%;
+	align-self: center;
+	justify-content: center;
+	background-color: rgb(171, 171, 171);
+	border: 3px;
+	border-radius: 18px 18px 18px 18px;
 }
 
-nav img {
-	display: block;
-	width: auto;
-	height: 100%;
-	max-height: 100%;
-	margin-right: 1em;
+a.navAnchor {
+	display: flex;
+	margin: auto;
+	justify-content: center;
+	border: 3px;
+	min-height: 100%;
+	min-width: 100%;
 }
 
-.menuBar {
-	width: 100%;
-	vertical-align: middle;
-	text-align: center;
-}
-
-.navButton {
-	float: right;
-	height: 100%;
-	text-align: center;
-}
-
-.navImg:hover {
-	transform: scale(1.1);
-	filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 0, 0, 0.2));
-}
-
-.siteHeader {
-	background-image: linear-gradient(to bottom, var(--spheal-blue) 30%, var(--spheal-blue-bright));
-	padding: 1em;
-}
-
-#sitelogo {
-	display: block;
-	text-align: center;
+.navImg {
 	max-width: 100%;
-	height: auto;
-	margin-left: auto;
-	margin-right: auto;
+	max-height: 100%;
+	padding: 0px;
+	align-self: center;
+	transition: 550ms ease-in-out;
 }
 
-#sitelogo:hover {
-	transform: scale(1.1);
-	filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 0, 0, 0.2));
+.logImg {
+	max-width: 80%;
+	max-height: 100%;
+	padding: 0px;
+	align-self: center;
+	transition: 550ms ease-in-out;
 }
 
-#nav {
-	margin:0 auto;
-	list-style:none;
+.logoImg {
+	margin-right: 10px;
+	max-width: 140%;
+	max-height: 130%;
+	padding: 0px;
+	align-self: center;
+	transition: 550ms ease-in-out;
 }
 
-#nav li {
-	float: left;
+.logo {
+	display: flex;
+	margin: auto;
+	border: 3px;
+	height: 50px;
+	width: 90px;
+	border-radius: 18px 18px 18px 18px;
+	justify-content: center;
+	background-color: none;
+	transition: 550ms ease-in-out;
 }
 
-#loginLink {
-	list-style: none;
-	text-decoration: none;
-	float: right;
+.fanart {
+	display: flex;
+	margin: auto;
+	border: 3px;
+	height: 40px;
+	width: 80px;
+	border-radius: 18px 18px 18px 18px;
+	justify-content: center;
+	transition: 550ms ease-in-out;
+}
+
+.wishlist {
+	display: flex;
+	margin: auto;
+	border: 3px;
+	height: 40px;
+	width: 80px;
+	min-width: none;
+	border-radius: 18px 18px 18px 18px;
+	justify-content: center;
+	transition: 550ms ease-in-out;
+}
+
+.pokemon {
+	display: flex;
+	margin: auto;
+	border: 3px;
+	height: 50px;
+	width: 90px;
+	border-radius: 18px 18px 18px 18px;
+	justify-content: center;
+	transition: 550ms ease-in-out;
+}
+
+.locations {
+	display: flex;
+	margin: auto;
+	border: 3px;
+	height: 50px;
+	width: 90px;
+	border-radius: 18px 18px 18px 18px;
+	justify-content: center;
+	transition: 550ms ease-in-out;
+}
+
+.profile {
+	display: flex;
+	margin: auto;
+	border: 3px;
+	height: 50px;
+	width: 90px;
+	border-radius: 18px 18px 18px 18px;
+	justify-content: center;
+	transition: 550ms ease-in-out;
+}
+
+
+a:hover {
+	display: flex;
+	margin: auto;
+	justify-content: center;
+	border: 3px;
+	height: 100%;
+	width: 100%;
+	border-radius: 18px 18px 18px 18px;
+	background-color: yellow;
 }

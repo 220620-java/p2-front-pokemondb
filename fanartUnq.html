@@ -7,62 +7,57 @@
 	<script src="js/fanartUnq.js" defer></script>
 	<meta charset="UTF-8">
 </head>
-	<body id="fanartUnqBody">
-		<nav>
-			<div id="menuBar">
-				<ul id="nav">
-					<li><a href="index.html"><img class="navImg" src="images/Home.png"></a></li>
-					<li><a href="pokemonPage.html"><img class="navImg" src="images/Pokemon.png"></a></li>
-					<li><a href="location.html"><img class="navImg" src="images/Locations.png"></a></li>
-					<li><a href="fanart.html"><img class="navImg" src="images/Fanart.png"></a></li>
-					<li><a href="wishlist.html"><img class="navImg" src="images/Wishlist.png"></a></li>
-				</ul>
-				<ul id="userArea">
-					<li id="loggedUN">Username</li>
-					<li id="loginLink"><a  href="login.html"><img class="navImg" src="images/log-in.png"></a></li>
-				</ul>
-			</div>
-		</nav>
-		<div class="fanartShow">
-			<table>
-				<tr>
-
-					<td colspan="3" class="fanartImg">
-						<div class="fanartImg">
-							<img class="fanartImg" id="fanartImg" src="images/fanart/spheal.png" alt="Spheal With It!"/>
-							<input type="checkbox" class="flag" id="flagChk">
-							<label class="flagImg" id="flagLbl" for="flagChk"><img id="flagImg" src="images/flagLow.png" height="32" width="32"></label>
-							<input type="checkbox" class="rate" id="rateChk">
-							<label class="rateImg" id="rateLbl" for="rateChk"><img id="rateImg" src="images/heartEmpty.png" height="32" width="32"></label>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td class="prevArt"><button type="button" class="fanartUnqBtn" id="prevArt"><<</button></td>
-					<td class="fanartTitle"><label id="fanartTitle" for="fanartImg">Spheal With It!</label></td>
-					<td class="nextArt"><button type="button" class="fanartUnqBtn" id="nextArt">>></button></td>
-				</tr>
-			</table>
+<body id="fanartUnqBody">
+	<div class="navContainer">
+		<div id="navBar" class="navBar">
+			<div id="b" class="logo"><a class="navAnchor" href="index.html"><img src="images/PokePost.png" alt="Home" class="logoImg"></a></div>
+			<div id="b" class="pokemon"><a class="navAnchor" href="pokemonPage.html"><img src="images/Pokemon.png" alt="Pokemon" class="navImg"></a></div>
+			<div id="b" class="fanart"><a class="navAnchor" href="fanart.html"><img src="images/Fanart.png" alt="Fan Art" class="navImg"></a></div>
+			<div id="b" class="wishlist"><a class="navAnchor" href="wishlist.html"><img src="images/Wishlist.png" alt="Wishlist" class="navImg"></a></div>
+			<div id="b" class="locations"><a class="navAnchor" href="location.html"><img src="images/Locations.png" alt="Locations" class="navImg"></a></div>
+			<div id="navUser" class="profile"><a class="navAnchor"><img src="images/log-in.png" alt="Profile" class="logImg" /></a></div>
 		</div>
-		<div class="fanartDetails">
-			<table>
-				<tr>
-					<th>Author:</th>
-					<th>Posted On:</th>
-				</tr>
-				<tr>
-					<td class="fanartDetails" id="fanartAuthor">Leanardo DeVinci</td>
-					<td class="fanartDetails" id="fanartPostDate">07/06/1841</td>
-				</tr>
-				<tr>
-					<th colspan="2">Tags</th>
-				</tr>
-				<tr>
-					<td colspan="2"  class="fanartDetails" id="fanartTags">spheal, leanardodevinci</td>
-				</tr>
-			</table>
-		</div>
-		<div class="comments">
+	</div>
+	<div class="fanartShow">
+		<table>
+			<tr>
+				<td colspan="3" class="fanartImg">
+					<div class="fanartImg">
+						<img class="fanartImg" id="fanartImg" src="images/fanart/spheal.png" alt="Spheal With It!" />
+						<input type="checkbox" class="flag" id="flagChk">
+						<label class="flagImg" id="flagLbl" for="flagChk"><img id="flagImg" src="images/flagLow.png" height="32" width="32"></label>
+						<input type="checkbox" class="rate" id="rateChk">
+						<label class="rateImg" id="rateLbl" for="rateChk"><img id="rateImg" src="images/heartEmpty.png" height="32" width="32"></label>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="prevArt"><button type="button" class="fanartUnqBtn" id="prevArt"><<</button></td>
+				<td class="fanartTitle"><label id="fanartTitle" for="fanartImg">Spheal With It!</label></td>
+				<td class="nextArt"><button type="button" class="fanartUnqBtn" id="nextArt">>></button></td>
+			</tr>
+		</table>
+	</div>
+	<div class="fanartDetails">
+		<table>
+			<tr>
+				<th>Author:</th>
+				<th>Posted On:</th>
+			</tr>
+			<tr>
+				<td class="fanartDetails" id="fanartAuthor">Leanardo DeVinci</td>
+				<td class="fanartDetails" id="fanartPostDate">07/06/1841</td>
+			</tr>
+			<tr>
+				<th colspan="2">Tags</th>
+			</tr>
+			<tr>
+				<td colspan="2" class="fanartDetails" id="fanartTags">spheal, leanardodevinci</td>
+			</tr>
+		</table>
+	</div>
+	<div class="comments">
 
-	</body>
+	</div>
+</body>
 </html>

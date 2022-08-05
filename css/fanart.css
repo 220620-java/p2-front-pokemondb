@@ -4,6 +4,7 @@ body {
 }
 
 #filterSection {
+	margin-top: 10%;
 	display: block;
 	float: left;
 	background: #FFFFFF;
@@ -33,7 +34,7 @@ body {
 	display: block;
 	width: 70%;
 	padding: 1em;
-	margin: auto;
+	margin-top: 10%;
 	float: right;
 	background: #FFFFFF;
 	border-radius: 5px;
