@@ -35,6 +35,7 @@ function getPokemon(e) {
                 <li>${data.abilities[1].ability.name}</li>
             </ul>
         <h4>Location: ${data.location}</h4>
+        
     </div>
     <div class="pokemonInfos">
         <h4>Stats </h4>
