@@ -152,7 +152,7 @@ function displayPage(pageNum) {
 		imageDisplay.appendChild(newArt);
 
 		//Setting up newArt. Giving it a class based on the id being even/odd
-		if (fanartObj.id % 2 == 0) {
+		if (i % 2 == 0) {
 			newArt.setAttribute("class", "ArtDisplayLft");
 		} else {
 			newArt.setAttribute("class", "ArtDisplayRgt");

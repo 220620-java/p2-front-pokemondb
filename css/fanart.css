@@ -53,10 +53,12 @@ body {
 }
 
 .ArtDisplayLft {
+	clear: left;
 	float: left;
 }
 
 .ArtDisplayRgt {
+	clear: right;
 	float: right;
 }
 
