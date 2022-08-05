@@ -2,7 +2,7 @@
     <head>
         <link rel="stylesheet" href="p2-testTemplates\NavigationBar\nav.css">
         <link rel="stylesheet" href="p2-testTemplates\PokemonPage\PokemonPage.css">
-        <script src="ComComp\getAllComments.js" defer></script>
+        <script src="ComComp\pokemonPage.js" defer></script>
     </head>
     <body>
         <section class="PageContainer">
@@ -42,14 +42,14 @@
             </div>
             <div class="queryContainer">
                 <div class="querySection">
-                    <textarea class="query" placeholder="enter a pokemon name/id"></textarea>
-                    <button class="search">Search</button>
+                    <textarea id="query" class="query" placeholder="enter a pokemon name/id"></textarea>
+                    <button id="search" class="search">Search</button>
                 </div>
             </div>
             <div class="page">
-                <div class="pokemonContainer">
-                    <div class="pokemonSpriteContainer">
-                        <img src="PokemonPage/char.png" class="pokeImg">
+                <div id="pokemonContainer" class="pokemonContainer">
+                    <div id="pokemonSpriteContainer" class="pokemonSpriteContainer">
+                    
                     </div>
                     <div class="pokemonStatsContainer">
                         <div class="statsGraphic">

@@ -48,7 +48,6 @@
             console.log ("Sending Login Request... " + username);
             let credentials = {username: username, password: password};
             credentials = JSON.stringify(credentials);
-			//let url = "http://pokepost-env.eba-jzp4ndpr.us-east-1.elasticbeanstalk.com/auth/";
 			let url = "http://localhost:8080/auth/";
             postRequest (url, credentials, onSuccessfulLogin, onHeadersReceived, onLoading)
         }
@@ -61,9 +60,12 @@
 
 		}
 
-        function onSuccessfulLogin() {
-            alert ("LOGIN SUCCESSFUL");
-            window.location.href = "/";
+        function onSuccessfulLogin(response) {
+            response = JSON.parse(response);
+            alert("LOGIN SUCCESSFUL");
+            sessionStorage.setItem("USER_ID", response.userid);
+            sessionStorage.setItem("USERNAME", response.username);
+            window.location.href = "index.html";
         }
 
         function onSignUp () {
