@@ -155,10 +155,10 @@ function logStateChange() {
 
         //Comment Ratings
         //Checkboxes
-        for (commentChk of rateCommChks) {
+        for (let commentChk of rateCommChks) {
             commentChk.checked = false;
         }
-        for (commentChk of reportCommChks) {
+        for (let commentChk of reportCommChks) {
             commentChk.checked = false;
         }
 
