@@ -165,7 +165,7 @@ function getAllFanart() {
  */
 function getFilteredFanart() {
 	console.log("getFilteredFanart called")
-	let getArtRequest, getArtResponse, getArtURL,
+	let getFilteredArtRequest, getFilteredArtResponse, getFilteredArtURL,
 		filterKey, filterParams;
 
 	//Setup filterparams
@@ -180,33 +180,33 @@ function getFilteredFanart() {
 	console.log("Filters: " + filterParams);
 
 	//Setup request
-	getArtRequest = new XMLHttpRequest();
+	getFilteredArtRequest = new XMLHttpRequest();
 
-	getArtURL = "http:/localhost:8080/fanart/filters?" + filterParams;
+	getFilteredArtURL = "http:/localhost:8080/fanart/filters?" + filterParams;
 
-	getArtRequest.open("GET", getArtURL, false);
+	getFilteredArtRequest.open("GET", getFilteredArtURL, false);
 
-	getArtRequest.onload = function () {
-		console.log("getArtRequest.onload called");
+	getFilteredArtRequest.onload = function () {
+		console.log("getFilteredArtRequest.onload called");
 
 		//Request is successful. Add fanart objects to the html
-		if (getArtRequest.status >= 200 && getArtRequest.status < 300) {
+		if (getFilteredArtRequest.status >= 200 && getFilteredArtRequest.status < 300) {
 			console.log("Request was successful!");
-			console.log("Response: " + getArtRequest.response);
-			console.log("Status Text: " + getArtRequest.statusText);
-			getArtResponse = JSON.parse(getArtRequest.response);
+			console.log("Response: " + getFilteredArtRequest.response);
+			console.log("Status Text: " + getFilteredArtRequest.statusText);
+			getFilteredArtResponse = JSON.parse(getFilteredArtRequest.response);
 			storedFanart.clear();
 
-			for (let fanartObj of getArtResponse) {
+			for (let fanartObj of getFilteredArtResponse) {
 				storedFanart.append(fanartObj);
 			}
 
 		} else { //Request failed. Handle errors and default to no comments
-			console.log(getArtRequest.statusText);
+			console.log(getFilteredArtRequest.statusText);
 		}
 	}
 	//Send the request
-	getArtRequest.send();
+	getFilteredArtRequest.send();
 	displayPage(0);
 }
 
