@@ -79,12 +79,13 @@ let reportArtComm = {
 
 /*Event Listeners*/
 
-fanartUnqBody.onload = function () { getFanart(); }
-rateChk.onchange = function () { rateChkCheckChanged('rateChk', 'rateImg', 'art') };
-flagChk.onchange = function () { flagChkCheckChanged('flagChk', 'flagImg', 'art') };
-prevArt.onclick = function () { prevArtClick(); }
-nextArt.onclick = function () { nextArtClick(); }
-addComments.onclick = function () { postComment(); }
+fanartUnqBody.onload = function () { getFanart(); };
+rateChk.onchange = function () { rateChkCheckChanged('rateChk', 'rateImg', 'art'); };
+flagChk.onchange = function () { flagChkCheckChanged('flagChk', 'flagImg', 'art'); };
+prevArt.onclick = function () { prevArtClick(); };
+nextArt.onclick = function () { nextArtClick(); };
+addComments.onclick = function () { postComment(); };
+logImg.onclick = function () { logStateChange();}
 
 /*Functions*/
 
@@ -95,7 +96,7 @@ addComments.onclick = function () { postComment(); }
 function getArtId() {
 	console.log("getArtId called");
 	let artId;
-	if (typeof sessionStorage.getItem("FANART_ID") != 'number') {
+	if (sessionStorage.getItem("FANART_ID") == null) {
 		console.log("FANART_ID is not a number")
 		sessionStorage.setItem("FANART_ID", 44);//44 is the first fanart in the DB
 		artId = 44;
@@ -114,7 +115,7 @@ function getArtId() {
 function getUserId() {
 	console.log("getUserId called");
 	let userId = null;
-	if (typeof sessionStorage.getItem("USER_ID") != 'number') {
+	if (sessionStorage.getItem("USER_ID") == null) {
 		loggedIn = false;
 		logImg.src = "images/log-in.png";
 	} else {
@@ -125,6 +126,19 @@ function getUserId() {
 		console.log("currentUserId: " + userId);
 	}
 	return userId;
+}
+
+/**Logs a user out or sends them to the login page based on loggedIn status
+ */
+function logStateChange() {
+	if (loggedIn) { //User is logged in. Will log them out
+		sessionStorage.removeItem("USER_ID");
+		logImg.src = "images/log-in.png";
+		loggedIn = false;
+		currentUserId = null;
+	} else { //User is not logged in. Will link them to login.html
+		window.location.href = "login.html";
+    }
 }
 
 /**
