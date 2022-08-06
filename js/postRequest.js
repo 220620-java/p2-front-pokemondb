@@ -45,7 +45,7 @@ function postRequest(url, json, onDone, onHeadersReceived, onLoading) {
 			let response = request.response;
 			console.log("Response: " + response);
 			if (onDone != null) {
-				onDone(response);
+				onDone(response, request.getResponseHeader("Auth"));
 				return;
 			}
 		} 
