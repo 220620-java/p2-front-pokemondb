@@ -4,6 +4,12 @@ console.log("Loaded fanartUnqJs.js");
 
 let fanartBody = document.getElementById("fanartBody");
 let logImg = document.getElementById("logImg");
+let filterSlct = document.getElementById("filterSlct");
+let filterTxtBx = document.getElementById("filterTxtBx");
+let filterDateCal = document.getElementById("filterDateCal");
+let filterTxtBxLbl = document.getElementById("filterTxtBxLbl");
+let filterDateCalLbl = document.getElementById("filterDateCalLbl");
+let applyFiltersBtn = document.getElementById("applyFiltersBtn");
 let imageDisplay = document.getElementById("imageDisplay");
 let pgLftBtn = document.getElementById("pgLftBtn");
 let pgTitleLbl = document.getElementById('pgTitleLbl');
@@ -77,8 +83,11 @@ function List() {
 /*Event Listeners*/
 fanartBody.addEventListener("load", getAllFanart());
 fanartBody.addEventListener("load", displayPage(0));
-pgLftBtn.addEventListener("click", function () { displayPage((currentPage - 1)) });
-pgRgtBtn.addEventListener("click", function () { displayPage((currentPage + 1)) });
+fanartBody.addEventListener("load", displayFilterInput());
+filterSlct.onchange = function () { displayFilterInput(); };
+applyFiltersBtn.addEventListener("click", function () { getFilteredFanart(); });
+pgLftBtn.addEventListener("click", function () { displayPage((currentPage - 1)); });
+pgRgtBtn.addEventListener("click", function () { displayPage((currentPage + 1)); });
 logImg.onclick = function () { logStateChange(); }
 
 /*Functions*/
@@ -116,10 +125,10 @@ function logStateChange() {
 	}
 }
 
-/**Retrieves comments associated with the shown fanart
+/**Retrieves all available fanart
  */
 function getAllFanart() {
-	console.log("getFanart called")
+	console.log("getAllFanart called")
 	let getArtRequest, getArtResponse, getArtURL;
 
 	//Setup request
@@ -150,6 +159,55 @@ function getAllFanart() {
 	}
 	//Send the request
 	getArtRequest.send();
+}
+
+/**Retrieves all available fanart that aligns with the given filter
+ */
+function getFilteredFanart() {
+	console.log("getFilteredFanart called")
+	let getArtRequest, getArtResponse, getArtURL,
+		filterKey, filterParams;
+
+	//Setup filterparams
+	filterKey = filterSlct.value;
+	filterParams = filterKey;
+
+	if (filterKey.includes("date")) { //The date filter uses filterDateCal
+		filterParams = filterParams + "=" + filterDateCal.value;
+	} else { //Otherwise, filterTxtBx is used
+		filterParams = filterParams + "=" + filterTxtBx.value;
+	}
+	console.log("Filters: " + filterParams);
+
+	//Setup request
+	getArtRequest = new XMLHttpRequest();
+
+	getArtURL = "http:/localhost:8080/fanart/filters?" + filterParams;
+
+	getArtRequest.open("GET", getArtURL, false);
+
+	getArtRequest.onload = function () {
+		console.log("getArtRequest.onload called");
+
+		//Request is successful. Add fanart objects to the html
+		if (getArtRequest.status >= 200 && getArtRequest.status < 300) {
+			console.log("Request was successful!");
+			console.log("Response: " + getArtRequest.response);
+			console.log("Status Text: " + getArtRequest.statusText);
+			getArtResponse = JSON.parse(getArtRequest.response);
+			storedFanart.clear();
+
+			for (let fanartObj of getArtResponse) {
+				storedFanart.append(fanartObj);
+			}
+
+		} else { //Request failed. Handle errors and default to no comments
+			console.log(getArtRequest.statusText);
+		}
+	}
+	//Send the request
+	getArtRequest.send();
+	displayPage(0);
 }
 
 /**Displays a set of 10 or fewer fanarts based on the given page number
@@ -249,4 +307,22 @@ function setFanartId(id) {
 	console.log("setFanartId(" + id + ") called");
 	sessionStorage.setItem("FANART_ID", id);
 	return window.location.href = "fanartUnq.html";
+}
+
+function displayFilterInput() {
+	console.log("displayFilterInput called");
+	let filterKey = filterSlct.value;
+	if (filterKey.includes("date")) { //The date filter uses filterDateCal
+		filterTxtBx.hidden = true;
+		filterTxtBxLbl.hidden = true;
+		filterDateCal.hidden = false;
+		filterDateCalLbl.hidden = false;
+		console.log("Showing date filters");
+	} else { //Otherwise, filterTxtBx is used
+		filterTxtBx.hidden = false;
+		filterTxtBxLbl.hidden = false;
+		filterDateCal.hidden = true;
+		filterDateCalLbl.hidden = true;
+		console.log("Showing text filters");
+    }
 }
