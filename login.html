@@ -63,8 +63,8 @@
         function onSuccessfulLogin(response) {
             response = JSON.parse(response);
             alert("LOGIN SUCCESSFUL");
-            sessionStorage.setItem("USER_ID", response.userid);
-            sessionStorage.setItem("USERNAME", response.username);
+            sessionStorage.setItem("USER_ID", response.userId);
+            console.log("USER_ID: " + sessionStorage.getItem("USER_ID"));
             window.location.href = "index.html";
         }
 
