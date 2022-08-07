@@ -71,7 +71,7 @@ async function getAll() {
         reportButton.className = 'reportComment';
         reportButton.id = node.id;
         deleteButton.addEventListener('click', _delete_ev => deleteComment(node));
-        likeButton.addEventListener('click', _like_ev => likeComment(node) && likeButton.removeEventListener);
+        likeButton.addEventListener('click', _like_ev => likeComment(node) && likeButton.removeEventListener(this));
         reportButton.addEventListener('click', _report_ev => reportComment(node, _report_ev));
         const wrapDiv = document.createElement('div');
         wrapDiv.className = 'wrapper';
