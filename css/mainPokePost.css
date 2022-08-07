@@ -8,17 +8,32 @@
 	--pikachu-yellow: #fff235;
 	--pikachu-yellow-dark: #e0cd22;
 	--white: #ffffff;
+	--white-2: #f7f7f7;
 	--white-blue: #e2ecff;
 }
 
 body {
-	font-family: Helvetica, sans-serif;
+	font-family: 'Nunito Sans';
+	-webkit-font-smoothing: antialiased;
     background-image: url("../images/background.jpg");
     background-repeat: no-repeat;
     background-size: contain;
-    border: 100px rgb(25, 179, 213);
-	color: #ffffff;
+	background-attachment: fixed;
 	background-color: var(--spheal-blue);
+	font-size: large;
+}
+
+h1 {
+	font-size:xx-large;
+	text-align: center;
+}
+
+h2 {
+	text-align: center;
+}
+
+h3 {
+	text-align: center;
 }
 
 .grid {
@@ -50,7 +65,7 @@ aside div {
 
 section {
 	color: black;
-	background-color: var(--white-blue);
+	background-color: var(--white-2);
 	margin-left: auto;
 	margin-right: auto;
 	width: 100%;
@@ -67,5 +82,34 @@ section img {
 	display: block;
 	margin-left:auto;
 	margin-right:auto;
-	width: 50%;
+	width: 100%;
+}
+
+.header {
+	display:block;
+	background-color: var(--spheal-blue);
+	width: 100%;
+	height: 10%;
+}
+
+.post {
+	max-width: 60vh;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+	border-radius: 15px;
+	box-shadow: 5px 10px #00000038;
+}
+
+#whospokemon {
+	transition: all .25s ease-in-out;
+	background: url('images/blog/whosthatpokemon_363.png');
+}
+
+#whospokemon:hover {
+	-webkit-transform:scale(1.25); /* or some other value */
+    transform:scale(1.25);
+	background: url('images/blog/whosthatpokemon_363-revealed.png');
+	box-shadow: 
+		0px 0px 10px 10px #ffffff,
+		0px 0px 40px 30px #fff235;
 }
