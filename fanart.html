@@ -13,8 +13,8 @@
             <div id="b" class="pokemon"><a class="navAnchor" href="pokemonPage.html"><img src="images/Pokemon.png" alt="Pokemon" class="navImg"></a></div>
             <div id="b" class="fanart"><a class="navAnchor" href="fanart.html"><img src="images/Fanart.png" alt="Fan Art" class="navImg"></a></div>
             <div id="b" class="wishlist"><a class="navAnchor" href="wishlist.html"><img src="images/Wishlist.png" alt="Wishlist" class="navImg"></a></div>
-            <div id="b" class="locations"><a class="navAnchor" href="location.html"><img src="images/Locations.png" alt="Locations" id="navImg"></a></div>
-            <div id="navUser" class="profile"><a class="navAnchor"><img src="images/log-in.png" alt="Profile" class="logImg" /></a></div>
+            <div id="b" class="locations"><a class="navAnchor" href="location.html"><img src="images/Locations.png" alt="Locations" class="navImg"></a></div>
+            <div id="navUser" class="profile"><a class="navAnchor"><img src="images/log-in.png" alt="Profile" id="logImg" /></a></div>
         </div>
     </div>
     <div id="filterSection">
@@ -22,7 +22,6 @@
             <label class="filterLbl" id="filterSlctLbl" for="filterSlctLbl">Filter By:</label>
             <select name="filterSlct" id="filterSlct">
                 <option value="title">Title</option>
-                <option value="author">Author</option>
                 <option value="tags">Tags</option>
                 <option value="dateBefore">Date Before</option>
                 <option value="dateAfter">Date After</option>
@@ -35,6 +34,9 @@
         <div id="filterDate">
             <label class="filterLbl" id="filterDateCalLbl" for="filterDateCal">Filter Date:</label>
             <input type="date" id="filterDateCal" />
+        </div>
+        <div id="filterBtn">
+            <button type="submit" id="applyFiltersBtn">Apply Filters</button>
         </div>
     </div>
     <div id="imageSection">

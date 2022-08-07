@@ -16,7 +16,7 @@
                     <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/363.png">
                 </div>
                 <div id="logGridUser">
-                    <label for="username">Username</label></td>
+                    <label for="username">Username</label>
                     <input class="inputBox" id="username" type="text" placeholder="Username">
                 </div>
                 <div id="logGridPass">
@@ -60,11 +60,15 @@
 
 		}
 
-        function onSuccessfulLogin(response) {
+        function onSuccessfulLogin(response, jwt) {
             response = JSON.parse(response);
             alert("LOGIN SUCCESSFUL");
-            sessionStorage.setItem("USER_ID", response.userid);
+            sessionStorage.setItem("USER_ID", response.userId);
             sessionStorage.setItem("USERNAME", response.username);
+            sessionStorage.setItem("JWT", jwt);
+            console.log("USER_ID: " + sessionStorage.getItem("USER_ID"));
+            console.log("USERNAME: " + sessionStorage.getItem("USERNAME"));
+            console.log("JWT: " + sessionStorage.getItem("JWT"));
             window.location.href = "index.html";
         }
 
