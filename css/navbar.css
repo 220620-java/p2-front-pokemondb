@@ -20,7 +20,7 @@
 	min-width: 98%;
 	align-self: center;
 	justify-content: center;
-	background-color: var(--white-blue);
+	/* background-color: var(--white-blue); */
 	border: 3px;
 	border-radius: 18px 18px 18px 18px;
 }
@@ -40,7 +40,7 @@ a.navAnchor:hover {
 	margin: auto;
 	justify-content: center;
 	/* background-color: white; */
-	filter: drop-shadow(5px 5px 4px #7b7c7e8e);
+	filter: drop-shadow(5px 5px 4px rgba(0, 132, 255, 0.651));
 	transform: scale(1.1);
 }
 
