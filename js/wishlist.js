@@ -15,9 +15,10 @@ function lowerCaseName(str) {
 
 
 let pokeId = 0;
-let currentUserId = getUserId();
 let loggedIn = false;
 let logImg = document.getElementById("logImg");
+let currentUserId = getUserId();
+
 
 logImg.onclick = function () { logStateChange(); }
 
@@ -68,14 +69,9 @@ function getPokemon(e) {
 
     e.preventDefault();
 
-
-    const button = document.createElement('button')
-    button.innerText = 'testing'
-    button.addEventListener('click', () => {
-        alert('Good Luck!')
-    })
-    document.body.appendChild(button)
 }
+
+const displayList = document.getElementById('displayWishlist')
 
 let wishlist = {
     id: null,
@@ -94,19 +90,19 @@ function postWishlist() {
 }
 
 function getUserId() {
-	console.log("getUserId called");
-	let userId = null;
-	if (sessionStorage.getItem("USER_ID") == null) {
-		loggedIn = false;
-		logImg.src = "images/log-in.png";
-	} else {
-		loggedIn = true;
-		logImg.src = "images/Log-Out.png";
-		console.log("USER_ID = " + sessionStorage.getItem("USER_ID"));
-		userId = parseInt(sessionStorage.getItem("USER_ID"));
-		console.log("currentUserId: " + userId);
-	}
-	return userId;
+    console.log("getUserId called");
+    let userId = null;
+    if (sessionStorage.getItem("USER_ID") == null) {
+        loggedIn = false;
+        logImg.src = "images/log-in.png";
+    } else {
+        loggedIn = true;
+        logImg.src = "images/Log-Out.png";
+        console.log("USER_ID = " + sessionStorage.getItem("USER_ID"));
+        userId = parseInt(sessionStorage.getItem("USER_ID"));
+        console.log("currentUserId: " + userId);
+    }
+    return userId;
 }
 
 
@@ -134,3 +130,67 @@ function logStateChange() {
         window.location.href = "login.html";
     }
 }
+
+
+
+function getDisplayList() {
+
+    let pokeDiv, pokeId, pokeImg, pokeName, deletePoke;
+
+    const url = "http://localhost:8080/wishlist/" + currentUserId
+
+    let respond = await fetch(url, { method: "GET" })
+
+    respond = JSON.parse(respond)
+    for (let wishlistObj of respond) {
+
+        pokeDiv = null;
+        pokeId = null;
+        pokeImg = null;
+        pokeName = null;
+        deletePoke = null;
+
+        pokeDiv = document.createElement("div")
+        pokeId = document.createElement("p")
+        pokeImg = document.createElement("img")
+        pokeName = document.createElement("p")
+        deletePoke = document.createElement("button")
+
+        pokeDiv.appendChild(pokeId);
+        pokeDiv.appendChild(pokeImg);
+        pokeDiv.appendChild(pokeName);
+        pokeDiv.appendChild(deletePoke);
+
+        displayList.appendChild(pokeDiv);
+
+        pokeId.setAttribute("class", "pokemonId")
+        if (wishlistObj.id == null) {
+            pokeId.innerHTML = "Anonymous";
+        } else {
+            pokeId.innerHTML = wishlistObj.pokemon.id;
+        }
+
+        pokeName.setAttribute("class", "pokemonName")
+        if (wishlistObj.id == null) {
+            pokeName.innerHTML = "Anonymous";
+        } else {
+            pokeName.innerHTML = wishlistObj.pokenon.name;
+        }
+
+        pokeImg.src = wishlistObj.pokemon.imageUrl;
+        pokeImg.setAttribute("class", "pokeImg");
+        pokeImg.height = "30";
+        pokeImg.width = "30";
+
+        deletePoke.setAttribute("class", "deletePoke");
+        deletePoke.setAttribute("id", "delete" + wishlistObj.id);
+        deletePoke.type = "submit";
+
+        deletePoke.onclick = function () {
+            deleteWishPokemon("delete" + wishlistObj.id);
+        }
+    }
+
+}
+
+let me restart cpu
