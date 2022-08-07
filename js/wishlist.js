@@ -16,7 +16,7 @@ function lowerCaseName(str) {
 
 let pokeId = 0;
 let loggedIn = false;
-let logImg = document.getElementById("logImg");
+let logImg = document.getElementById("log-img");
 let currentUserId = getUserId();
 
 
