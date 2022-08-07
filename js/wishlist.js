@@ -15,7 +15,11 @@ function lowerCaseName(str) {
 
 
 let pokeId = 0;
-let currentUserId = 1;
+let currentUserId = getUserId();
+let loggedIn = false;
+let logImg = document.getElementById("logImg");
+
+logImg.onclick = function () { logStateChange(); }
 
 function getPokemon(e) {
     const name = document.querySelector("#pokemonName").value;
@@ -89,5 +93,44 @@ function postWishlist() {
     fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(pokelist) })
 }
 
+function getUserId() {
+	console.log("getUserId called");
+	let userId = null;
+	if (sessionStorage.getItem("USER_ID") == null) {
+		loggedIn = false;
+		logImg.src = "images/log-in.png";
+	} else {
+		loggedIn = true;
+		logImg.src = "images/Log-Out.png";
+		console.log("USER_ID = " + sessionStorage.getItem("USER_ID"));
+		userId = parseInt(sessionStorage.getItem("USER_ID"));
+		console.log("currentUserId: " + userId);
+	}
+	return userId;
+}
 
 
+function logStateChange() {
+    console.log("logStateChange called");
+    if (loggedIn) { //User is logged in. Will log them out
+        //Clearing session variables
+        sessionStorage.removeItem("USER_ID");
+        sessionStorage.removeItem("USERNAME");
+        sessionStorage.removeItem("JWT");
+
+        //Reseting script variables
+        loggedIn = false;
+        currentUserId = null;
+
+        //Login image
+        logImg.src = "images/log-in.png";
+
+        //Alerting user
+        alert(
+            "You have been logged out"
+        );
+        console.log("User logged out");
+    } else { //User is not logged in. Will link them to login.html
+        window.location.href = "login.html";
+    }
+}
