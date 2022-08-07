@@ -18,9 +18,11 @@ let pokeId = 0;
 let loggedIn = false;
 let logImg = document.getElementById("log-img");
 let currentUserId = getUserId();
+let wishlistBody = document.getElementById("wishlistBody");
 
 
 logImg.onclick = function () { logStateChange(); }
+wishlistBody.onload = function () { getDisplayList() }
 
 function getPokemon(e) {
     const name = document.querySelector("#pokemonName").value;
@@ -133,7 +135,7 @@ function logStateChange() {
 
 
 
-function getDisplayList() {
+async function getDisplayList() {
 
     let pokeDiv, pokeId, pokeImg, pokeName, deletePoke;
 
@@ -141,56 +143,60 @@ function getDisplayList() {
 
     let respond = await fetch(url, { method: "GET" })
 
-    respond = JSON.parse(respond)
-    for (let wishlistObj of respond) {
+    console.log(respond)
 
-        pokeDiv = null;
-        pokeId = null;
-        pokeImg = null;
-        pokeName = null;
-        deletePoke = null;
+    if (respond.status === 200) {
 
-        pokeDiv = document.createElement("div")
-        pokeId = document.createElement("p")
-        pokeImg = document.createElement("img")
-        pokeName = document.createElement("p")
-        deletePoke = document.createElement("button")
+        let data = await respond.json()
+        for (let wishlistObj of data) {
 
-        pokeDiv.appendChild(pokeId);
-        pokeDiv.appendChild(pokeImg);
-        pokeDiv.appendChild(pokeName);
-        pokeDiv.appendChild(deletePoke);
+            pokeDiv = null;
+            pokeId = null;
+            pokeImg = null;
+            pokeName = null;
+            deletePoke = null;
 
-        displayList.appendChild(pokeDiv);
+            pokeDiv = document.createElement("div")
+            pokeId = document.createElement("p")
+            pokeImg = document.createElement("img")
+            pokeName = document.createElement("p")
+            deletePoke = document.createElement("button")
 
-        pokeId.setAttribute("class", "pokemonId")
-        if (wishlistObj.id == null) {
-            pokeId.innerHTML = "Anonymous";
-        } else {
-            pokeId.innerHTML = wishlistObj.pokemon.id;
+            pokeDiv.appendChild(pokeId);
+            pokeDiv.appendChild(pokeImg);
+            pokeDiv.appendChild(pokeName);
+            pokeDiv.appendChild(deletePoke);
+
+            displayList.appendChild(pokeDiv);
+
+            pokeId.setAttribute("class", "pokemonId")
+            if (wishlistObj.id == null) {
+                pokeId.innerHTML = "Anonymous";
+            } else {
+                pokeId.innerHTML = wishlistObj.pokemon.id;
+            }
+
+            pokeName.setAttribute("class", "pokemonName")
+            if (wishlistObj.id == null) {
+                pokeName.innerHTML = "Anonymous";
+            } else {
+                pokeName.innerHTML = wishlistObj.pokemon.name;
+            }
+
+            pokeImg.src = wishlistObj.pokemon.imageUrl;
+            pokeImg.setAttribute("class", "pokeImg");
+            pokeImg.height = "30";
+            pokeImg.width = "30";
+
+            deletePoke.setAttribute("class", "deletePoke");
+            deletePoke.setAttribute("id", "delete" + wishlistObj.id);
+            deletePoke.type = "submit";
+
+            deletePoke.onclick = function () {
+                deleteWishPokemon("delete" + wishlistObj.id);
+            }
         }
+    } else {
 
-        pokeName.setAttribute("class", "pokemonName")
-        if (wishlistObj.id == null) {
-            pokeName.innerHTML = "Anonymous";
-        } else {
-            pokeName.innerHTML = wishlistObj.pokenon.name;
-        }
-
-        pokeImg.src = wishlistObj.pokemon.imageUrl;
-        pokeImg.setAttribute("class", "pokeImg");
-        pokeImg.height = "30";
-        pokeImg.width = "30";
-
-        deletePoke.setAttribute("class", "deletePoke");
-        deletePoke.setAttribute("id", "delete" + wishlistObj.id);
-        deletePoke.type = "submit";
-
-        deletePoke.onclick = function () {
-            deleteWishPokemon("delete" + wishlistObj.id);
-        }
     }
-
 }
-
-let me restart cpu
