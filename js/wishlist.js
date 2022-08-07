@@ -52,18 +52,18 @@ function getPokemon(e) {
                 <p>Speed: ${data.stats[5].base_stat}</p>
             </div>`;
             pokeId = data.id;
-            document.getElementById('pokemonKey').addEventListener('click', function(){postWishlist()})
+            document.getElementById('pokemonKey').addEventListener('click', function () { postWishlist() })
 
-            })
-            .catch((error) => {
-                document.querySelector(".pokemonBox").innerHTML = `
+        })
+        .catch((error) => {
+            document.querySelector(".pokemonBox").innerHTML = `
             <h4>Pokemon Got Away!! </h4>
             `;
             console.log("Pokemon Got Away!!", error);
         });
 
     e.preventDefault();
-    
+
 
     const button = document.createElement('button')
     button.innerText = 'testing'
@@ -75,8 +75,8 @@ function getPokemon(e) {
 
 let wishlist = {
     id: null,
-    user: {id:0},
-    pokemon: {id:0},
+    user: { id: 0 },
+    pokemon: { id: 0 },
     created_at: Date.now()
 }
 
@@ -85,25 +85,9 @@ function postWishlist() {
     pokelist.pokemon.id = pokeId;
     pokelist.user.id = currentUserId;
 
-   const url= "http://localhost:8080/wishlist"
-   fetch(url , {method:"POST", header:{"Content-Type": "application/json"}, body:JSON.stringify(pokelist)} ) 
+    const url = "http://localhost:8080/wishlist"
+    fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(pokelist) })
 }
 
 
-
-
-
-const api_url = "https://pokeapi.co/api/v2/pokemon/";
-
-
-const update_list = (id, name) => {
-    let pokemon = list.find(pokemon => pokemon.id === id)
-    if(pokemon) {
-        pokemon = id
-    } else {
-        list.push({
-            id, name
-        })
-    }
-}
 
