@@ -56,7 +56,7 @@ a.navAnchor {
 	width: auto;
 }
 
-.navImg, #logImg {
+.navImg {
 	width: auto;
 	height:auto;
 	min-width: 4vw;
@@ -68,6 +68,7 @@ a.navAnchor {
 
 .logoImg {
 	width: auto;
+	height:auto;
 	min-width: 4vw;
 	max-width: 15vw;
 	max-height: 6vh;

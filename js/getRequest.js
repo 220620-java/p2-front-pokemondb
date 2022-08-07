@@ -13,6 +13,26 @@ function getRequest(url, onDone, onHeadersReceived, onLoading) {
 
   	request.open("GET", url, true);
 
+	// If user has an jwt, put it in the header
+	if (sessionStorage.getItem("JWT")) {
+		request.setRequestHeader("Auth", sessionStorage.getItem("JWT"));
+	}
+
+	// If user has a username, put it in the header
+	if (sessionStorage.getItem("USERNAME")) {
+		request.setRequestHeader("Username", sessionStorage.getItem("USERNAME"));
+	}
+
+	// If user has a user id, put it in the header
+	if (sessionStorage.getItem("USER_ID")) {
+		request.setRequestHeader("UserId", sessionStorage.getItem("USER_ID"));
+	}
+
+	// If user has an jwt, put it in the header
+	if (sessionStorage.getItem("JWT")) {
+		request.setRequestHeader("Auth", sessionStorage.getItem("JWT"));
+	}
+
 	// Send out request
 	request.send();
 
