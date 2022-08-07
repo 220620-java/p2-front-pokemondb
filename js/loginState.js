@@ -51,7 +51,7 @@ function createUsernameLabel (username) {
     if (loggedIn) {
         console.log("Creating username label!");
         // Grab target div
-        const targetDiv = document.getElementById ("navContainer-id");
+        const targetDiv = document.getElementsByClassName ("navContainer")[0];
         const userDiv = document.createElement("div");
         userDiv.id = "userDiv";
 
