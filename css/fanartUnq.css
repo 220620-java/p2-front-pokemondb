@@ -34,6 +34,10 @@ img#fanartImg {
 	margin: auto;
 }
 
+.fanartShow {
+	padding-top: 10%;
+}
+
 .fanartShow table {
 	width: 96%;
 	margin-left: 2%;
@@ -175,3 +179,5 @@ input#flagChk, input#rateChk, .commentLike, .commentReport{
 .commentReportImg {
 	cursor: pointer;
 }
+
+nav {}

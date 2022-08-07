@@ -1,166 +1,75 @@
-﻿<html lang="en">
+<html>
     <head>
-        <!-- metadata -->
-        <title>PokePost Pokemon Search</title>
-        <meta charset="UTF-8">
-		<link rel= "icon" href="images/pokeball.png" type="image/x-icon">
-		<link rel="stylesheet" href="css/mainPokePost.css">
-		<link rel="stylesheet" href="css/pokemonPage.css">
-		<link rel="stylesheet" href="css/navbar.css" type="text/css">
-		<!-- Progress Circle-->
-		<!-- <link rel="stylesheet" href="css/progresscircle.css" /> -->
-		<!-- <script src="js/progresscircle.js"></script> -->
-		<script src="js/commentSection.js" defer></script>
-
-		<script src="js/postRequest.js"></script>
-		<script src="js/createPokemonPage.js"></script>
+        <link rel="stylesheet" href="css/navbar.css">
+        <link rel="stylesheet" href="p2-testTemplates\PokemonPage\PokemonPage.css">
+        <script src="ComComp\pokemonPage.js" defer></script>
     </head>
-    <body>
-		<!-- Nav bar -->
-		<nav>
-			<div id="menuBar">
-				<ul id="nav">
-					<li><a href="index.html"><img class="navImg" src="images/Home.png"></a></li>
-					<li><a href="pokemonPage.html"><img class="navImg" src="images/Pokemon.png"></a></li>
-					<li><a href="location.html"><img class="navImg" src="images/Locations.png"></a></li>
-					<li><a href="fanartUnq.html"><img class="navImg" src="images/Fanart.png"></a></li>
-					<li><a href="wishlist.html"><img class="navImg" src="images/Wishlist.png"></a></li>
-				</ul>
-				<li id="loginLink"><a  href="login.html"><img class="navImg" src="images/log-in.png"></a></li>
-			</div>
-		</nav>
-		<div class="grid">
-			<!-- Row 1 Header -->
-			<aside class="aside-left">
-			</aside>
-			<section>
-				<div><h1 style="text-align: center">Pokémon Page</h1></div>
-			</section>
-			<aside class="aside-right">
-			</aside>
-			<!-- Row 2 Search Bar -->
-			<aside class="aside-left">
-			</aside>
-			<section>
-				<div class=pokemonClass>
-					<form class=pokemonClass onsubmit="return sendPokemonRequest(); return false">
-						<p>Enter a Pokémon name or ID:</p>
-						<input value="Pikachu" type="text" id="pokemon_box">
-						<button id="button" type="button" class="btn btn-primary" onclick="return sendPokemonRequest()">Get Pokemon</button>
-					</form>
-				</div>
-			</section>
-			<aside class="aside-right">
-			</aside>
-			<!-- Row 3 Pokemon Content -->
-			<aside class="aside-left">
-			</aside>
-			<section style="max-width: 100%">
-				<div id="pokemon_output">
-					<h1>Text</h1>
-					<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/363.png">
-				</div>
-				<div class="container">
-					<label for="newComment" name="newComment">Add your comment below-</label>
-					<textarea id="newComment"></textarea>
-					<button id="addComments">Add Comment</button>
-					<!----<script>
-						const commentContainer = document.getElementById('allComments');
-						document.getElementById('addComments').addEventListener('click', function (ev) {
-						addComment(ev);
-						});
-						let commentId = 0;
-						async function addComment(ev) {
-							let url = "http://localhost:8080/pokemon-comment";
-							fetch(url)
+	<body>
+        <div style="height:7vh;" class="header">
 
-							let commentText;
-							let username = pastComments.username;
-							const textBox = document.createElement('div');
-							const userbox= document.createElement('div');
-							const likeButton = document.createElement('button');
-							likeButton.innerHTML = 'Like';
-							likeButton.className = 'likeComment';
-							const deleteButton = document.createElement('button');
-							deleteButton.innerHTML = 'Delete';
-							deleteButton.className = 'deleteComment';
-							const wrapDiv = document.createElement('div');
-							wrapDiv.className = pastComments.id;
-							wrapDiv.style.marginLeft = 0;
-							commentText = document.getElementById('newComment').value;
-							document.getElementById('newComment').value = '';
-							textBox.innerHTML = commentText;
-							textBox.style.padding = 3;
-							userbox.innerHTML = username;
-							userbox.style.borderBottom = 3;
-							userbox.style.borderBottom = "#fff solid 3px";
-							userbox.style.padding = 3;
-							wrapDiv.append(userbox, textBox, likeButton, deleteButton);
-
-							let jsonContent = {
-							//	"pokemonId": 
-							};
-							
-							commentContainer.appendChild(wrapDiv);
-							fetch(url, {
-								method: "POST",
-								headers: {
-									"Content-Type": "application/json"
-								},
-								body: jsonContent,
-								credentials:"omit"
-							}).then(function(response) {
-									response.status
-									return response.text()
-								}, function(error) {
-									error.message
-							});
-						}
-					</script>-->
-				</div>
-			</section>
-			<aside class="aside-right">
-			</aside>
 		</div>
-    </body>
-    <script>
-		// Send the pokemon get request
-		function sendPokemonRequest() {
-			let pokemon_name = document.getElementById('pokemon_box').value;
-			console.log ("Sending Pokemon Request... " + pokemon_name);
-		
-			//checks username and password for empty credentials
-			if (pokemon_name == "") {
-				alert("Invalid Credentials: Please Fill Out All Inputs");
-				return false;
-			}
-		
-			// Send username and password to the backend to check against values in the DB
-			let url = "http://pokepost-env.eba-jzp4ndpr.us-east-1.elasticbeanstalk.com/pokemon/" + pokemon_name;
-			//let url = "http://localhost:8080/pokemon/" + pokemon_name;
-			getRequest (url, createPokemonPage, onHeadersReceived, onLoading);
+		<!-- Nav bar -->
+		<div class="navContainer">
+			<div id="navBar" class="navBar">
+				<div id="logo" class="navDiv"><a class="navAnchor" href="index.html"><img src="images/PokePost.png" alt="Home" id="logoImg"></a></div>
+				<div id="pokemon" class="navDiv"><a class="navAnchor" href="pokemonPage.html"><img src="images/Pokemon.png" alt="Pokemon" class="navImg"></a></div>
+				<div id="locations" class="navDiv"><a class="navAnchor" href="location.html"><img src="images/Locations.png" alt="Locations" class="navImg"></a></div>
+				<div id="fanart" class="navDiv"><a class="navAnchor" href="fanart.html"><img src="images/Fanart.png" alt="Fan Art" class="navImg"></a></div>
+				<div id="wishlist" class="navDiv"><a class="navAnchor" href="wishlist.html"><img src="images/Wishlist.png" alt="Wishlist" class="navImg"></a></div>
+				<div id="navUser" class="navDiv"><a class="navAnchor" href="login.html"><img src="images/log-in.png" alt="Profile" id="logImg" class="navImg" /></a></div>
+			</div>
+		</div>
+    <body>
 
-			return false;
-		}
-
-		function onHeadersReceived () {
-			let pokemon_name = document.getElementById('pokemon_box').value;
-			const outputDiv = document.getElementById ("pokemon_output");
-			outputDiv.innerHTML = "";
-			const titleLine = document.createElement("h1");
-			const titleText = document.createTextNode("Looking for a " + pokemon_name);
-			titleLine.appendChild (titleText);
-			outputDiv.appendChild (titleLine);
-		}
-
-		function onLoading () {
-			let pokemon_name = document.getElementById('pokemon_box').value;
-			const outputDiv = document.getElementById ("pokemon_output");
-			outputDiv.innerHTML = "";
-			const titleLine = document.createElement("h1");
-			const titleText = document.createTextNode("Found a " + pokemon_name + "!");
-			titleLine.appendChild (titleText);
-			outputDiv.appendChild (titleLine);
-		}
-	</script>
+        <section class="PageContainer">
+            <div class="queryContainer">
+                <div class="querySection">
+                    <textarea id="query" class="query" placeholder="enter a pokemon name/id"></textarea>
+                    <button id="search" class="search">Search</button>
+                </div>
+            </div>
+            <div class="page">
+                <div id="pokemonContainer" class="pokemonContainer">
+                    <div id="pokemonSpriteContainer" class="pokemonSpriteContainer">
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/363.png" id="pokemon_picture" title="363"
+                            style="height: 320; width: 320;" alt="Spheal"
+                        >
+                    </div>
+                    <div class="pokemonStatsContainer">
+                        <div class="statsGraphic">
+                            <div id="stats" class="HP">
+                                <div id="hp" class="hpchild"></div>
+                            </div>
+                            <div id="stats" class="Atk">
+                                <div id="attack" class="atkchild"></div>
+                            </div>
+                            <div id="stats" class="Def">
+                                <div id="defense" class="defchild"></div>
+                            </div>
+                            <div id="stats" class="SpecAtk">
+                                <div id="special-attack" class="SAchild"></div>
+                            </div>
+                            <div id="stats" class="SpecDef">
+                                <div id="special-defense" class="SDchild"></div>
+                            </div>
+                            <div id="stats" class="Speed">
+                                <div id="speed" class="speedChild"></div>
+                            </div>
+                        </div>
+                        <div class="information">
+                            <div id="type" class="type"></div>
+                            <div id="weakness" class="weakness"></div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <div class="commentContainer">
+                <div class="newComment">
+                    <label id="username" for="newComment" name="newComment"></label>
+                    <textarea id="newComment"></textarea>
+                    <button id="addComments">Add Comment</button>
+                    <div id="allComments"></div>
+                </div>
+             </div>
+        </section>
 </html>

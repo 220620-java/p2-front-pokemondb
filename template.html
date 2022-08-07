@@ -3,59 +3,57 @@
 		<title>PokePost</title>
 		<link rel= "icon" href="images/pokeball.png" type="image/x-icon">
 		<link rel="stylesheet" href="css/template.css">
+		<script src="js/template.js" defer></script>
 	</head>
 	<body style="background-color: rgb(156, 191, 194);">
-		<nav>
-			<div id="menuBar">
-				<ul id="nav">
-					<li><a href="index.html"><img class="navImg" src="images/Home.png"></a></li>
-					<li><a href="pokemonPage.html"><img class="navImg" src="images/Pokemon.png"></a></li>
-					<li><a href="location.html"><img class="navImg" src="images/Locations.png"></a></li>
-					<li><a href="fanart.html"><img class="navImg" src="images/Fanart.png"></a></li>
-					<li><a href="wishlist.html"><img class="navImg" src="images/Wishlist.png"></a></li>
-				</ul>
-				<li id="loginLink"><a  href="login.html"><img class="navImg" src="images/log-in.png"></a></li>
+		<div class="navContainer">
+			<div id="navBar" class="navBar">
+				<div id="b" class="logo"><a class="navAnchor" href="index.html"><img src="images/PokePost.png" alt="Home" class="logoImg"></a></div>
+				<div id="b" class="pokemon"><a class="navAnchor" href="pokemonPage.html"><img src="images/Pokemon.png" alt="Pokemon" class="navImg"></a></div>
+				<div id="b" class="fanart"><a class="navAnchor" href="fanart.html"><img src="images/Fanart.png" alt="Fan Art" class="navImg"></a></div>
+				<div id="b" class="wishlist"><a class="navAnchor" href="wishlist.html"><img src="images/Wishlist.png" alt="Wishlist" class="navImg"></a></div>
+				<div id="b" class="locations"><a class="navAnchor" href="location.html"><img src="images/Locations.png" alt="Locations" class="navImg"></a></div>
+				<div id="navUser" class="profile"><a class="navAnchor"><img src="images/log-in.png" alt="Profile" id="logImg" /></a></div>
 			</div>
-		</nav>
+		</div>
 		<section>
 			<div id="navTiles" style="width: 850px; margin-left: 20px; margin-top: 40px;">
-			<table id="tileTable">
-				<tbody>
-					<tr>
-						<td id="popPokemon"
-							style=" padding-left: 10px; padding-top: 5px; background-color: rgb(49, 96, 199); border-radius: 60px; border-bottom-left-radius: 200px; border-top-left-radius: 90px;">
-							<img src="images\Popular.png">
-							<div style="max-height:fit-content; max-width:fit-content; margin-top: -140px;">
-								<img src="images\popPokeTile.png">
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td id="topFan"
-							style=" padding-left: 30px; padding-top: 5px; background-color: rgb(216, 235, 78); border-radius: 60px; border-bottom-left-radius: 200px; border-top-left-radius: 90px;">
+				<table id="tileTable">
+					<tbody>
+						<tr>
+							<td id="popPokemon"
+								style=" padding-left: 10px; padding-top: 5px; background-color: rgb(49, 96, 199); border-radius: 60px; border-bottom-left-radius: 200px; border-top-left-radius: 90px;">
+								<img src="images\Popular.png">
+								<div style="max-height:fit-content; max-width:fit-content; margin-top: -140px;">
+									<img src="images\popPokeTile.png">
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td id="topFan"
+								style=" padding-left: 30px; padding-top: 5px; background-color: rgb(216, 235, 78); border-radius: 60px; border-bottom-left-radius: 200px; border-top-left-radius: 90px;">
 
-							<div
-								style="max-height:fit-content; max-width:fit-content; margin-top: 30px; padding-right: 20px;">
-								<img src="images\topFanTile.jpg"
-									style="max-width:500px; max-height:400px; border-radius: 60px; border-bottom-left-radius: 200px; border-top-left-radius: 60px;">
-							</div>
-							<img src="images\Top-.png"
-								style="margin-top: -360px; margin-bottom:270px; margin-left: 240px;border-left-width: 5px;">
-						</td>
-					</tr>
-					<tr>
-						<td id="contact"
-							style=" padding-left: 10px; padding-top: 5px; background-color: rgb(49, 96, 199); border-radius: 60px; border-bottom-left-radius: 200px; border-top-left-radius: 90px;">
-							<img src="images\contact-.png">
-							<div style="max-height:fit-content; max-width:fit-content; margin-top: -140px;">
-								<img src="images\popPokeTile.png">
-							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</section>
-</body>
+								<div style="max-height:fit-content; max-width:fit-content; margin-top: 30px; padding-right: 20px;">
+									<img src="images\topFanTile.jpg"
+										 style="max-width:500px; max-height:400px; border-radius: 60px; border-bottom-left-radius: 200px; border-top-left-radius: 60px;">
+								</div>
+								<img src="images\Top-.png"
+									 style="margin-top: -360px; margin-bottom:270px; margin-left: 240px;border-left-width: 5px;">
+							</td>
+						</tr>
+						<tr>
+							<td id="contact"
+								style=" padding-left: 10px; padding-top: 5px; background-color: rgb(49, 96, 199); border-radius: 60px; border-bottom-left-radius: 200px; border-top-left-radius: 90px;">
+								<img src="images\contact-.png">
+								<div style="max-height:fit-content; max-width:fit-content; margin-top: -140px;">
+									<img src="images\popPokeTile.png">
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</section>
+	</body>
 
 </html>

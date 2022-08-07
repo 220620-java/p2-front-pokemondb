@@ -8,23 +8,23 @@
         <!-- Stylesheets -->
 		<link rel="stylesheet" href="css/mainPokePost.css">
 		<link rel="stylesheet" href="css/navbar.css" type="text/css">
-
 		<link rel="stylesheet" href="css/pokemonPage.css">
+
+		<!-- Scripts -->
+		<script src="js/location.js" defer></script>
     </head>
-    <body>
-        <!-- Nav bar -->
-		<nav>
-			<div id="menuBar">
-				<ul id="nav">
-					<li><a href="index.html"><img class="navImg" src="images/Home.png"></a></li>
-					<li><a href="pokemonPage.html"><img class="navImg" src="images/Pokemon.png"></a></li>
-					<li><a href="location.html"><img class="navImg" src="images/Locations.png"></a></li>
-					<li><a href="fanart.html"><img class="navImg" src="images/Fanart.png"></a></li>
-					<li><a href="wishlist.html"><img class="navImg" src="images/Wishlist.png"></a></li>
-				</ul>
-				<li id="loginLink"><a  href="login.html"><img class="navImg" src="images/log-in.png"></a></li>
+	<body>
+		<!-- Nav bar -->
+		<div class="navContainer">
+			<div id="navBar" class="navBar">
+				<div id="logo" class="navDiv"><a class="navAnchor" href="index.html"><img src="images/PokePost.png" alt="Home" id="logoImg"></a></div>
+				<div id="pokemon" class="navDiv"><a class="navAnchor" href="pokemonPage.html"><img src="images/Pokemon.png" alt="Pokemon" class="navImg"></a></div>
+				<div id="locations" class="navDiv"><a class="navAnchor" href="location.html"><img src="images/Locations.png" alt="Locations" class="navImg"></a></div>
+				<div id="fanart" class="navDiv"><a class="navAnchor" href="fanart.html"><img src="images/Fanart.png" alt="Fan Art" class="navImg"></a></div>
+				<div id="wishlist" class="navDiv"><a class="navAnchor" href="wishlist.html"><img src="images/Wishlist.png" alt="Wishlist" class="navImg"></a></div>
+				<div id="navUser" class="navDiv"><a class="navAnchor" href="login.html"><img src="images/log-in.png" alt="Profile" id="logImg" class="navImg" /></a></div>
 			</div>
-		</nav>
+		</div>
 		<div class="grid">
 			<!-- Row 1 Header -->
 			<aside class="aside-left">
@@ -57,5 +57,5 @@
 			<aside class="aside-right">
 			</aside>
 		</div>
-    </body>
+	</body>
 </html>

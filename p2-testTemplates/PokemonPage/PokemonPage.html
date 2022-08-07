@@ -1,0 +1,66 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="NavigationBar/nav.css">
+        <link rel="stylesheet" href="PokemonPage/PokemonPage.css">
+    </head>
+    <body>
+        <section class="PageContainer">
+            <div class="navContainer">
+                <div id="navBar" class="navBar">
+                    <div id="b" class="logo"><img src="NavigationBar/PokePost.png" alt="Home" class="logoImg"></div>
+                    <div id="b" class="pokemon"><img src="NavigationBar/Pokemon.png" alt="Pokemon" class="navImg"></div>
+                    <div id="b" class="fanart"><img src="NavigationBar/Fanart.png" alt="Fan Art" class="navImg"></div>
+                    <div id="b" class="wishlist"><img src="NavigationBar/Wishlist.png" alt="Wishlist" class="navImg"></div>
+                    <div id="b" class="locations"><img src="NavigationBar/Locations.png" alt="Locations" class="navImg"></div>
+                    <div id="b" class="profile"><img src="NavigationBar/log-in.png" alt="Profile" class="logImg"></div>
+                </div>
+            </div>
+            <div class="queryContainer">
+                <div class="querySection">
+                    <textarea class="query" placeholder="enter a pokemon name/id"></textarea>
+                    <button class="search">Search</button>
+                </div>
+            </div>
+            <div class="page">
+                <div class="pokemonContainer">
+                    <div class="pokemonSpriteContainer">
+                        <img src="PokemonPage/char.png" class="pokeImg">
+                    </div>
+                    <div class="pokemonStatsContainer">
+                        <div class="statsGraphic">
+                            <div class="HP">
+                                <div></div>
+                            </div>
+                            <div id="stats" class="Atk">
+                                <div class="atkchild"></div>
+                            </div>
+                            <div id="stats" class="Def">
+                                <div class="defchild"></div>
+                            </div>
+                            <div id="stats" class="SpecAtk">
+                                <div class="SAchild"></div>
+                            </div>
+                            <div id="stats" class="SpecDef">
+                                <div class="SDchild"></div>
+                            </div>
+                            <div id="stats" class="Speed">
+                                <div class="speedChild"></div>
+                            </div>
+                        </div>
+                        <div class="information">
+                            <div class="type"></div>
+                            <div class="weakness"></div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <div class="commentContainer">
+                <div class="newComment">
+                    <label for="newComment" name="newComment">Add your comment below-</label>
+                    <textarea id="newComment"></textarea>
+                    <button id="addComments">Add Comment</button>
+                    <div id="allComments"></div>
+                </div>
+             </div>
+        </section>
+</html>

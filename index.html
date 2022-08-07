@@ -11,63 +11,167 @@
 
         <!-- Stylesheets -->
 		<link rel="stylesheet" href="css/mainPokePost.css">
+		<link href='https://fonts.googleapis.com/css?family=Nunito Sans' rel='stylesheet'>
 		<link rel="stylesheet" href="css/navbar.css" type="text/css">
+
+		<!-- Scripts -->
+		<script src="js/index.js" defer></script>
     </head>
 
-    <body>
-		<!-- Site Logo -->
-		<div class="siteHeader">
-			<a href="index.html"><img id="sitelogo" src="images/PokePost.png"/></a>
-		</div>
+	<body>
 		<!-- Nav bar -->
-		<nav>
-			<div id="menuBar">
-				<ul id="nav">
-					<li><a href="index.html"><img class="navImg" src="images/Home.png"></a></li>
-					<li><a href="pokemonPage.html"><img class="navImg" src="images/Pokemon.png"></a></li>
-					<li><a href="location.html"><img class="navImg" src="images/Locations.png"></a></li>
-					<li><a href="fanart.html"><img class="navImg" src="images/Fanart.png"></a></li>
-					<li><a href="wishlist.html"><img class="navImg" src="images/Wishlist.png"></a></li>
-				</ul>
-				<li id="loginLink"><a href="login.html"><img class="navImg" src="images/log-in.png"></a></li>
+		<div class="navContainer">
+			<div id="navBar" class="navBar">
+				<div id="logo" class="navDiv"><a class="navAnchor" href="index.html"><img src="images/PokePost.png" alt="Home" id="logoImg"></a></div>
+				<div id="pokemon" class="navDiv"><a class="navAnchor" href="pokemonPage.html"><img src="images/Pokemon.png" alt="Pokemon" class="navImg"></a></div>
+				<div id="locations" class="navDiv"><a class="navAnchor" href="location.html"><img src="images/Locations.png" alt="Locations" class="navImg"></a></div>
+				<div id="fanart" class="navDiv"><a class="navAnchor" href="fanart.html"><img src="images/Fanart.png" alt="Fan Art" class="navImg"></a></div>
+				<div id="wishlist" class="navDiv"><a class="navAnchor" href="wishlist.html"><img src="images/Wishlist.png" alt="Wishlist" class="navImg"></a></div>
+				<div id="navUser" class="navDiv"><a class="navAnchor" href="login.html"><img src="images/log-in.png" alt="Profile" id="logImg" class="navImg" /></a></div>
 			</div>
-		</nav>
+		</div>
+		<div class="header">
+
+		</div>
 		<!-- Body -->
 		<div class="grid">
 			<aside class="aside-left">
+				<img style="float:left" src="images/pokeball.png">
+			</aside>
+			<section class="post">
 				<div>
-					<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/363.png">
-					<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/363.png">
+					<img src="images/PokePost.png" style="margin: 0 auto;max-width: 600px" alt="Pokepost Logo">
+					<h1 style="text-align:center;"><strong>Welcome to PokéPost!</strong></h1>
+					<hr>
+					<p style="text-align: justify;text-justify: inter-word">&emsp; This website uses the <a href="https://pokeapi.co/">PokéAPI</a> to gather important Pokémon data for your
+						adventuring needs! You can look up information about a Pokemon, leave tips and comments on Pokémon, view and post fanart, track Pokémon using
+						our wishlist, and see what Pokémon live in a certain area!</p>
+					<a href="https://github.com/220620-java/p2-front-pokemondb">Github Repository</a>
+				</div>
+			</section>
+			<aside class="aside-right">
+				<img style="float:right" src="images/pokeball.png">
+			</aside>
+			<aside class="aside-left">
+				<div>
 				</div>
 			</aside>
-			<section>
+			<section class="post">
 				<div>
-					<h1>Pokemon Database</h1>
-					<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" alt="pikachu">
-					<p>Under construction...</p>
-					<p>This database uses the PokéAPI to pull information about a pokemon.</p>
-					<a href="https://github.com/220620-java/p2-front-pokemondb">Link to Repo</a>
-				</div>
-		
-				<!-- This div is for stretching the page out to test the nav bar sticky functionality -->
-				<div>
-					<p>These images are for stretching the page out to test the nav bar sticky functionality</p>
-					<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/104.png">
-					<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/363.png">
-				</div>
-				<div>
-					<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/363.png">
-					<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/363.png">
+					<h1>Pokémon Scarlet and Violet</h1>
+					<img src="images/blog/scarlet-violet.webp">
+					<h2>Releasing November 18, 2022 only on Nintendo Switch™</h2>
+					<hr>
+					<p>&emsp; Players will embark on a new adventure in the <strong>Paldea</strong> region! 
+						A vast range of new Pokémon will inhabit the region's many rivers, mountains, and deserts.
+						Be prepared to challenge tough trainers scattered throughout the land!
+					</p>
+					<img src="images/blog/world-map.jpg">
+					<p>&emsp; Many battles await you in Paldea but it would be wise to rest your Pokémon up at the 
+						Pokémon Center before continuing onwards to unexplored lands!
+					</p>
+					<img src="images/blog/pokemon_center.jpg">
+					<br>
+					<img src="images/blog/pokemon-scarlet-violet-setting.webp">
 				</div>
 			</section>
 			<aside class="aside-right">
 				<div>
-					<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/363.png">
-					<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/363.png">
+				</div>
+			</aside>
+
+			<aside class="aside-left">
+				<div>
+					
+				</div>
+			</aside>
+			<section class="post">
+				<!-- This div is for stretching the page out to test the nav bar sticky functionality -->
+				<div>
+					<h1 id="whospokemonheader">WHO'S THAT POKÉMON?!</h1>
+					<hr>
+					<p style="text-align: center;">Hover over the image to reveal the mysterious Pokémon!</p>
+					<br><br>
+					<img onmouseover="hover(this);" onmouseout="unhover(this);" id="whospokemon" src="images/blog/whosthatpokemon_363.png" alt="Who's That Pokemon?!">
+				</div>
+				<div>
+					<p>
+						&emsp;Did you guess it right? Why not take a look at our <a href="pokemonPage.html">Pokémon</a> a page to learn more about
+						them all!
+					</p>
+				</div>
+			</section>
+			<aside class="aside-right">
+				<div>
+				</div>
+			</aside>
+			<aside class="aside-left">
+				<div>
+				</div>
+			</aside>
+			<section class="post">
+				<!-- This div is for stretching the page out to test the nav bar sticky functionality -->
+				<div>
+					<h1 id="whospokemonheader">New Pokémon in the upcoming Scarlet and Violet!</h1>
+					<hr>
+					<p>&emsp; We have gotten a closer look at the new Pokémon coming in Scarlet and Violet this Fall!
+						Please take a quick look at these cute new Pokémon!
+					</p>
+					<hr>
+					<h1>Fidough</h1>
+					<h3>Puppy Pokémon</h3>
+					<p>
+						&emsp;Fidough’s moist, smooth skin has elastic qualities and is both firm and soft at the same time. 
+						When these Pokémon become excited, they intimidate their opponents by puffing up their bodies to appear bigger.​
+					</p>
+					<img src="images/blog/pokemon-fidough.webp">
+					<hr>
+					<h1>Lechonk</h1>
+					<h3>Hog Pokémon</h3>
+					<p>&emsp;Lechonk uses its sense of smell to find and eat only the most fragrant 
+						wild grasses and the richest Berries. As a result of its dining habits, 
+						it has come to radiate an aroma resembling herbs that bug Pokémon dislike.
+					</p>
+					<img src="images/blog/pokemon-lechonk.webp">
+					<hr>
+					<h1>Pawmi</h1>
+					<h3>Mouse Pokémon</h3>
+					<p>&emsp;Not only is the fur that covers its body good insulation against the cold, 
+						but it also serves the purpose of storing electricity. 
+						When it feels uneasy, this cautious Pokémon will begin rubbing its cheeks,
+						 preparing itself to discharge an electric shock.</p>
+					<img src="images/blog/pokemon-pawmi.webp">
+
+					<hr>
+					<br>
+					<p>
+						&emsp;Excited to meet and capture these Pokémon? We are too!
+						Pokémon Scarlet and Violet will release on November 18, 2022
+						 only on Nintendo Switch™. Make sure to add these cute Pokémon
+						 to your wishlist to keep track of them!
+					</p>
+				</div>
+			</section>
+			<aside class="aside-right">
+				<div>
 				</div>
 			</aside>
 		</div>
 		<!-- Body Content -->
+		<footer style="text-align:right;font-size:x-small">All Pokemon content belongs to The Pokémon Company</footer>
+		<footer style="text-align:right;font-size:x-small">© Team Synergy</footer>
+	</body>
+	<script>
+		function hover(element) {
+			element.setAttribute('src', 'images/blog/whosthatpokemon_363-revealed.png');
+			let header = document.getElementById("whospokemonheader");
+			header.innerText = "IT'S SPHEAL!";
+		}
 
-    </body>
+		function unhover(element) {
+			element.setAttribute('src', 'images/blog/whosthatpokemon_363.png');
+			let header = document.getElementById("whospokemonheader");
+			header.innerText = "WHO'S THAT POKEMON?!";
+		}
+	</script>
 </html>

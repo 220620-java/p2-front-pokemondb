@@ -1,64 +1,64 @@
 <html>
 <head>
-	<title>PokePost</title>
-	<link rel="icon" href="images/pokeball.png" type="image/x-icon">
-	<link rel="stylesheet" href="css/fanart.css">
-	<link rel="stylesheet" href="css/navbar.css">
-	<script src="js/fanart.js" defer></script>
+    <title>PokePost</title>
+    <link rel="icon" href="images/pokeball.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/fanart.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <script src="js/fanart.js" defer></script>
 </head>
-	<body id="fanartBody" style="background-color: rgb(156, 191, 194);">
-		<nav>
-			<div id="menuBar">
-				<ul id="nav">
-					<li><a href="index.html"><img class="navImg" src="images/Home.png"></a></li>
-					<li><a href="pokemonPage.html"><img class="navImg" src="images/Pokemon.png"></a></li>
-					<li><a href="location.html"><img class="navImg" src="images/Locations.png"></a></li>
-					<li><a href="fanart.html"><img class="navImg" src="images/Fanart.png"></a></li>
-					<li><a href="wishlist.html"><img class="navImg" src="images/Wishlist.png"></a></li>
-				</ul>
-				<li id="loginLink"><a  href="login.html"><img class="navImg" src="images/log-in.png"></a></li>
-			</div>
-		</nav>
-		<div id="filterSection">
-			<div id="filterOptions">
-				<label class="filterLbl" id="filterSlctLbl" for="filterSlctLbl">Filter By:</label>
-				<select name="filterSlct" id="filterSlct">
-					<option value="title">Title</option>
-					<option value="author">Author</option>
-					<option value="tags">Tags</option>
-					<option value="dateBefore">Date Before</option>
-					<option value="dateAfter">Date After</option>
-				</select>
-			</div>
-			<div id="filterText">
-				<label class="filterLbl" id="filterTxtBxLbl" for="filterTxtBx">Filter Text:</label>
-				<input type="text" id="filterTxtBx" />
-			</div>
-			<div id="filterDate">
-				<label class="filterLbl" id="filterDateCalLbl" for="filterDateCal">Filter Date:</label>
-				<input type="date" id="filterDateCal" />
-			</div>
-		</div>
-		<div id="imageSection">
-			<div id="imageDisplay">
-				<p>There are currently no fanart images to show</p>
-			</div>
-			<div id="pageSelectors">
-				<table>
-					<tr>
-						<td id="pgLft">
-							<button type="button" class="pgBtn" id="pgLftBtn"><<</button>
-						</td>
-						<td id="pgTitle">
-							<label id="pgTitleLbl">Page # of n</label>
-						</td>
-						<td id="pgRgt">
-							<button type="button" class="pgBtn" id="pgRgtBtn">>></button>
-						</td>
-					</tr>
-				</table>
-			</div>
-		</div>
+<body id="fanartBody" style="background-color: rgb(156, 191, 194);">
+    <div class="navContainer">
+        <div id="navBar" class="navBar">
+            <div id="b" class="logo"><a class="navAnchor" href="index.html"><img src="images/PokePost.png" alt="Home" class="logoImg"></a></div>
+            <div id="b" class="pokemon"><a class="navAnchor" href="pokemonPage.html"><img src="images/Pokemon.png" alt="Pokemon" class="navImg"></a></div>
+            <div id="b" class="fanart"><a class="navAnchor" href="fanart.html"><img src="images/Fanart.png" alt="Fan Art" class="navImg"></a></div>
+            <div id="b" class="wishlist"><a class="navAnchor" href="wishlist.html"><img src="images/Wishlist.png" alt="Wishlist" class="navImg"></a></div>
+            <div id="b" class="locations"><a class="navAnchor" href="location.html"><img src="images/Locations.png" alt="Locations" class="navImg"></a></div>
+            <div id="navUser" class="profile"><a class="navAnchor"><img src="images/log-in.png" alt="Profile" id="logImg" /></a></div>
+        </div>
+    </div>
+    <div id="filterSection">
+        <div id="filterOptions">
+            <label class="filterLbl" id="filterSlctLbl" for="filterSlctLbl">Filter By:</label>
+            <select name="filterSlct" id="filterSlct">
+                <option value="title">Title</option>
+                <option value="tags">Tags</option>
+                <option value="dateBefore">Date Before</option>
+                <option value="dateAfter">Date After</option>
+            </select>
+        </div>
+        <div id="filterText">
+            <label class="filterLbl" id="filterTxtBxLbl" for="filterTxtBx">Filter Text:</label>
+            <input type="text" id="filterTxtBx" />
+        </div>
+        <div id="filterDate">
+            <label class="filterLbl" id="filterDateCalLbl" for="filterDateCal">Filter Date:</label>
+            <input type="date" id="filterDateCal" />
+        </div>
+        <div id="filterBtn">
+            <button type="submit" id="applyFiltersBtn">Apply Filters</button>
+        </div>
+    </div>
+    <div id="imageSection">
+        <div id="imageDisplay">
+            <p>There are currently no fanart images to show</p>
+        </div>
+        <div id="pageSelectors">
+            <table>
+                <tr>
+                    <td id="pgLft">
+                        <button type="button" class="pgBtn" id="pgLftBtn"><<</button>
+                    </td>
+                    <td id="pgTitle">
+                        <label id="pgTitleLbl">Page # of n</label>
+                    </td>
+                    <td id="pgRgt">
+                        <button type="button" class="pgBtn" id="pgRgtBtn">>></button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </body>
 
 </html>

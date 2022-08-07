@@ -2,11 +2,23 @@ console.log("Loaded fanartUnqJs.js");
 
 /*Script Variables*/
 
-let fanartBody = document.getElementById("fanartBody")
+let fanartBody = document.getElementById("fanartBody");
+let logImg = document.getElementById("logImg");
+let filterSlct = document.getElementById("filterSlct");
+let filterTxtBx = document.getElementById("filterTxtBx");
+let filterDateCal = document.getElementById("filterDateCal");
+let filterTxtBxLbl = document.getElementById("filterTxtBxLbl");
+let filterDateCalLbl = document.getElementById("filterDateCalLbl");
+let applyFiltersBtn = document.getElementById("applyFiltersBtn");
 let imageDisplay = document.getElementById("imageDisplay");
 let pgLftBtn = document.getElementById("pgLftBtn");
+let pgTitleLbl = document.getElementById('pgTitleLbl');
 let pgRgtBtn = document.getElementById("pgRgtBtn");
 let storedFanart = new List();
+let loggedIn = false;
+let currentUserId = getUserId();
+let lastPage;
+let currentPage;
 
 /*Objects*/
 
@@ -17,7 +29,8 @@ let storedFanart = new List();
 function List() {
     //Initialize the list
     this.listSize = 0;
-    this.pos = 0;
+	this.pos = 0;
+	this.pgCount = 0;
     this.items = [];
 
     //Add item to the list
@@ -44,19 +57,78 @@ function List() {
         this.listSize = 0;
         this.pos = 0;
         this.items = [];
-    }
+	}
+
+	//Determine page count for the list
+	this.pages = () => {
+		if (this.listSize % 10 == 0) {//ListSize can be divided evenly by 10
+			//Subtracting by 1 because of how the variable is used. 
+			//A List with only 10 fanarts would only display on one page,
+			//but leaving pgCount as 1 would allow pgRgtBtn to show, 
+			//implying that there is another page to display
+			this.pgCount = (this.listSize / 10) - 1;
+		} else {
+			//Math.floor omits the decimal value(unless it is a negative number),
+			//A list with greater than 1 and less than 10 fanarts would still need one page to display,
+			//but Math floor would return zero in that case.
+			//However, that is the value needed in this case,
+			//although the true page count is 1
+			this.pgCount = Math.floor(this.listSize / 10);
+		}
+		console.log("List.pages called: Returned " + this.pgCount);
+		return this.pgCount;
+	}
 }
 
 /*Event Listeners*/
 fanartBody.addEventListener("load", getAllFanart());
 fanartBody.addEventListener("load", displayPage(0));
+fanartBody.addEventListener("load", displayFilterInput());
+filterSlct.onchange = function () { displayFilterInput(); };
+applyFiltersBtn.addEventListener("click", function () { getFilteredFanart(); });
+pgLftBtn.addEventListener("click", function () { displayPage((currentPage - 1)); });
+pgRgtBtn.addEventListener("click", function () { displayPage((currentPage + 1)); });
+logImg.onclick = function () { logStateChange(); }
 
 /*Functions*/
 
-/**Retrieves comments associated with the shown fanart
+/**
+ * Retrieves the user id value in the Session variable.
+ * This will be used to retrieve and post data.
+ */
+function getUserId() {
+	console.log("getUserId called");
+	let userId = null;
+	if (sessionStorage.getItem("USER_ID") == null) {
+		loggedIn = false;
+		logImg.src = "images/log-in.png";
+	} else {
+		loggedIn = true;
+		logImg.src = "images/Log-Out.png";
+		console.log("USER_ID = " + sessionStorage.getItem("USER_ID"));
+		userId = parseInt(sessionStorage.getItem("USER_ID"));
+		console.log("currentUserId: " + userId);
+	}
+	return userId;
+}
+
+/**Logs a user out or sends them to the login page based on loggedIn status
+ */
+function logStateChange() {
+	if (loggedIn) { //User is logged in. Will log them out
+		sessionStorage.removeItem("USER_ID");
+		logImg.src = "images/log-in.png";
+		loggedIn = false;
+		currentUserId = null;
+	} else { //User is not logged in. Will link them to login.html
+		window.location.href = "login.html";
+	}
+}
+
+/**Retrieves all available fanart
  */
 function getAllFanart() {
-	console.log("getFanart called")
+	console.log("getAllFanart called")
 	let getArtRequest, getArtResponse, getArtURL;
 
 	//Setup request
@@ -89,6 +161,55 @@ function getAllFanart() {
 	getArtRequest.send();
 }
 
+/**Retrieves all available fanart that aligns with the given filter
+ */
+function getFilteredFanart() {
+	console.log("getFilteredFanart called")
+	let getFilteredArtRequest, getFilteredArtResponse, getFilteredArtURL,
+		filterKey, filterParams;
+
+	//Setup filterparams
+	filterKey = filterSlct.value;
+	filterParams = filterKey;
+
+	if (filterKey.includes("date")) { //The date filter uses filterDateCal
+		filterParams = filterParams + "=" + filterDateCal.value;
+	} else { //Otherwise, filterTxtBx is used
+		filterParams = filterParams + "=" + filterTxtBx.value;
+	}
+	console.log("Filters: " + filterParams);
+
+	//Setup request
+	getFilteredArtRequest = new XMLHttpRequest();
+
+	getFilteredArtURL = "http:/localhost:8080/fanart/filters?" + filterParams;
+
+	getFilteredArtRequest.open("GET", getFilteredArtURL, false);
+
+	getFilteredArtRequest.onload = function () {
+		console.log("getFilteredArtRequest.onload called");
+
+		//Request is successful. Add fanart objects to the html
+		if (getFilteredArtRequest.status >= 200 && getFilteredArtRequest.status < 300) {
+			console.log("Request was successful!");
+			console.log("Response: " + getFilteredArtRequest.response);
+			console.log("Status Text: " + getFilteredArtRequest.statusText);
+			getFilteredArtResponse = JSON.parse(getFilteredArtRequest.response);
+			storedFanart.clear();
+
+			for (let fanartObj of getFilteredArtResponse) {
+				storedFanart.append(fanartObj);
+			}
+
+		} else { //Request failed. Handle errors and default to no comments
+			console.log(getFilteredArtRequest.statusText);
+		}
+	}
+	//Send the request
+	getFilteredArtRequest.send();
+	displayPage(0);
+}
+
 /**Displays a set of 10 or fewer fanarts based on the given page number
  */
 function displayPage(pageNum) {
@@ -96,7 +217,11 @@ function displayPage(pageNum) {
 	let startIdx = (10 * pageNum);
 	let endIdx = startIdx + 9;
 	let fanartSize = storedFanart.size();
-	let newArt, newArtTitle, newArtAuthor, newArtImg, newArtLink;
+	let lastPage = storedFanart.pages();
+	let newArt, newArtTitle, newArtAuthor, newArtImg;
+
+	//Empty imageDisplay
+	imageDisplay.innerHTML = null;
 
 	for (let i = startIdx; i <= endIdx && i < fanartSize; i++) {
 		fanartObj = null;
@@ -122,7 +247,7 @@ function displayPage(pageNum) {
 		imageDisplay.appendChild(newArt);
 
 		//Setting up newArt. Giving it a class based on the id being even/odd
-		if (fanartObj.id % 2 == 0) {
+		if (i % 2 == 0) {
 			newArt.setAttribute("class", "ArtDisplayLft");
 		} else {
 			newArt.setAttribute("class", "ArtDisplayRgt");
@@ -145,13 +270,33 @@ function displayPage(pageNum) {
 		newArtImg.src = fanartObj.url;
 		newArtImg.setAttribute("class", "fanartImg");
 		newArtImg.setAttribute("id", "Img" + fanartObj.id);
-		newArtImg.height = "100";
-		newArtImg.width = "100";
+		newArtImg.height = "250";
+		newArtImg.width = "250";
 
 		//Setting event listeners
 		newArtImg.onclick = function () { setFanartId(storedFanart.getElement(i).id) }
 
 		console.log("New div created: " + newArt.id)
+	}
+
+	//Setting currentPage
+	currentPage = pageNum;
+
+	//Setting page label
+	pgTitleLbl.innerHTML = "Page " + (pageNum + 1) + " of " + (lastPage + 1);
+
+	//Hiding buttons based on first and last page
+	//pgLftBtn
+	if (pageNum <= 0) {//Page displayed is the first page
+		pgLftBtn.hidden = true;
+	} else {
+		pgLftBtn.hidden = false;
+	}
+	//pgRgtBtn
+	if (pageNum >= lastPage) {//Page displayed is the last page
+		pgRgtBtn.hidden = true;
+	} else {
+		pgRgtBtn.hidden = false;
 	}
 }
 
@@ -162,4 +307,22 @@ function setFanartId(id) {
 	console.log("setFanartId(" + id + ") called");
 	sessionStorage.setItem("FANART_ID", id);
 	return window.location.href = "fanartUnq.html";
+}
+
+function displayFilterInput() {
+	console.log("displayFilterInput called");
+	let filterKey = filterSlct.value;
+	if (filterKey.includes("date")) { //The date filter uses filterDateCal
+		filterTxtBx.hidden = true;
+		filterTxtBxLbl.hidden = true;
+		filterDateCal.hidden = false;
+		filterDateCalLbl.hidden = false;
+		console.log("Showing date filters");
+	} else { //Otherwise, filterTxtBx is used
+		filterTxtBx.hidden = false;
+		filterTxtBxLbl.hidden = false;
+		filterDateCal.hidden = true;
+		filterDateCalLbl.hidden = true;
+		console.log("Showing text filters");
+    }
 }
