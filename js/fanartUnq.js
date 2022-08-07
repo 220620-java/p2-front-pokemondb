@@ -37,8 +37,7 @@ let artComment = {
 	'fanartId': {
 		'id': currentArtId
 	},
-	//TODO: User recognition
-	author: userIdDto,
+	'author': userIdDto,
 	'content': "",
 	'likes': 0,
 	'reports': 0,
@@ -314,14 +313,6 @@ function getFanart() {
 /**
  *	Changes the image file between heart.png and heartEmpty.png and saves to the database based on the checked state
  */
-<<<<<<< HEAD:js/fanartUnqJs.js
-function rateChkCheckChanged(checked, imageId) {
-	console.log("rateChk.onchange called");
-	image = document.getElementById(imageId);
-	let url = "";
-	if (checked) {
-		url = "images/heart.png";
-=======
 function rateChkCheckChanged(chkId, imageId, type){
 	console.log("rateChkCheckChanged called");
 	image = document.getElementById(imageId);
@@ -339,7 +330,6 @@ function rateChkCheckChanged(chkId, imageId, type){
 		postURL = "http:/localhost:8080/rateartcomm/";
 		postBody = rateArtComm;
 		postBody.commentId = parseInt(commentId);
->>>>>>> 953566970df06e6a8883f6d21ec9acefc951c35b:js/fanartUnq.js
 	}
 	postUser = userIdDto;
 	//TODO User Recognition
@@ -386,14 +376,6 @@ function rateChkCheckChanged(chkId, imageId, type){
 /**
  *	Changes the image file between flag.png and flagLow.png and saves to the database based on the checked state
  */
-<<<<<<< HEAD:js/fanartUnqJs.js
-function flagChkCheckChanged(checked, imageId) {
-	console.log("rateChk.onchange called");
-	image = document.getElementById(imageId);
-	let url = '';
-	if (checked) {
-		url = 'images/flag.png';
-=======
 function flagChkCheckChanged(chkId, imageId, type) {
 	console.log("flagChkCheckChanged called");
 	image = document.getElementById(imageId);
@@ -413,7 +395,6 @@ function flagChkCheckChanged(chkId, imageId, type) {
 		postURL = "http:/localhost:8080/reportartcomm/";
 		postBody = reportArtComm;
 		postBody.commentId = parseInt(commentId);
->>>>>>> 953566970df06e6a8883f6d21ec9acefc951c35b:js/fanartUnq.js
 	}
 	postUser = userIdDto;
 	//TODO User Recognition
