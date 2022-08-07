@@ -20,15 +20,13 @@
 	min-width: 98%;
 	align-self: center;
 	justify-content: center;
-	/* background-color: var(--white-blue); */
-	border: 3px;
-	border-radius: 18px 18px 18px 18px;
 }
 
 .navAnchor {
 	width: auto;
+	height: auto;
 	border-radius: 18px 18px 18px 18px;
-	transition: all .05s ease-in-out;
+	transition: all .05s ease-in;
 }
 
 .navAnchor:active {
@@ -39,7 +37,6 @@ a.navAnchor:hover {
 	display: flex;
 	margin: auto;
 	justify-content: center;
-	/* background-color: white; */
 	filter: drop-shadow(5px 5px 4px rgba(0, 132, 255, 0.651));
 	transform: scale(1.1);
 }
@@ -54,27 +51,25 @@ a.navAnchor {
 }
 
 .navDiv {
-	display: flex;
 	margin: auto;
-	border: 3px;
-	height: 70px;
 	width: auto;
-	border-radius: 18px 18px 18px 18px;
-	justify-content: center;
-	background-color: none;
 }
 
 .navImg {
-	min-height: 2.0vw;
-	max-width: auto;
-	height:4vh;
+	width: auto;
+	height:auto;
+	min-width: 4vw;
+	max-width: 15vw;
+	max-height: 6vh;
 	align-self: center;
 	transition: 0.5s ease-in-out;
 }
 
 #logoImg {
-	min-height: 2.0vw;
-	height: 5.0vh;
+	width: auto;
+	min-width: 4vw;
+	max-width: 15vw;
+	max-height: 6vh;
 	align-self: center;
 	transition: 0.2 ease-in-out;
 }
