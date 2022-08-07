@@ -4,6 +4,7 @@
 	display: flex;
 	min-height: 6%;
 	min-width: 98%;
+	max-height: 10%;
 	align-self: center;
 	justify-content: center;
 	background-color: rgb(81, 174, 255);
@@ -66,6 +67,15 @@ a.navAnchor {
 }
 
 .navImg {
+	max-width: 70%;
+	max-height: 100%;
+	padding: 0px;
+	align-self: center;
+	transition: 550ms ease-in-out;
+}
+
+.logoImg {
+	margin-right: auto;
 	max-width: 100%;
 	max-height: 100%;
 	padding: 0px;
@@ -74,9 +84,9 @@ a.navAnchor {
 }
 
 #logoImg {
-	margin-right: 10px;
-	max-width: 140%;
-	max-height: 130%;
+	margin-right: auto;
+	max-width: 100%;
+	max-height: 100%;
 	padding: 0px;
 	align-self: center;
 	transition: 550ms ease-in-out;

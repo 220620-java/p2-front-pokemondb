@@ -62,6 +62,7 @@ async function getAll() {
         const likeButton = document.createElement('button');
         likeButton.innerHTML = 'Like';
         likeButton.className = 'likeComment';
+        likeButton.style.counterIncrement = '0';
         const deleteButton = document.createElement('button');
         deleteButton.innerHTML = 'Delete';
         deleteButton.className = 'deleteComment';
@@ -105,6 +106,7 @@ async function storeComment(json) {
 }
 
 async function likeComment(json, _like_ev) {
+    
     json.likes += 1;
     const request = await fetch(URL, {
         method:'PUT',
@@ -168,16 +170,27 @@ function getPokemonId() {
 
 async function displayPokemon(ev) {
     const pokemonName = document.getElementById('query').value;
-    let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
+    let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
     let pokeString = await response.text();
     let pokemonData = JSON.parse(pokeString);
     let sprite = document.createElement('img');
     let types = pokemonData.types;
+    let name = pokemonData.name;
+    let info = document.getElementById("info");
+    info.innerHTML = null;
+    let s = document.createElement('div');
+    s.innerHTML += 'Name: ' + name.replace(/^\w/, (c) => c.toUpperCase());
+    s.style.fontSize = '22px;'
+    
+    info.appendChild(s);
+    document.getElementById('type').innerHTML = null;
+    let d = document.createElement('div');
+    d.innerHTML = "Type: ";
+    document.getElementById('type').appendChild(d);
     for (let i in types) {
         let t = document.createElement('div');
         t.innerHTML += types[i].type.name + " ";
         t.setAttribute('class', 'val');
-        document.getElementById('type').innerHTML = null;
         document.getElementById('type').appendChild(t);
     }
     sprite.src = pokemonData.sprites.other["official-artwork"].front_default;
@@ -188,16 +201,18 @@ async function displayPokemon(ev) {
     spriteContainer.innerHTML = null;
     spriteContainer.appendChild(sprite);
     const stats = pokemonData.stats;
+
     for (let i in stats) {
         console.log(stats[i].base_stat.toString()+'px');
         document.getElementById(stats[i].stat.name).setAttribute('style', 'height: '+((stats[i].base_stat/150)*100).toString()+'px;');
+        document.getElementById(stats[i].stat.name).innerHTML = null;
         document.getElementById(stats[i].stat.name).innerHTML = stats[i].base_stat;
     }
     getAll();
 }
 
 /*Script Variables*/
-let logImg = document.getElementById("logImg");
+let logImg = document.getElementById("logoImg");
 let loggedIn = false;
 let currentUserId = getUserId();
 
