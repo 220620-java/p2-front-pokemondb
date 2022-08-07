@@ -1,6 +1,5 @@
 .navContainer {
-    margin-top: 0px;
-    position: sticky;
+    margin-top: auto;
     display: flex;
     min-height: 10%;
     min-width: 90%;
@@ -42,8 +41,8 @@
 
 .logoImg {
     margin-right: 10px;
-    max-width: 140%;
-    max-height: 130%;
+    height: 50px;
+    width: 90px;
     padding: 0px;
     align-self: center;
     transition: 550ms ease-in-out;
@@ -129,3 +128,13 @@
     background-color: yellow;
 }
 
+#navAnchor {
+    display: flex;
+    margin: auto;
+    border: 3px;
+    height: 50px;
+    width: 90px;
+    border-radius: 18px 18px 18px 18px;
+    justify-content: center;
+    transition: 550ms ease-in-out;
+}

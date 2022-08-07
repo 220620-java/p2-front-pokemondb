@@ -5,18 +5,22 @@
         <script src="ComComp\pokemonPage.js" defer></script>
     </head>
 	<body>
+        <div style="height:7vh;" class="header">
+
+		</div>
 		<!-- Nav bar -->
 		<div class="navContainer">
 			<div id="navBar" class="navBar">
-				<div id="b" class="logo"><a class="navAnchor" href="index.html"><img src="images/PokePost.png" alt="Home" class="logoImg"></a></div>
-				<div id="b" class="pokemon"><a class="navAnchor" href="pokemonPage.html"><img src="images/Pokemon.png" alt="Pokemon" class="navImg"></a></div>
-				<div id="b" class="fanart"><a class="navAnchor" href="fanart.html"><img src="images/Fanart.png" alt="Fan Art" class="navImg"></a></div>
-				<div id="b" class="wishlist"><a class="navAnchor" href="wishlist.html"><img src="images/Wishlist.png" alt="Wishlist" class="navImg"></a></div>
-				<div id="b" class="locations"><a class="navAnchor" href="location.html"><img src="images/Locations.png" alt="Locations" class="navImg"></a></div>
-				<div id="navUser" class="profile"><a class="navAnchor"><img src="images/log-in.png" alt="Profile" id="logImg" /></a></div>
+				<div id="logo" class="navDiv"><a class="navAnchor" href="index.html"><img src="images/PokePost.png" alt="Home" id="logoImg"></a></div>
+				<div id="pokemon" class="navDiv"><a class="navAnchor" href="pokemonPage.html"><img src="images/Pokemon.png" alt="Pokemon" class="navImg"></a></div>
+				<div id="locations" class="navDiv"><a class="navAnchor" href="location.html"><img src="images/Locations.png" alt="Locations" class="navImg"></a></div>
+				<div id="fanart" class="navDiv"><a class="navAnchor" href="fanart.html"><img src="images/Fanart.png" alt="Fan Art" class="navImg"></a></div>
+				<div id="wishlist" class="navDiv"><a class="navAnchor" href="wishlist.html"><img src="images/Wishlist.png" alt="Wishlist" class="navImg"></a></div>
+				<div id="navUser" class="navDiv"><a class="navAnchor" href="login.html"><img src="images/log-in.png" alt="Profile" id="logImg" class="navImg" /></a></div>
 			</div>
 		</div>
     <body>
+
         <section class="PageContainer">
             <div class="queryContainer">
                 <div class="querySection">
@@ -27,39 +31,41 @@
             <div class="page">
                 <div id="pokemonContainer" class="pokemonContainer">
                     <div id="pokemonSpriteContainer" class="pokemonSpriteContainer">
-                    
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/363.png" id="pokemon_picture" title="363"
+                            style="height: 320; width: 320;" alt="Spheal"
+                        >
                     </div>
                     <div class="pokemonStatsContainer">
                         <div class="statsGraphic">
-                            <div class="HP">
-                                <div></div>
+                            <div id="stats" class="HP">
+                                <div id="hp" class="hpchild"></div>
                             </div>
                             <div id="stats" class="Atk">
-                                <div class="atkchild"></div>
+                                <div id="attack" class="atkchild"></div>
                             </div>
                             <div id="stats" class="Def">
-                                <div class="defchild"></div>
+                                <div id="defense" class="defchild"></div>
                             </div>
                             <div id="stats" class="SpecAtk">
-                                <div class="SAchild"></div>
+                                <div id="special-attack" class="SAchild"></div>
                             </div>
                             <div id="stats" class="SpecDef">
-                                <div class="SDchild"></div>
+                                <div id="special-defense" class="SDchild"></div>
                             </div>
                             <div id="stats" class="Speed">
-                                <div class="speedChild"></div>
+                                <div id="speed" class="speedChild"></div>
                             </div>
                         </div>
                         <div class="information">
-                            <div class="type"></div>
-                            <div class="weakness"></div>
+                            <div id="type" class="type"></div>
+                            <div id="weakness" class="weakness"></div>
                         </div>
                     </div>
                 </div>
             </div> 
             <div class="commentContainer">
                 <div class="newComment">
-                    <label for="newComment" name="newComment">Add your comment below-</label>
+                    <label id="username" for="newComment" name="newComment"></label>
                     <textarea id="newComment"></textarea>
                     <button id="addComments">Add Comment</button>
                     <div id="allComments"></div>
