@@ -102,13 +102,11 @@ section img {
 
 #whospokemon {
 	transition: all .25s ease-in-out;
-	background: url('images/blog/whosthatpokemon_363.png');
 }
 
 #whospokemon:hover {
 	-webkit-transform:scale(1.25); /* or some other value */
     transform:scale(1.25);
-	background: url('images/blog/whosthatpokemon_363-revealed.png');
 	box-shadow: 
 		0px 0px 10px 10px #ffffff,
 		0px 0px 40px 30px #fff235;
