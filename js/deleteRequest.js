@@ -13,6 +13,21 @@
 
 	request.open("DELETE", url, true);
 
+	// If user has an jwt, put it in the header
+	if (sessionStorage.getItem("JWT")) {
+		request.setRequestHeader("Auth", sessionStorage.getItem("JWT"));
+	}
+
+	// If user has a username, put it in the header
+	if (sessionStorage.getItem("USERNAME")) {
+		request.setRequestHeader("Username", sessionStorage.getItem("USERNAME"));
+	}
+
+	// If user has a user id, put it in the header
+	if (sessionStorage.getItem("USER_ID")) {
+		request.setRequestHeader("UserId", sessionStorage.getItem("USER_ID"));
+	}
+
 	// Setting the header of the API request if there's a json object
 	if (json) {
 		request.setRequestHeader("Content-type", "application/json");
