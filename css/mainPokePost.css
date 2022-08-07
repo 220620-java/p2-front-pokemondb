@@ -38,7 +38,7 @@ h3 {
 
 .grid {
 	display:grid;
-	grid-template-columns: 1fr 3fr 1fr;
+	grid-template-columns: 1fr 5fr 1fr;
 }
 
 aside.aside-left{
@@ -72,7 +72,7 @@ section {
 }
 
 section div {
-	padding: 2em;
+	padding: 2em 3em;
 	display: block;
 	margin-left:auto;
 	margin-right:auto;
