@@ -43,7 +43,8 @@ a.navAnchor:hover {
 
 a.navAnchor {
 	display: flex;
-	margin: auto;
+	margin-left: 0.2em;
+	margin-right: 0.2em;
 	justify-content: center;
 	border: 3px;
 	min-height: 100%;
@@ -55,7 +56,7 @@ a.navAnchor {
 	width: auto;
 }
 
-.navImg {
+.navImg, #logImg {
 	width: auto;
 	height:auto;
 	min-width: 4vw;
@@ -65,15 +66,15 @@ a.navAnchor {
 	transition: 0.5s ease-in-out;
 }
 
-#logoImg {
+.logoImg {
 	width: auto;
 	min-width: 4vw;
 	max-width: 15vw;
 	max-height: 6vh;
 	align-self: center;
-	transition: 0.2 ease-in-out;
+	transition: 0.2s ease-in-out;
 }
 
-
-
-
+.logo {
+	float: left;
+}
