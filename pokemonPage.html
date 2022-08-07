@@ -30,39 +30,41 @@
             <div class="page">
                 <div id="pokemonContainer" class="pokemonContainer">
                     <div id="pokemonSpriteContainer" class="pokemonSpriteContainer">
-                    
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/363.png" id="pokemon_picture" title="363"
+                            style="height: 320; width: 320;" alt="Spheal"
+                        >
                     </div>
                     <div class="pokemonStatsContainer">
                         <div class="statsGraphic">
-                            <div class="HP">
-                                <div></div>
+                            <div id="stats" class="HP">
+                                <div id="hp" class="hpchild"></div>
                             </div>
                             <div id="stats" class="Atk">
-                                <div class="atkchild"></div>
+                                <div id="attack" class="atkchild"></div>
                             </div>
                             <div id="stats" class="Def">
-                                <div class="defchild"></div>
+                                <div id="defense" class="defchild"></div>
                             </div>
                             <div id="stats" class="SpecAtk">
-                                <div class="SAchild"></div>
+                                <div id="special-attack" class="SAchild"></div>
                             </div>
                             <div id="stats" class="SpecDef">
-                                <div class="SDchild"></div>
+                                <div id="special-defense" class="SDchild"></div>
                             </div>
                             <div id="stats" class="Speed">
-                                <div class="speedChild"></div>
+                                <div id="speed" class="speedChild"></div>
                             </div>
                         </div>
                         <div class="information">
-                            <div class="type"></div>
-                            <div class="weakness"></div>
+                            <div id="type" class="type"></div>
+                            <div id="weakness" class="weakness"></div>
                         </div>
                     </div>
                 </div>
             </div> 
             <div class="commentContainer">
                 <div class="newComment">
-                    <label for="newComment" name="newComment">Add your comment below-</label>
+                    <label id="username" for="newComment" name="newComment"></label>
                     <textarea id="newComment"></textarea>
                     <button id="addComments">Add Comment</button>
                     <div id="allComments"></div>
