@@ -13,6 +13,10 @@ function lowerCaseName(str) {
     return str.toLowerCase();
 }
 
+
+let pokeId = 0;
+let currentUserId = 1;
+
 function getPokemon(e) {
     const name = document.querySelector("#pokemonName").value;
     const pokemonName = lowerCaseName(name);
@@ -23,7 +27,7 @@ function getPokemon(e) {
             document.querySelector(".pokemonBox").innerHTML = `
             <div class="pokecard"> 
             <h4>ID: ${data.id}</h4>
-            <h4><button type="button" class="btn-add">ADD</button></h4>
+            <h4><button id="pokemonKey" type="button" class="btn-add">ADD</button></h4>
             <img
             src="${data.sprites.other["official-artwork"].front_default}"
             alt="Pokemon name"
@@ -47,6 +51,9 @@ function getPokemon(e) {
                 <p>Special Defense: ${data.stats[4].base_stat}</p>
                 <p>Speed: ${data.stats[5].base_stat}</p>
             </div>`;
+            pokeId = data.id;
+            document.getElementById('pokemonKey').addEventListener('click', function(){postWishlist()})
+
             })
             .catch((error) => {
                 document.querySelector(".pokemonBox").innerHTML = `
@@ -56,6 +63,7 @@ function getPokemon(e) {
         });
 
     e.preventDefault();
+    
 
     const button = document.createElement('button')
     button.innerText = 'testing'
@@ -64,6 +72,26 @@ function getPokemon(e) {
     })
     document.body.appendChild(button)
 }
+
+let wishlist = {
+    id: null,
+    user: {id:0},
+    pokemon: {id:0},
+    created_at: Date.now()
+}
+
+function postWishlist() {
+    let pokelist = wishlist;
+    pokelist.pokemon.id = pokeId;
+    pokelist.user.id = currentUserId;
+
+   const url= "http://localhost:8080/wishlist"
+   fetch(url , {method:"POST", header:{"Content-Type": "application/json"}, body:JSON.stringify(pokelist)} ) 
+}
+
+
+
+
 
 const api_url = "https://pokeapi.co/api/v2/pokemon/";
 
