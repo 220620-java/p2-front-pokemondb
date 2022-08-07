@@ -3,7 +3,7 @@ console.log("Loaded fanartUnqJs.js");
 /*Script Variables*/
 
 let fanartUnqBody = document.getElementById("fanartUnqBody");
-let logImg = document.getElementById("logImg");
+let logImg = document.getElementById("log-img");
 let fanartTitle = document.getElementById("fanartTitle");
 let fanartAuthor = document.getElementById("fanartAuthor");
 let fanartPostDate = document.getElementById("fanartPostDate");
