@@ -1,7 +1,7 @@
 .commentContainer {
     max-width: 640px;
     margin: 30px auto;
-    background: #fff;
+    background: rgb(173, 173, 173);
     border-radius: 8px;
     padding: 20px;
 }
@@ -62,29 +62,40 @@ button.primaryContained:hover {
     display: flex;
     align-items: center;
     flex-direction: auto;
-    border: 3px solid black;
+    border: 2px solid rgb(0, 0, 0);
+    background-color: rgb(173, 173, 173);
+    border-radius: 30px;
 }
 
 .querySection {
     display: flex;
     margin: auto;
-    align-content: space-between;
+    padding: 10px;
     justify-self: center;
     flex-direction: row;
-    width: fit-content;
+    width: 300px;
     height: fit-content;
+    border-color: 3px solid gold;
+    background-color: rgb(169, 169, 169);
+    border-radius: 40px;
+   
 }
 
 .query {
     resize: none;
     border: 2px 0px 2px 0px;
     border-color: #016BA8;
-    background-color: #E8E8E8;
+    background-color: #ffffff;
     font-size: 12pt;
+    margin: 10px;
+    border-radius: 5px;
 }
 
 .search {
+    margin-left: 10px;
     border-radius: 10px;
+    margin-top: 15px;
+    height: 50px;
     border-color: none;
     background-color: #E8E8E8;
 }
@@ -94,6 +105,7 @@ button.primaryContained:hover {
     align-items: center;
     flex-direction: auto;
     border: 3px;
+    background-color: rgb(173, 173, 173);
 }
 
 .pokemonContainer {
@@ -105,22 +117,26 @@ button.primaryContained:hover {
     border: 3px;
     width: fit-content;
     height: fit-content;
+    background-color: rgba(36, 131, 213, 0.537);
+    border-radius: 15px;
 }
 
 .pokemonSpriteContainer {
     margin: 20px;
-    border: 3px;
     width: 320px;
-    height: 200px;
+    height: 340px;
+    background-color: #ffffff;
+    border: 3px solid rgb(0, 0, 0);
+    border-radius: 12px;
 }
 
 .pokeImg {
     display: flex;
     margin: auto;
     justify-self: center;
-    max-width: 320x;
-    max-height: 200px;
-
+    max-width: 320px;
+    max-height: 320px;
+    padding-right: 3px;
 }
 
 .pokemonStatsContainer {
@@ -150,6 +166,23 @@ button.primaryContained:hover {
     height: 100px;
     border-radius: 12px;
     background-color: rgb(255, 255, 255);
+    align-content: center;
+}
+
+.type {
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    border-bottom: 2px solid black;
+    height: 50%;
+}
+
+.vals {
+    background: gold;
+    height: 5px;
+    width: 7px;
+    border: 1px solid black;
+    border-radius: 2px;
 }
 
 #stats {
@@ -161,54 +194,77 @@ button.primaryContained:hover {
     height: 97px;
 }
 
+.hpchild {
+    display: inline;
+    background-color: rgb(81, 207, 13);
+    width: 100%;
+    height: auto;
+    border-radius: 2px;
+    animation: scaleStat 1s ease-in forwards;
+    text-align: center;
+}
+
 .atkchild{
-    display: flex;
+    display: inline;
     background-color: rgb(190, 21, 21);
     width: 100%;
-    height: 20%;
+    height: auto;
+    border-radius: 2px;
     animation: scaleStat 1s ease-in forwards;
+    text-align: center;
 }
 
 .defchild {
-    display: flex;
+    display: inline;
     background-color: rgb(0, 94, 255);
     width: 100%;
-    height: 25%;
+    height: auto;
+    border-radius: 2px;
     animation: scaleStat 1s ease-in forwards;
+    text-align: center;
 }
 
 .SAchild {
-    display: flex;
+    display: inline;
     background-color: rgb(255, 153, 0);
     width: 100%;
-    height: 20%;
+    height: unset;
+    border-radius: 2px;
     animation: scaleStat 1s ease-in forwards;
+    text-align: center;
+    
 }
 
 .SDchild {
-    display: flex;
+    display: inline;
     background-color: rgb(168, 23, 205);
     width: 100%;
-    height: 25%;
+    height: unset;
+    border-radius: 2px;
     animation: scaleStat 1s ease-in forwards;
+    text-align: center;
 }
 
 .speedchild {
-    display: flex;
+    display: inline;
     background-color: rgb(255, 244, 39);
     width: 100%;
-    height: 20%;
+    height: unset;
+    border-radius: 2px;
     animation: scaleStat 1s ease-in forwards;
+    text-align: center;
 }
+
+
 
 @keyframes scaleStat {
     0% {
-        height: 10%;
+        height: 1px;
         background-color: #eee;
     }
 
     100% {
-        height: inherit(height*2);
+        height: inherit(height);
         background-color: inherit(background-color);
     }
 }
