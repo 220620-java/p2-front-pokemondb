@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-let URL = 'http://localhost:8080/pokemon-comment/';
-=======
 console.log("Loaded pokemonPage.js");
 let URL = "http://localhost:8080/pokemon-comment";
->>>>>>> e75a241bbd8ddd3a19588026b8cb67cc3f69c129
 let USER = "http://localhost:8080/user/";
 
 const commentContainer = document.getElementById('allComments');
