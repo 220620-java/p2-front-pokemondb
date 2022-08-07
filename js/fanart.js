@@ -3,7 +3,7 @@ console.log("Loaded fanartUnqJs.js");
 /*Script Variables*/
 
 let fanartBody = document.getElementById("fanartBody");
-let logImg = document.getElementById("logImg");
+let logImg = document.getElementById("log-img");
 let filterSlct = document.getElementById("filterSlct");
 let filterTxtBx = document.getElementById("filterTxtBx");
 let filterDateCal = document.getElementById("filterDateCal");
