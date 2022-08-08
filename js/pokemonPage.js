@@ -1,35 +1,129 @@
 console.log("Loaded pokemonPage.js");
+
+// Change this to the destination domain name
+let destinationDomain = window.location.hostname;
+let destinationPort = ":8080";
+// -----------------------------------------
+
 let URL = "http://localhost:8080/pokemon-comment";
 let USER = "http://localhost:8080/user/";
+
+if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || 
+    window.location.hostname === "") {
+    console.log("It's a local server!");
+    destinationDomain = window.location.hostname;
+}
+else if (window.location.hostname == "pokepost-test.s3-website-us-east-1.amazonaws.com") {
+    destinationDomain = "ec2-44-202-125-216.compute-1.amazonaws.com";
+}
 
 const commentContainer = document.getElementById('allComments');
 document.getElementById('addComments').addEventListener('click', function (ev) {
     addComment(ev)});
 
+console.log("Destination domain: " + destinationDomain);
 document.getElementById('search').addEventListener('click', function (ev) {
-    displayPokemon(ev)
+    displayPokemon(destinationDomain, document.getElementById('query').value);
 });
 
+const urlParams = new URLSearchParams(window.location.search);
+console.log("URLPARAMS: " + urlParams);
+const paramPokemon = urlParams.get('pokemon');
+console.log("Pokemon: " + pokemon);
+
+return;
+if (paramPokemon) {
+    displayPokemon (destinationDomain, paramPokemon);
+}
+
+async function displayPokemon(domain, pokemonNameID) {
+    // Build the URL
+    let pokemonURL = "http://" + domain + destinationPort + "/pokemon/" + pokemonNameID;
+
+    // Send the fetch request
+    let response = await fetch(pokemonURL);
+
+    // Receive the response
+    let pokeString = await response.text();
+    let pokemonJSON = JSON.parse(pokeString);
+
+    console.log(pokemonJSON);
+    const pokemonName = pokemonJSON.name;
+    const pokemonID = pokemonJSON.id;
+    const pokemonHeight = pokemonJSON.heightInFeetInches;
+    const pokemonWeight = pokemonJSON.weightInPoundsString;
+    const pokemonTypes = pokemonJSON.types;
+    const pokemonBaseStats = pokemonJSON.baseStats;
+    const pokemonImageURL = pokemonJSON.imageUrl;
+    const pokemonGeneration = pokemonJSON.generation;
+    const pokemonCategory = pokemonJSON.category;
+    const pokemonDescription = pokemonJSON.description;
+    const pokemonEvolution = pokemonJSON.evolutionChain;
+    const pokemonLocation = pokemonJSON.locationVersions;
+    const pokemonBaseExperience = pokemonJSON.baseExperience;
+    const pokemonAbilities = pokemonJSON.abilities;
+    const pokemonMoves = pokemonJSON.moves;
+
+
+    /*
+    let sprite = document.createElement('img');
+    let types = pokemonData.types;
+    for (let i in types) {
+        let t = document.createElement('div');
+        t.innerHTML += types[i].type.name + " ";
+        t.setAttribute('class', 'val');
+        document.getElementById('type').innerHTML = null;
+        document.getElementById('type').appendChild(t);
+    }
+    sprite.src = pokemonData.sprites.other["official-artwork"].front_default;
+    sprite.setAttribute('class', 'pokeImg');
+    sprite.setAttribute('id', 'pokemon_picture');
+    sprite.setAttribute('title', pokemonData.id.toString());
+    const spriteContainer = document.getElementById("pokemonSpriteContainer");
+    spriteContainer.innerHTML = null;
+    spriteContainer.appendChild(sprite);
+    const stats = pokemonData.stats;
+    for (let i in stats) {
+        console.log(stats[i].base_stat.toString()+'px');
+        document.getElementById(stats[i].stat.name).setAttribute('style', 'height: '+((stats[i].base_stat/150)*100).toString()+'px;');
+        document.getElementById(stats[i].stat.name).innerHTML = stats[i].base_stat;
+    }
+    */
+    getAllPokemonComments();
+}
+
 async function addComment(_ev) {
+    // Text Box
     const textBox = document.createElement('div');
+
+    // Like Button
     const likeButton = document.createElement('button');
     likeButton.innerHTML = 'Like';
     likeButton.className = 'likeComment';
+
+    // Delete Button
     const deleteButton = document.createElement('button');
     deleteButton.innerHTML = 'Delete';
     deleteButton.className = 'deleteComment';
+
+    // Report Button
     const reportButton = document.createElement('button');
     reportButton.innerHTML = 'Report';
     reportButton.className = 'reportComment';
+
+    // Wrapper Div
     const wrapDiv = document.createElement('div');
     wrapDiv.className = 'wrapper';
     wrapDiv.style.marginLeft = 0;
+
+    // Comment Box
     const commentBox = document.createElement('div');
     commentBox.className = 'commentBox';
     commentBox.style.marginLeft = 0;
     let commentText = document.getElementById('newComment').value;
     document.getElementById('newComment').value = '';
     textBox.innerHTML = commentText;
+
     let pokeId = parseInt(document.getElementById('pokemon_picture').getAttribute('title')).valueOf();
     let user_id =  parseInt(sessionStorage.getItem('USER_ID')).valueOf();
     let node = {user_id: user_id, pokemon_id: pokeId, comment_content:commentText, is_flagged: false, likes:0, reports:0};
@@ -43,7 +137,7 @@ async function addComment(_ev) {
     commentContainer.appendChild(commentBox);
 }
 
-async function getAll() {
+async function getAllPokemonComments() {
     let pokeId = parseInt(document.getElementById('pokemon_picture').getAttribute('title')).valueOf();
     let URL_2 = `http://localhost:8080/pokemon-comment/all${pokeId}`;
     commentContainer.innerHTML = null;
@@ -93,7 +187,7 @@ async function storeComment(json) {
         },
        
         body: JSON.stringify(json)
-    }).then(getAll());
+    }).then(getAllPokemonComments());
     const response = request.body;
     console.log(json);
     if (request.ok) {
@@ -155,45 +249,10 @@ async function deleteComment(json, _delete_ev) {
     console.log(json);
     if (request.ok) {
         console.log('GOOD');
-        getAll();
+        getAllPokemonComments();
         
     } else {
         console.log('BAD');
     }
 }
 
-function getPokemonId() {
-    return sessionStorage.getItem("POKEMON_ID");   
-}
-
-async function displayPokemon(ev) {
-    const pokemonName = document.getElementById('query').value;
-    let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
-    let pokeString = await response.text();
-    let pokemonData = JSON.parse(pokeString);
-    let sprite = document.createElement('img');
-    let types = pokemonData.types;
-    for (let i in types) {
-        let t = document.createElement('div');
-        t.innerHTML += types[i].type.name + " ";
-        t.setAttribute('class', 'val');
-        document.getElementById('type').innerHTML = null;
-        document.getElementById('type').appendChild(t);
-    }
-    sprite.src = pokemonData.sprites.other["official-artwork"].front_default;
-    sprite.setAttribute('class', 'pokeImg');
-    sprite.setAttribute('id', 'pokemon_picture');
-    sprite.setAttribute('title', pokemonData.id.toString());
-    const spriteContainer = document.getElementById("pokemonSpriteContainer");
-    spriteContainer.innerHTML = null;
-    spriteContainer.appendChild(sprite);
-    const stats = pokemonData.stats;
-    for (let i in stats) {
-        console.log(stats[i].base_stat.toString()+'px');
-        document.getElementById(stats[i].stat.name).setAttribute('style', 'height: '+((stats[i].base_stat/150)*100).toString()+'px;');
-        document.getElementById(stats[i].stat.name).innerHTML = stats[i].base_stat;
-    }
-    getAll();
-}
-
-getAll();

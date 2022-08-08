@@ -1,12 +1,95 @@
+:root {
+	--blue: #284fce;
+	--soft-blue: rgb(96, 167, 196);
+    --spheal-blue:#7aa8d9;
+    --spheal-blue-semidark:#6d95c0;
+    --spheal-blue-dark:#4472a3;
+	--pikachu-yellow-bright: #fffc3e;
+	--pikachu-yellow: #fff235;
+	--pikachu-yellow-dark: #e0cd22;
+	--white: #ffffff;
+	--white-2: #f7f7f7;
+	--white-blue: #e2ecff;
+}
+
 body {
     font-family: 'Nunito Sans', sans-serif;
 	-webkit-font-smoothing: antialiased;
+    background-image: url("../images/background.jpg");
+}
+
+h1 {
+	font-size:xx-large;
+	text-align: center;
+}
+
+h2 {
+	text-align: center;
+}
+
+h3 {
+	text-align: center;
+}
+
+.grid {
+	display:grid;
+	grid-template-columns: 1fr 5fr 1fr;
+}
+
+aside.aside-left{
+	float: left;
+	font-style: italic;
+}
+
+aside img {
+	max-width:100%;
+	max-height:100%;
+}
+
+aside.aside-right{
+	float: right;
+	font-style: italic;
+}
+
+aside div {
+	padding: 2em;
+	display: block;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+section {
+	color: black;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+}
+
+section div {
+	padding: 2em 3em;
+	display: block;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+section img {
+	display: block;
+	margin-left:auto;
+	margin-right:auto;
+	width: 100%;
+}
+
+.header {
+	display:block;
+	background-color: var(--spheal-blue);
+	width: 100%;
+	height: 10%;
 }
 
 .commentContainer {
     max-width: 640px;
     margin: 30px auto;
-    background: rgb(173, 173, 173);
+    background: var(--blue);
     border-radius: 8px;
     padding: 20px;
 }
@@ -20,73 +103,22 @@ body {
     border-radius: 5px;
 }
 
-.comment {
-    display: block;
-    transition: all 1s;
-}
-.commentClicked {
-    min-height: 0px;
-    border: 1px solid #eee;
-    border-radius: 5px;
-    padding: 5px 10px
-}
-.commentContainer textarea {
-    width: 100%;
-    border: none;
-    background: #E8E8E8;
-    padding: 5px 10px;
-    max-height: fit-content;
-    border-radius: 7px;
-    border-bottom: 2px solid #016BA8;
-    border-left: 3px solid #016BA8;
-    transition: 0.5s;
-    margin-top: 15px;
-    resize: none;
-}
-
-button.primaryContained {
-    background: #016ba8;
-    color: #fff;
-    padding: 10px 10px;
-    border: none;
-    margin-top: 0px;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.25);
-    transition: 1s all;
-    font-size: 10px;
-    border-radius: 5px;
-}
-
-button.primaryContained:hover {
-    background: #d4e91b;
-}
 .queryContainer {
-    margin-top: 10px;
-    display: flex;
-    align-items: center;
-    flex-direction: auto;
-    border: 2px solid rgb(0, 0, 0);
-    background-color: rgb(173, 173, 173);
+    max-width: 600px;
+    display: block;
+    background-color: var(--white-2);
     border-radius: 30px;
+    box-shadow: 5px 10px #00000038;
 }
 
 .querySection {
     display: flex;
-    margin: auto;
-    padding: 10px;
-    justify-self: center;
-    flex-direction: row;
-    width: 300px;
-    height: fit-content;
-    border-color: 3px solid gold;
-    background-color: rgb(169, 169, 169);
-    border-radius: 40px;
-   
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
 }
 
-.query {
+#query {
     resize: none;
     border: 2px 0px 2px 0px;
     border-color: #016BA8;
@@ -96,12 +128,7 @@ button.primaryContained:hover {
     border-radius: 5px;
 }
 
-.search {
-    margin-left: 10px;
-    border-radius: 10px;
-    margin-top: 15px;
-    height: 50px;
-    border-color: none;
+#searchButton {
     background-color: #E8E8E8;
 }
 
@@ -110,7 +137,6 @@ button.primaryContained:hover {
     align-items: center;
     flex-direction: auto;
     border: 3px;
-    background-color: rgb(173, 173, 173);
 }
 
 .pokemonContainer {
@@ -190,6 +216,8 @@ button.primaryContained:hover {
     border-radius: 2px;
 }
 
+/* Stats */
+
 #stats {
     display: flex;
     flex-direction: column;
@@ -260,8 +288,6 @@ button.primaryContained:hover {
     text-align: center;
 }
 
-
-
 @keyframes scaleStat {
     0% {
         height: 1px;
@@ -272,4 +298,49 @@ button.primaryContained:hover {
         height: inherit(height);
         background-color: inherit(background-color);
     }
+}
+
+/* Comments */
+
+.comment {
+    display: block;
+    transition: all 1s;
+}
+.commentClicked {
+    min-height: 0px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 5px 10px
+}
+.commentContainer textarea {
+    width: 100%;
+    border: none;
+    background: #E8E8E8;
+    padding: 5px 10px;
+    max-height: fit-content;
+    border-radius: 7px;
+    border-bottom: 2px solid #016BA8;
+    border-left: 3px solid #016BA8;
+    transition: 0.5s;
+    margin-top: 15px;
+    resize: none;
+}
+
+button.primaryContained {
+    background: #016ba8;
+    color: #fff;
+    padding: 10px 10px;
+    border: none;
+    margin-top: 0px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.25);
+    transition: 1s all;
+    font-size: 10px;
+    border-radius: 5px;
+}
+
+button.primaryContained:hover {
+    background: #d4e91b;
 }
