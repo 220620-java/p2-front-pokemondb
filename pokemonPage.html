@@ -1,5 +1,6 @@
 <html>
     <head>
+        <link href='https://fonts.googleapis.com/css?family=Nunito Sans' rel='stylesheet'>
         <link rel="stylesheet" href="css/navbar.css">
         <link rel="stylesheet" href="css/PokemonPage.css">
         <script src="js/pokemonPage.js" defer></script>
@@ -17,7 +18,7 @@
 				<div id="locations" class="navDiv"><a class="navAnchor" href="location.html"><img class="navImg" src="images/Locations.png" alt="Locations" ></a></div>
 				<div id="fanart" class="navDiv"><a class="navAnchor" href="fanart.html"><img class="navImg" src="images/Fanart.png" alt="Fan Art" ></a></div>
 				<div id="wishlist" class="navDiv"><a class="navAnchor" href="wishlist.html"><img class="navImg" src="images/Wishlist.png" alt="Wishlist" ></a></div>
-				<div id="navUser" class="navDiv" id="logDiv"><a class="navAnchor" id="log-anchor" href="login.html" ><img class="navImg" id="log-img" src="images/log-in.png" alt="Profile"/></a></div>
+				<div id="navUser" class="navDiv"><a class="navAnchor" id="log-anchor"><img class="navImg" id="log-img" src="images/log-in.png" alt="Profile"/></a></div>
 			</div>
 		</div>
     <body>
@@ -25,7 +26,8 @@
         <section class="PageContainer">
             <div class="queryContainer">
                 <div class="querySection">
-                    <textarea id="query" class="query" placeholder="enter a pokemon name/id"></textarea>
+                    <label>Enter a Pokemon name or ID:</label>
+                    <textarea id="query" class="query" placeholder="Pokemon Name or ID"></textarea>
                     <button id="search" class="search">Search</button>
                 </div>
             </div>
