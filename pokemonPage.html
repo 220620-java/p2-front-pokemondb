@@ -24,43 +24,48 @@
         </aside>
         <section>
             <div class="queryContainer">
+                <img id="pokeball" src="images/pokeball.png" alt="pokeball">
                 <div class="querySection">
-                    <label>Enter a Pokemon name or ID:</label>
-                    <textarea id="query" placeholder="Pokemon Name or ID"></textarea>
+                    <input type="text" id="query" placeholder="Enter Pokémon Name or ID"></textarea>
                     <button id="searchButton">Search</button>
                 </div>
             </div>
             <div class="page">
                 <div id="pokemonContainer" class="pokemonContainer">
+                    <div id="pokemon-title-div"><h1 id="pokemon-title">Pokemon</h1></div>
                     <div id="pokemonSpriteContainer" class="pokemonSpriteContainer">
-                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/363.png" id="pokemon_picture" title="363"
-                            style="height: 320; width: 320;" alt="Spheal"
-                        >
+                        <img src="images/pokeball.png" id="pokemon_picture" title="363" alt="Spheal">
                     </div>
                     <div class="pokemonStatsContainer">
-                        <div class="statsGraphic">
-                            <div id="stats" class="HP">
-                                <div id="hp" class="hpchild"></div>
-                            </div>
-                            <div id="stats" class="Atk">
-                                <div id="attack" class="atkchild"></div>
-                            </div>
-                            <div id="stats" class="Def">
-                                <div id="defense" class="defchild"></div>
-                            </div>
-                            <div id="stats" class="SpecAtk">
-                                <div id="special-attack" class="SAchild"></div>
-                            </div>
-                            <div id="stats" class="SpecDef">
-                                <div id="special-defense" class="SDchild"></div>
-                            </div>
-                            <div id="stats" class="Speed">
-                                <div id="speed" class="speedChild"></div>
+                        <h1 id="pokemon-stats-title">Stats</h1>
+                        <div style="padding:0">
+                            <div class="statsGraphic">
+                                <div class="stats" id="hp-stat">
+                                    <h1>HP</h1>
+                                </div>
+                                <div class="stats" id="atk-stat">
+                                    <h1>Attack</h1>
+                                </div>
+                                <div class="stats" id="def-stat">
+                                    <h1>Defense</h1>
+                                </div>
+                                <div class="stats" id="spec-atk-stat">
+                                    <h1>Special Atk.</h1>
+                                </div>
+                                <div class="stats" id="spec-def-stat">
+                                    <h1>Special Def.</h1>
+                                </div>
+                                <div class="stats" id="speed-stat">
+                                    <h1>Speed</h1>
+                                </div>
                             </div>
                         </div>
+
                         <div class="information">
-                            <div id="type" class="type"></div>
-                            <div id="weakness" class="weakness"></div>
+                            <h1>Type</h1>
+                            <div id="type" class="type">Grass Electric</div>
+                            <h1>Weakness</h1>
+                            <div id="weakness" class="weakness">Fire Ground</div>
                         </div>
                     </div>
                 </div>
