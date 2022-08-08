@@ -331,24 +331,151 @@ section img {
 }
 
 .information {
-    display: flex;
-    margin-top: 20px;
-    padding: 20px;
-    height: 200px;
+    display: grid;
     gap: 1vw;
-    align-content: space-evenly;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: auto;
+    text-align: center;
+    justify-items: center;
+    padding: 0px;
+    margin-top: 20px;
     border-radius: 12px;
     background-color: rgb(255, 255, 255);
 }
 
-.type {
-    display: flex;
-    justify-content: space-around;
-    align-content: center;
-    border-bottom: 2px solid black;
-    height: 50%;
+.information > div{
+    padding: 0px;
+    text-align:center;
 }
 
+.information > div > h1 {
+    padding: 0px;
+    font-size: 150%;
+    text-align:center;
+}
+
+.information > div > h2 {
+    padding: 0px;
+    font-size: large;
+}
+
+/* Types */
+
+.type {
+    padding: 0px;
+    border-radius: 20px;
+    width: 100px;
+    box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.25);
+}
+
+#normal {
+    border: 5px solid rgb(231, 231, 231);
+    background-color: whitesmoke;
+}
+
+
+#fire {
+    border: 5px solid red;
+    background-color: darkred;
+    color: rgb(255, 255, 255);
+}
+
+#water {
+    border: 5px solid blue;
+    background-color: darkblue;
+    color: rgb(255, 255, 255);
+}
+
+#grass {
+    border: 5px solid rgb(0, 192, 0);
+    background-color: darkgreen;
+    color: rgb(170, 255, 162);
+}
+
+#electric {
+    border: 5px solid yellow;
+    background-color: gold;
+    color: rgb(0, 0, 0);
+}
+
+
+#ice {
+    border: 5px solid rgb(117, 223, 255);
+    background-color: rgb(68, 196, 255);
+    color: rgb(218, 253, 255);
+}
+
+#fighting {
+    border: 5px solid rgb(117, 70, 17);
+    background-color: rgb(201, 103, 22);
+    color: rgb(255, 251, 42);
+}
+
+#poison {
+    border: 5px solid rgb(155, 36, 125);
+    background-color: rgb(243, 54, 243);
+    color: rgb(255, 255, 255);
+}
+
+#ground {
+    border: 5px solid rgb(168, 101, 23);
+    background-color: rgb(88, 50, 18);
+    color: rgb(216, 216, 216);
+}
+
+#flying {
+    border: 5px solid rgb(164, 193, 255);
+    background-color: rgb(177, 158, 230);
+    color: rgb(255, 255, 255);
+}
+
+#psychic {
+    border: 5px solid rgb(179, 97, 255);
+    background-color: rgb(255, 177, 255);
+    color: rgb(255, 255, 255);
+}
+
+#bug {
+    border: 5px solid rgb(127, 170, 98);
+    background-color: rgb(181, 204, 117);
+    color: rgb(255, 255, 255);
+}
+
+#rock {
+    border: 5px solid rgb(97, 100, 96);
+    background-color: rgb(170, 175, 156);
+    color: rgb(10, 10, 10);
+}
+
+#ghost {
+    border: 5px solid rgb(103, 81, 133);
+    background-color: rgb(130, 116, 201);
+    color: rgb(96, 47, 141);
+}
+
+#dark {
+    border: 5px solid rgb(38, 32, 48);
+    background-color: rgb(95, 83, 83);
+    color: rgb(0, 0, 0);
+}
+
+#dragon {
+    border: 5px solid rgb(76, 53, 180);
+    background-color: rgb(124, 56, 252);
+    color: rgb(255, 255, 255);
+}
+
+#steel {
+    border: 5px solid rgb(193, 212, 255);
+    background-color: rgb(230, 233, 255);
+    color: rgb(92, 92, 92);
+}
+
+#fairy {
+    border: 5px solid rgb(219, 183, 255);
+    background-color: rgb(255, 207, 255);
+    color: rgb(240, 112, 172);
+}
 
 /* Comments */
 
