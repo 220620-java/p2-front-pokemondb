@@ -15,7 +15,9 @@ let pgLftBtn = document.getElementById("pgLftBtn");
 let pgTitleLbl = document.getElementById('pgTitleLbl');
 let pgRgtBtn = document.getElementById("pgRgtBtn");
 let storedFanart = new List();
-let loggedIn = false;
+let loggedIn = sessionStorage.getItem("USER_ID");
+let logInImage = "images/log-in.png";
+let logOutImage = "images/Log-Out.png";
 let currentUserId = getUserId();
 let lastPage;
 let currentPage;
@@ -99,15 +101,16 @@ logImg.onclick = function () { logStateChange(); }
 function getUserId() {
 	console.log("getUserId called");
 	let userId = null;
-	if (sessionStorage.getItem("USER_ID") == null) {
-		loggedIn = false;
-		logImg.src = "images/log-in.png";
-	} else {
+	if (loggedIn) {
 		loggedIn = true;
-		logImg.src = "images/Log-Out.png";
+		logImg.src = logOutImage;
 		console.log("USER_ID = " + sessionStorage.getItem("USER_ID"));
 		userId = parseInt(sessionStorage.getItem("USER_ID"));
 		console.log("currentUserId: " + userId);
+		createUsernameLabel(sessionStorage.getItem("USERNAME"));
+	} else {
+		loggedIn = false;
+		logImg.src = logInImage;
 	}
 	return userId;
 }
@@ -122,6 +125,27 @@ function logStateChange() {
 		currentUserId = null;
 	} else { //User is not logged in. Will link them to login.html
 		window.location.href = "login.html";
+	}
+}
+
+function createUsernameLabel(username) {
+	if (loggedIn) {
+		console.log("Creating username label!");
+		// Grab target div
+		const targetDiv = document.getElementsByClassName("navContainer")[0];
+		const userDiv = document.createElement("div");
+		userDiv.id = "userDiv";
+
+		const usernameLabel = username;
+		const titleLine = document.createElement("p");
+		const titleText = document.createTextNode("Logged in as " + usernameLabel);
+		const profileLink = document.createElement("a");
+		profileLink.href = "profile.html";
+		profileLink.id = "userDivAnchor";
+		titleLine.appendChild(titleText);
+		userDiv.appendChild(titleLine);
+		profileLink.appendChild(userDiv);
+		targetDiv.after(profileLink);
 	}
 }
 
