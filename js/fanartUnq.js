@@ -3,7 +3,7 @@ console.log("Loaded fanartUnqJs.js");
 /*Script Variables*/
 
 let fanartUnqBody = document.getElementById("fanartUnqBody");
-let logImg = document.getElementById("logImg");
+let logImg = document.getElementById("log-img");
 let fanartTitle = document.getElementById("fanartTitle");
 let fanartAuthor = document.getElementById("fanartAuthor");
 let fanartPostDate = document.getElementById("fanartPostDate");
@@ -20,7 +20,9 @@ let rateCommChks = document.getElementsByClassName('commentLike');
 let rateCommImgs = document.getElementsByClassName('commentLikeImg');
 let reportCommChks = document.getElementsByClassName('commentReport');
 let reportCommImgs = document.getElementsByClassName('commentReportImg');
-let loggedIn = false;
+let loggedIn = sessionStorage.getItem("USER_ID");
+let logInImage = "images/log-in.png";
+let logOutImage = "images/Log-Out.png";
 let currentArtId = getArtId();
 let currentUserId = getUserId();
 let idLowerLimit, idUpperLimit;
@@ -119,15 +121,16 @@ function getArtId() {
 function getUserId() {
     console.log("getUserId called");
     let userId = null;
-    if (sessionStorage.getItem("USER_ID") == null) {
-        loggedIn = false;
-        logImg.src = "images/log-in.png";
-    } else {
+    if (loggedIn) {
         loggedIn = true;
-        logImg.src = "images/Log-Out.png";
+        logImg.src = logOutImage;
         console.log("USER_ID = " + sessionStorage.getItem("USER_ID"));
         userId = parseInt(sessionStorage.getItem("USER_ID"));
         console.log("currentUserId: " + userId);
+        createUsernameLabel(sessionStorage.getItem("USERNAME"));
+    } else {
+        loggedIn = false;
+        logImg.src = logInImage;
     }
     return userId;
 }
@@ -152,6 +155,8 @@ function logStateChange() {
         rateImg.src = "images/heartEmpty.png";
         flagChk.checked = false;
         flagImg.src = "images/flagLow.png";
+        const htmlBody = document.getElementsByTagName("body")[0];
+        htmlBody.removeChild(document.getElementById("userDivAnchor"));
 
         //Comment Ratings
         //Checkboxes
@@ -180,6 +185,27 @@ function logStateChange() {
         console.log("User logged out");
     } else { //User is not logged in. Will link them to login.html
         window.location.href = "login.html";
+    }
+}
+
+function createUsernameLabel(username) {
+    if (loggedIn) {
+        console.log("Creating username label!");
+        // Grab target div
+        const targetDiv = document.getElementsByClassName("navContainer")[0];
+        const userDiv = document.createElement("div");
+        userDiv.id = "userDiv";
+
+        const usernameLabel = username;
+        const titleLine = document.createElement("p");
+        const titleText = document.createTextNode("Logged in as " + usernameLabel);
+        const profileLink = document.createElement("a");
+        profileLink.href = "profile.html";
+        profileLink.id = "userDivAnchor";
+        titleLine.appendChild(titleText);
+        userDiv.appendChild(titleLine);
+        profileLink.appendChild(userDiv);
+        targetDiv.after(profileLink);
     }
 }
 

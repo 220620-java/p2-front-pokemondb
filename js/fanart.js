@@ -3,7 +3,7 @@ console.log("Loaded fanartUnqJs.js");
 /*Script Variables*/
 
 let fanartBody = document.getElementById("fanartBody");
-let logImg = document.getElementById("logImg");
+let logImg = document.getElementById("log-img");
 let filterSlct = document.getElementById("filterSlct");
 let filterTxtBx = document.getElementById("filterTxtBx");
 let filterDateCal = document.getElementById("filterDateCal");
@@ -15,10 +15,16 @@ let pgLftBtn = document.getElementById("pgLftBtn");
 let pgTitleLbl = document.getElementById('pgTitleLbl');
 let pgRgtBtn = document.getElementById("pgRgtBtn");
 let storedFanart = new List();
-let loggedIn = false;
+let loggedIn = sessionStorage.getItem("USER_ID");
+let logInImage = "images/log-in.png";
+let logOutImage = "images/Log-Out.png";
 let currentUserId = getUserId();
 let lastPage;
 let currentPage;
+
+// Change this to the destination domain name
+let destinationDomain = window.location.hostname;
+let destinationPort = ":8080";
 
 /*Objects*/
 
@@ -99,15 +105,16 @@ logImg.onclick = function () { logStateChange(); }
 function getUserId() {
 	console.log("getUserId called");
 	let userId = null;
-	if (sessionStorage.getItem("USER_ID") == null) {
-		loggedIn = false;
-		logImg.src = "images/log-in.png";
-	} else {
+	if (loggedIn) {
 		loggedIn = true;
-		logImg.src = "images/Log-Out.png";
+		logImg.src = logOutImage;
 		console.log("USER_ID = " + sessionStorage.getItem("USER_ID"));
 		userId = parseInt(sessionStorage.getItem("USER_ID"));
 		console.log("currentUserId: " + userId);
+		createUsernameLabel(sessionStorage.getItem("USERNAME"));
+	} else {
+		loggedIn = false;
+		logImg.src = logInImage;
 	}
 	return userId;
 }
@@ -120,8 +127,31 @@ function logStateChange() {
 		logImg.src = "images/log-in.png";
 		loggedIn = false;
 		currentUserId = null;
+		const htmlBody = document.getElementsByTagName("body")[0];
+		htmlBody.removeChild(document.getElementById("userDivAnchor"));
 	} else { //User is not logged in. Will link them to login.html
 		window.location.href = "login.html";
+	}
+}
+
+function createUsernameLabel(username) {
+	if (loggedIn) {
+		console.log("Creating username label!");
+		// Grab target div
+		const targetDiv = document.getElementsByClassName("navContainer")[0];
+		const userDiv = document.createElement("div");
+		userDiv.id = "userDiv";
+
+		const usernameLabel = username;
+		const titleLine = document.createElement("p");
+		const titleText = document.createTextNode("Logged in as " + usernameLabel);
+		const profileLink = document.createElement("a");
+		profileLink.href = "profile.html";
+		profileLink.id = "userDivAnchor";
+		titleLine.appendChild(titleText);
+		userDiv.appendChild(titleLine);
+		profileLink.appendChild(userDiv);
+		targetDiv.after(profileLink);
 	}
 }
 
@@ -134,7 +164,7 @@ function getAllFanart() {
 	//Setup request
 	getArtRequest = new XMLHttpRequest();
 
-	getArtURL = "http:/localhost:8080/fanart/";
+	getArtURL = "http://" + destinationDomain + destinationPort + "/fanart/";
 
 	getArtRequest.open("GET", getArtURL, false);
 
@@ -182,7 +212,7 @@ function getFilteredFanart() {
 	//Setup request
 	getFilteredArtRequest = new XMLHttpRequest();
 
-	getFilteredArtURL = "http:/localhost:8080/fanart/filters?" + filterParams;
+	getFilteredArtURL = "http://" + destinationDomain + destinationPort + "/fanart/filters?" + filterParams;
 
 	getFilteredArtRequest.open("GET", getFilteredArtURL, false);
 
