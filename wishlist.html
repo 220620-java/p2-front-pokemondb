@@ -10,52 +10,45 @@
     <script src="js/wishlist.js" defer></script>
 </head>
 
-<body>
+<body id="wishlistBody">
     <div class="navContainer">
         <div id="navBar" class="navBar">
-            <div id="b" class="logo"><a class="navAnchor" href="index.html"><img src="images/PokePost.png" alt="Home" class="logoImg"></a></div>
-            <div id="b" class="pokemon"><a class="navAnchor" href="pokemonPage.html"><img src="images/Pokemon.png" alt="Pokemon" class="navImg"></a></div>
-            <div id="b" class="fanart"><a class="navAnchor" href="fanart.html"><img src="images/Fanart.png" alt="Fan Art" class="navImg"></a></div>
-            <div id="b" class="wishlist"><a class="navAnchor" href="wishlist.html"><img src="images/Wishlist.png" alt="Wishlist" class="navImg"></a></div>
-            <div id="b" class="locations"><a class="navAnchor" href="location.html"><img src="images/Locations.png" alt="Locations" class="navImg"></a></div>
-            <div id="navUser" class="profile"><a class="navAnchor"><img src="images/log-in.png" alt="Profile" id="logImg" /></a></div>
+            <div id="logo" class="navDiv"><a class="navAnchor" href="index.html"><img class="navImg"
+                        src="images/PokePost.png" alt="Home"></a></div>
+            <div id="pokemon" class="navDiv"><a class="navAnchor" href="pokemonPage.html"><img class="navImg"
+                        src="images/Pokemon.png" alt="Pokemon"></a></div>
+            <div id="locations" class="navDiv"><a class="navAnchor" href="location.html"><img class="navImg"
+                        src="images/Locations.png" alt="Locations"></a></div>
+            <div id="fanart" class="navDiv"><a class="navAnchor" href="fanart.html"><img class="navImg"
+                        src="images/Fanart.png" alt="Fan Art"></a></div>
+            <div id="wishlist" class="navDiv"><a class="navAnchor" href="wishlist.html"><img class="navImg"
+                        src="images/Wishlist.png" alt="Wishlist"></a></div>
+            <div id="navUser" class="navDiv" id="logDiv"><a class="navAnchor" id="log-anchor" href="login.html"><img
+                        class="navImg" id="log-img" src="images/log-in.png" alt="Profile" /></a></div>
         </div>
     </div>
     <div class="h1Style">
-    <h1 style="color: yellow">Gotta Catch Em All!</h1>
+        <h1 style="color: yellow">Gotta Catch Em All!</h1>
     </div>
     <div>
-    <h2 style="color: rgb(243, 243, 12)">username's P<img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8d4WK3GscD4UKRHN63RWpGjhP0P-qVwW6iw&usqp=CAU"
-            height="30" width="30" class="pB">kem<img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8d4WK3GscD4UKRHN63RWpGjhP0P-qVwW6iw&usqp=CAU"
-            height="30" width="30" class="pB">n Wish Lists</h2>
+        <h2 style="color: rgb(243, 243, 12)">username's P<img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8d4WK3GscD4UKRHN63RWpGjhP0P-qVwW6iw&usqp=CAU"
+                height="30" width="30" class="pB">kem<img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8d4WK3GscD4UKRHN63RWpGjhP0P-qVwW6iw&usqp=CAU"
+                height="30" width="30" class="pB">n Wish Lists</h2>
     </div>
 
     <main>
         <div class="searchBox">
             <input id="pokemonName" type="text" placeholder="Enter Pokemon Name or ID">
             <button id="search"><img
-                src="https://emojis.slackmojis.com/emojis/images/1643514151/1126/poke_pika.png?1643514151" height="30" width="30"></button> <!-- windows + . for emoji-->
+                    src="https://emojis.slackmojis.com/emojis/images/1643514151/1126/poke_pika.png?1643514151"
+                    height="30" width="30"></button> <!-- windows + . for emoji-->
         </div>
         <div class="pokemonBox"></div>
     </main>
     <br>
-    <div class="displayWishlist">
-        <table class="pokemonTable">
-            <tr>
-                <td id="wishlist_id">Id</td>
-            </tr>
-            <tr>
-                <td class="wishlist_image">
-                    <img class="pokemon_image" id="pokemon_image"
-                        src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/005.png">
-                </td>
-            </tr>
-            <tr>
-                <td id="wishlist_name">name</td>
-            </tr>    
-        </table>
+    <div id="displayWishlist">
     </div>
 
 </body>
