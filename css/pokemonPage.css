@@ -114,15 +114,7 @@ section img {
 	height: 10%;
 }
 
-.commentContainer {
-    display: none;
-    max-width: 640px;
-    margin: 20px auto;
-    background: var(--blue);
-    border-radius: 8px;
-    padding: 40px;
-    box-shadow: 10px 10px #00000038;
-}
+
 
 .queryContainer {
     max-width: 600px;
@@ -496,6 +488,17 @@ section img {
     border-radius: 5px;
     padding: 5px 10px
 }
+
+.commentContainer {
+    display: none;
+    max-width: 640px;
+    margin: 20px auto;
+    background: var(--blue);
+    border-radius: 8px;
+    padding: 40px;
+    box-shadow: 10px 10px #00000038;
+}
+
 .commentContainer textarea {
     width: 100%;
     border: none;

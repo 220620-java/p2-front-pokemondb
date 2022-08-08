@@ -220,9 +220,8 @@ async function addComment(_ev) {
     document.getElementById('newComment').value = '';
     textBox.innerHTML = commentText;
 
-    let pokeId = parseInt(document.getElementById('pokemon_picture').getAttribute('title')).valueOf();
     let user_id =  parseInt(sessionStorage.getItem('USER_ID')).valueOf();
-    let node = {user_id: user_id, pokemon_id: pokeId, comment_content:commentText, is_flagged: false, likes:0, reports:0};
+    let node = {user_id: user_id, pokemon_id: currentPokemonId, comment_content:commentText, is_flagged: false, likes:0, reports:0};
     let resp = await storeComment(node);
     likeButton.addEventListener('click', _like_ev => likeComment(node, _like_ev) && likeButton.removeEventListener);
     deleteButton.addEventListener('click', _delete_ev => deleteComment(node, _delete_ev));
@@ -270,6 +269,7 @@ async function getAllPokemonComments() {
         const commentBox = document.createElement('div');
         commentBox.className = 'commentBox';
         commentBox.style.marginLeft = 0;
+        commentBox.style.marginTop = "10px";
         const textBox = document.createElement('div');
         textBox.innerHTML = commentText;
         wrapDiv.append(textBox);
@@ -291,9 +291,8 @@ async function getAllPokemonComments() {
             commentBox.append(likeButton, deleteButton, reportButton);
         }
         commentContainerId.appendChild(commentBox);
-        createAddComment ();
     }
-
+    createAddComment ();
 }
 
 async function storeComment(json) {
