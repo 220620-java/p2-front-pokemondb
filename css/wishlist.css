@@ -61,7 +61,7 @@ img.pB {
 }
 
 .pokemonBox img {
-    width: 200px;
+    width: 300px;
 }
 
 .pokemonBox p {
@@ -80,4 +80,27 @@ main {
 
 h3 {
     text-align: center;
+}
+
+#search:hover {
+    transform: scale(1.1);
+}
+
+.pokecard {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 14px !important;
+    border: 9px solid  #f3cb5e;
+    background-color: #5799e1;
+}
+
+table {
+    display:flex;
+    text-align: center;
+    border-style: dotted;
+}
+
+.h1Style {
+    margin-top: 10%;
 }

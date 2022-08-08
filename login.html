@@ -62,7 +62,7 @@
 
         function onSuccessfulLogin(response, jwt) {
             response = JSON.parse(response);
-            alert("LOGIN SUCCESSFUL");
+            // alert("LOGIN SUCCESSFUL");
             sessionStorage.setItem("USER_ID", response.userId);
             sessionStorage.setItem("USERNAME", response.username);
             sessionStorage.setItem("JWT", jwt);

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>PokePost User Details</title>
+    <link rel="icon" href="images/pokeball.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/profile.css" type="text/css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <script src="js/loginState.js" defer></script>
+    <script src="js/profile.js" defer></script>
+</head>
+<body id="profileBody">
+    <div class="navContainer">
+        <div id="navBar" class="navBar">
+            <div id="logo" class="navDiv"><a class="navAnchor" href="index.html"><img class="navImg" src="images/PokePost.png" alt="Home"></a></div>
+            <div id="pokemon" class="navDiv"><a class="navAnchor" href="pokemonPage.html"><img class="navImg" src="images/Pokemon.png" alt="Pokemon"></a></div>
+            <div id="locations" class="navDiv"><a class="navAnchor" href="location.html"><img class="navImg" src="images/Locations.png" alt="Locations"></a></div>
+            <div id="fanart" class="navDiv"><a class="navAnchor" href="fanart.html"><img class="navImg" src="images/Fanart.png" alt="Fan Art"></a></div>
+            <div id="wishlist" class="navDiv"><a class="navAnchor" href="wishlist.html"><img class="navImg" src="images/Wishlist.png" alt="Wishlist"></a></div>
+            <div id="navUser" class="navDiv"><a class="navAnchor" id="log-anchor"><img class="navImg" id="log-img" src="images/log-in.png" alt="Profile" /></a></div>
+        </div>
+    </div>
+    <div id="detailsHeader">
+        <img id="headerImg" src="images/User-Details.png" height="50" width="250">
+    </div>
+    <div id="userDetails">
+        <div id="username">
+            <div id="currentUN">
+                <label id="currentUNLbl">Username: Anonymous</label>
+                <button id="changeUNBtn" type="button">Change</button>
+            </div>
+            <div id="updateUN" hidden>
+                <label id="updateUNLbl">New Username:</label>
+                <input id="updateUNTxt" type="text">
+                <button id="updateUNBtn" type="button">Update</button>
+            </div>
+            <div id="currentEM">
+                <label id="currentEMLbl">Email: anon@gmail.com</label>
+                <button id="changeEMBtn" type="button">Change</button>
+            </div>
+            <div id="updateEM" hidden>
+                <label id="updateEMLbl">New Email:</label>
+                <input id="updateEMTxt" type="text">
+                <button id="updateEMBtn" type="button">Update</button>
+            </div>
+            <div id="currentPW">
+                <button id="changePWBtn" type="button">Change Password</button>
+            </div>
+            <div id="updatePW" hidden>
+                <div id="newPW">
+                    <label id="newPWLbl">New Password:</label>
+                    <input id="newPWTxt" type="password">
+                </div>
+                <div id="confirmPW">
+                    <label id="confirmPWLbl">Confirm Password:</label>
+                    <input id="confirmPWTxt" type="password">
+                    <button id="updatePWBtn" type="button">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

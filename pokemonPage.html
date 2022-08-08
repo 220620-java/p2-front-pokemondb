@@ -1,75 +1,115 @@
 <html>
     <head>
+        <link href='https://fonts.googleapis.com/css?family=Nunito Sans' rel='stylesheet'>
         <link rel="stylesheet" href="css/navbar.css">
-        <link rel="stylesheet" href="p2-testTemplates\PokemonPage\PokemonPage.css">
-        <script src="ComComp\pokemonPage.js" defer></script>
+        <link rel="stylesheet" href="css/pokemonPage.css">
+        <script src="js/pokemonPage.js" defer></script>
+        <script src="js/loginState.js" defer></script>
     </head>
 	<body>
-        <div style="height:7vh;" class="header">
-
-		</div>
 		<!-- Nav bar -->
 		<div class="navContainer">
 			<div id="navBar" class="navBar">
-				<div id="logo" class="navDiv"><a class="navAnchor" href="index.html"><img src="images/PokePost.png" alt="Home" id="logoImg"></a></div>
-				<div id="pokemon" class="navDiv"><a class="navAnchor" href="pokemonPage.html"><img src="images/Pokemon.png" alt="Pokemon" class="navImg"></a></div>
-				<div id="locations" class="navDiv"><a class="navAnchor" href="location.html"><img src="images/Locations.png" alt="Locations" class="navImg"></a></div>
-				<div id="fanart" class="navDiv"><a class="navAnchor" href="fanart.html"><img src="images/Fanart.png" alt="Fan Art" class="navImg"></a></div>
-				<div id="wishlist" class="navDiv"><a class="navAnchor" href="wishlist.html"><img src="images/Wishlist.png" alt="Wishlist" class="navImg"></a></div>
-				<div id="navUser" class="navDiv"><a class="navAnchor" href="login.html"><img src="images/log-in.png" alt="Profile" id="logImg" class="navImg" /></a></div>
+				<div id="logo" class="navDiv"><a class="navAnchor" href="index.html"><img class="navImg" src="images/PokePost.png" alt="Home" ></a></div>
+				<div id="pokemon" class="navDiv"><a class="navAnchor" href="pokemonPage.html"><img class="navImg" src="images/Pokemon.png" alt="Pokemon" ></a></div>
+				<div id="locations" class="navDiv"><a class="navAnchor" href="location.html"><img class="navImg" src="images/Locations.png" alt="Locations" ></a></div>
+				<div id="fanart" class="navDiv"><a class="navAnchor" href="fanart.html"><img class="navImg" src="images/Fanart.png" alt="Fan Art" ></a></div>
+				<div id="wishlist" class="navDiv"><a class="navAnchor" href="wishlist.html"><img class="navImg" src="images/Wishlist.png" alt="Wishlist" ></a></div>
+				<div id="navUser" class="navDiv"><a class="navAnchor" id="log-anchor"><img class="navImg" id="log-img" src="images/log-in.png" alt="Profile"/></a></div>
 			</div>
 		</div>
+        <div class="header"></div>
+        <aside class="aside-left">
 
-        <section class="PageContainer">
+        </aside>
+        <section>
             <div class="queryContainer">
+                <img id="pokeball" src="images/pokeball.png" alt="pokeball">
                 <div class="querySection">
-                    <textarea id="query" class="query" placeholder="enter a pokemon name/id"></textarea>
-                    <button id="search" class="search">Search</button>
+                    <input type="text" id="query" placeholder="Enter Pokémon Name or ID"></textarea>
+                    <button id="searchButton">Search</button>
                 </div>
             </div>
             <div class="page">
                 <div id="pokemonContainer" class="pokemonContainer">
+                    <div id="pokemon-title-div"><h1 id="pokemon-title" style="font-size:64px;margin-bottom:0px">Pokemon</h1></div>
                     <div id="pokemonSpriteContainer" class="pokemonSpriteContainer">
-                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/363.png" id="pokemon_picture" title="363"
-                            style="height: 320; width: 320;" alt="Spheal"
-                        >
+                        <img src="images/pokeball.png" id="pokemon_picture" title="363" alt="Spheal">
                     </div>
-                    <div class="pokemonStatsContainer">
-                        <div class="statsGraphic">
-                            <div id="stats" class="HP" title="hp">
-                                <div id="hp" class="hpchild"></div>
-                            </div>
-                            <div id="stats" class="Atk" title="attack">
-                                <div id="attack" class="atkchild"></div>
-                            </div>
-                            <div id="stats" class="Def" title="defense">
-                                <div id="defense" class="defchild"></div>
-                            </div>
-                            <div id="stats" class="SpecAtk" title="special-attack">
-                                <div id="special-attack" class="SAchild"></div>
-                            </div>
-                            <div id="stats" class="SpecDef" title="special-defense">
-                                <div id="special-defense" class="SDchild"></div>
-                            </div>
-                            <div id="stats" class="Speed" title="speed">
-                                <div id="speed" class="speedChild"></div>
+                    <div style="padding-top:5px" class="pokemonStatsContainer" id="pokemonStatsContainerId">
+                        <h1 id="pokemon-stats-title">Stats</h1>
+                        <div style="padding:0">
+                            <div class="statsGraphic">
+                                <div class="stats" id="hp-stat">
+                                    <h1 id="hp-num">HP</h1>
+                                </div>
+                                <div class="stats" id="atk-stat">
+                                    <h1 id="atk-num">Attack</h1>
+                                </div>
+                                <div class="stats" id="def-stat">
+                                    <h1 id="def-num">Defense</h1>
+                                </div>
+                                <div class="stats" id="spa-stat">
+                                    <h1 id="spa-num">Special Atk.</h1>
+                                </div>
+                                <div class="stats" id="spf-stat">
+                                    <h1 id="spf-num">Special Def.</h1>
+                                </div>
+                                <div class="stats" id="spd-stat">
+                                    <h1 id="spd-num">Speed</h1>
+                                </div>
                             </div>
                         </div>
-                        <div class="information">
-                            <div id="type" class="type"></div>
-                            <div id="info" class="weakness"></div>
+
+                        <div class="information" style="justify-content: space-evenly;" id="type-target">
+                            <h1>Type</h1>
+                            <h2 class="type" id="grass">Grass</h2>
+                            <h2 class="type" id="electric">Electric</h2>
+                            <!-- <div>
+                                <h1>Weakness</h1>
+                            </div>
+                            <div id="weakness-target" title="attack">
+                                <h2 class="type" id="fire">Fire</h2><h2 class="type" id="water">Water</h2>
+                            </div> -->
+                        </div>
+                        <div class="information" style="gap:0px;grid-template-columns: auto auto;" title="defense">
+                            <h1 id="gen-target" style="padding:15px 50px;font-size:xx-large">Generation 1</h2>
+                            <h1 id="cat-target" style="font-size:xx-large;padding:15px 0px 15px 30px;">Category: Seed Pokemon</h1>
+                        </div>
+                        <div class="information" style="gap:0px;grid-template-columns: auto auto;" title="special-attack">
+                                <h1 id="height-target" style="font-size:xx-large;padding:15px;">Height: 6'2"</h1>
+                                <h1 id="weight-target" style="font-size:xx-large;padding:15px;">Weight: 190lb</h2>
+                        </div>
+                        <div class="information" style="grid-template-columns: auto auto;" title="special-defense">
+                            <h1 style="padding:25px;">Description</h1>
+                            <p id="description-target" style="padding:25px;text-align: justify;">Haha funny description about a Pokemon, what else is there to write about? Better make this long to see how this handles long descriptions.</h2>
+                        </div>
+                        <h1>Evolution</h1>
+                        <div class="information" id="evolution-target" style="justify-content: space-evenly;margin:auto">
+                            <div>
+                                <h1>Pokemon 1</h1 title="speed">
+                                <img src="images/pokeball.png">
+                            </div>
+                            <div>
+                                <h1>Pokemon 2</h1>
+                                <img src="images/pokeball.png">
+                            </div>
+                            <div>
+                                <h1>Pokemon 3</h1>
+                                <img src="images/pokeball.png">
+                            </div>
+                            <div>
+                                <h1>Pokemon 4</h1>
+                                <img src="images/pokeball.png">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div> 
-            <div class="commentContainer">
-                <div class="newComment">
-                    <label id="username" for="newComment" name="newComment"></label>
-                    <textarea id="newComment"></textarea>
-                    <button id="addComments">Add Comment</button>
-                    <div id="allComments"></div>
-                </div>
-             </div>
         </section>
-    </body>
+        <div class="commentContainer" id="commentContainerId">
+        </div>
+        <aside class="aside-right">
+
+        </aside>
 </html>
