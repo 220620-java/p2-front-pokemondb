@@ -42,6 +42,7 @@ logImg.onclick = function () { logStateChange(); }
         const htmlBody = document.getElementsByTagName("body")[0];
         htmlBody.removeChild(document.getElementById("userDivAnchor"));
 		logImg.src = "images/log-in.png";
+        window.location.href = "login.html";
 	} else { //User is not logged in. Will link them to login.html
 		window.location.href = "login.html";
 	}
@@ -65,5 +66,6 @@ function createUsernameLabel (username) {
         userDiv.appendChild (titleLine);
         profileLink.appendChild (userDiv);
         targetDiv.after(profileLink);
+        return profileLink;
     }
 }
