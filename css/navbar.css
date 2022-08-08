@@ -79,3 +79,35 @@ a.navAnchor {
 .logo {
 	float: left;
 }
+
+#userDiv {
+	position: fixed;
+	width: auto;
+	height: 25px;
+	top: 7%;
+	right: 0%;
+	padding: 5px 5px 5px 20px;
+	background-color: aliceblue;
+	border-radius: 20px 0px 0px 20px;
+	filter: drop-shadow(0.0rem 0.2rem 0.1rem rgba(0, 0, 0, 0.4));
+	transition: 0.05s ease-in-out;
+}
+
+#userDiv > p {
+	text-align:center;
+	margin: auto;
+}
+
+a#userDivAnchor{
+	color:rgb(0, 0, 0);
+}
+
+a#userDivAnchor:visited{
+	color:rgb(0, 0, 0);
+}
+
+#userDiv:hover {
+	transition: 0.05s ease-in-out;
+	filter: drop-shadow(5px 5px 20px rgba(0, 132, 255, 0.651));
+	transform: scale(1.1);
+}

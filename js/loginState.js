@@ -23,6 +23,7 @@ logImg.onclick = function () { logStateChange(); }
         console.log("USER_ID = " + sessionStorage.getItem("USER_ID"));
         userId = parseInt(sessionStorage.getItem("USER_ID"));
         console.log("currentUserId: " + userId);
+        createUsernameLabel (sessionStorage.getItem("USERNAME"));
     } else {
         loggedIn = false;
         logImg.src = logInImage;
@@ -46,8 +47,23 @@ logImg.onclick = function () { logStateChange(); }
 	}
 }
 
-function createUsernameLabel () {
+function createUsernameLabel (username) {
     if (loggedIn) {
-        
+        console.log("Creating username label!");
+        // Grab target div
+        const targetDiv = document.getElementsByClassName ("navContainer")[0];
+        const userDiv = document.createElement("div");
+        userDiv.id = "userDiv";
+
+        const usernameLabel = username;
+        const titleLine = document.createElement("p");
+        const titleText = document.createTextNode("Logged in as " + usernameLabel);
+        const profileLink = document.createElement("a");
+        profileLink.href="/profile.html";
+        profileLink.id = "userDivAnchor";
+        titleLine.appendChild (titleText);
+        userDiv.appendChild (titleLine);
+        profileLink.appendChild (userDiv);
+        targetDiv.after(profileLink);
     }
 }

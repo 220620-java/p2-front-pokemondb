@@ -13,7 +13,7 @@
 }
 
 body {
-	font-family: 'Nunito Sans';
+	font-family: 'Nunito Sans', sans-serif;
 	-webkit-font-smoothing: antialiased;
     background-image: url("../images/background.jpg");
     background-repeat: no-repeat;
