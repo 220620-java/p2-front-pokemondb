@@ -155,6 +155,8 @@ function logStateChange() {
         rateImg.src = "images/heartEmpty.png";
         flagChk.checked = false;
         flagImg.src = "images/flagLow.png";
+        const htmlBody = document.getElementsByTagName("body")[0];
+        htmlBody.removeChild(document.getElementById("userDivAnchor"));
 
         //Comment Ratings
         //Checkboxes

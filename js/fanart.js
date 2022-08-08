@@ -123,6 +123,8 @@ function logStateChange() {
 		logImg.src = "images/log-in.png";
 		loggedIn = false;
 		currentUserId = null;
+		const htmlBody = document.getElementsByTagName("body")[0];
+		htmlBody.removeChild(document.getElementById("userDivAnchor"));
 	} else { //User is not logged in. Will link them to login.html
 		window.location.href = "login.html";
 	}
