@@ -145,7 +145,10 @@ async function getDisplayList() {
 
     console.log(respond)
 
+    
     if (respond.status === 200) {
+
+        displayList.innerHTML = null;
 
         let data = await respond.json()
         for (let wishlistObj of data) {
@@ -193,10 +196,24 @@ async function getDisplayList() {
             deletePoke.type = "submit";
 
             deletePoke.onclick = function () {
-                deleteWishPokemon("delete" + wishlistObj.id);
+                deleteWishPokemon(currentUserId, wishlistObj.pokemon.id);
             }
         }
     } else {
 
+    }
+}
+
+async function deleteWishPokemon(userid, pokemonid) {
+    
+    let deleteBody = {"pokemonid": pokemonid, "userid": userid};
+    const url = "http://localhost:8080/wishlist/"
+    const request = await fetch(url, { method: "DELETE", headers: { "Content-Type": "application/json" }, body: JSON.stringify(deleteBody)});
+    console.log(deleteBody);
+    if (request.ok) {
+        console.log("Gotta let it go");
+        getDisplayList();
+    } else {
+        console.log('Sorry...')
     }
 }
