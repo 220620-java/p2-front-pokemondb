@@ -7,6 +7,7 @@ let destinationPort = ":8080";
 
 let URL = "http://localhost:8080/pokemon-comment";
 let USER = "http://localhost:8080/user/";
+let commentContainer;
 
 if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || 
     window.location.hostname === "") {
@@ -17,9 +18,7 @@ else if (window.location.hostname == "pokepost-test.s3-website-us-east-1.amazona
     destinationDomain = "ec2-44-202-125-216.compute-1.amazonaws.com";
 }
 
-const commentContainer = document.getElementById('allComments');
-document.getElementById('addComments').addEventListener('click', function (ev) {
-    addComment(ev)});
+
 
 console.log("Destination domain: " + destinationDomain);
 document.getElementById('searchButton').addEventListener('click', function (ev) {
@@ -64,17 +63,23 @@ async function displayPokemon(domain, pokemonNameID) {
     const pokemonAbilities = pokemonJSON.abilities;
     const pokemonMoves = pokemonJSON.moves;
 
+    document.getElementById("pokemonContainer").setAttribute("style", "display: block");
+
     // Title
     const pokemonTitleH1 = document.getElementById("pokemon-title");
     pokemonTitleH1.innerText = "#" + pokemonID + " " + toTitleCase(pokemonName);
-    
+    currentPokemonId = pokemonID;
+
     // Image
+    document.getElementById("pokemonSpriteContainer").setAttribute("style", "display: block");
     const pokemonPicture = document.getElementById("pokemon_picture");
     pokemonPicture.title = pokemonName;
     pokemonPicture.alt = pokemonName;
     pokemonPicture.setAttribute("src", pokemonImageURL);
 
     // HP Stat
+    document.getElementById("pokemon-stats-title").setAttribute("style", "display: block");
+    document.getElementById("pokemonStatsContainerId").setAttribute("style", "display: block");
     const hp = pokemonBaseStats.hp;
     const hpStat = document.getElementById("hp-stat");
     const hpNum = document.getElementById("hp-num");
@@ -180,7 +185,7 @@ async function displayPokemon(domain, pokemonNameID) {
         evolutionTarget.appendChild(eDiv);
         count++;
     }
-
+    getAllPokemonComments();
 }   
 
 async function addComment(_ev) {
@@ -229,45 +234,66 @@ async function addComment(_ev) {
 }
 
 async function getAllPokemonComments() {
-    let pokeId = parseInt(document.getElementById('pokemon_picture').getAttribute('title')).valueOf();
-    let URL_2 = `http://localhost:8080/pokemon-comment/all${pokeId}`;
-    commentContainer.innerHTML = null;
+    const commentContainerId = document.getElementById("commentContainerId");
+    commentContainerId.setAttribute("style", "display: block");
+    // let pokeId = parseInt(document.getElementById('pokemon_picture').getAttribute('title')).valueOf();
+    
+    // let URL_2 = `http://localhost:8080/pokemon-comment/all${pokeId}`;
+    let URL_2 = "http://" + destinationDomain + destinationPort + `/pokemon-comment/all${currentPokemonId}`;
+    if (commentContainer != null) {
+        commentContainer.innerHTML = null;
+    }
+    commentContainerId.innerHTML = null;
     const response = await fetch(URL_2);
     const data = await response.text();
     console.log(data);
     const nodes = JSON.parse(data);
     console.log(nodes);
+    
+    // Create section header
+    const sectionHeader = document.createElement ("h1");
+    sectionHeader.innerText = "Comment Section";
+    commentContainerId.appendChild(sectionHeader);
+
     for (let node of nodes) {
         let commentText = node.comment_content;
         const userResponse = await fetch(USER + node.user_id);
         const userData = await userResponse.text();
         let usertransfer = JSON.parse(userData);
         let username = usertransfer.username;
-        const textBox = document.createElement('div');
-        const likeButton = document.createElement('button');
-        likeButton.innerHTML = 'Like';
-        likeButton.className = 'likeComment';
-        const deleteButton = document.createElement('button');
-        deleteButton.innerHTML = 'Delete';
-        deleteButton.className = 'deleteComment';
-        const reportButton = document.createElement('button');
-        reportButton.innerHTML = 'Report';
-        reportButton.className = 'reportComment';
-        reportButton.id = node.id;
-        deleteButton.addEventListener('click', _delete_ev => deleteComment(node));
-        likeButton.addEventListener('click', _like_ev => likeComment(node) && likeButton.removeEventListener);
-        reportButton.addEventListener('click', _report_ev => reportComment(node, _report_ev));
+        
+
+
         const wrapDiv = document.createElement('div');
         wrapDiv.className = 'wrapper';
         wrapDiv.style.marginLeft = 0;
         const commentBox = document.createElement('div');
         commentBox.className = 'commentBox';
         commentBox.style.marginLeft = 0;
+        const textBox = document.createElement('div');
         textBox.innerHTML = commentText;
         wrapDiv.append(textBox);
-        commentBox.append(username, wrapDiv, likeButton, deleteButton, reportButton);
-        commentContainer.appendChild(commentBox);
+        commentBox.append(username, wrapDiv);
+        if (isUserLoggedIn ()) {
+            const likeButton = document.createElement('button');
+            likeButton.innerHTML = 'Like';
+            likeButton.className = 'likeComment';
+            const deleteButton = document.createElement('button');
+            deleteButton.innerHTML = 'Delete';
+            deleteButton.className = 'deleteComment';
+            const reportButton = document.createElement('button');
+            reportButton.innerHTML = 'Report';
+            reportButton.className = 'reportComment';
+            reportButton.id = node.id;
+            deleteButton.addEventListener('click', _delete_ev => deleteComment(node));
+            likeButton.addEventListener('click', _like_ev => likeComment(node) && likeButton.removeEventListener);
+            reportButton.addEventListener('click', _report_ev => reportComment(node, _report_ev));
+            commentBox.append(likeButton, deleteButton, reportButton);
+        }
+        commentContainerId.appendChild(commentBox);
+        createAddComment ();
     }
+
 }
 
 async function storeComment(json) {
@@ -355,4 +381,42 @@ function toTitleCase(str) {
         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
       }
     );
+}
+
+function createAddComment () {
+    if (isUserLoggedIn ()) {
+        const newComment = document.createElement("div");
+        newComment.className = "newComment";
+
+        const commentLabel = document.createElement ("label");
+        commentLabel.id = "username"
+        commentLabel.setAttribute ("for", "newComment");
+        commentLabel.name = "newComment";
+
+        const textArea = document.createElement ("textarea");
+        textArea.id = "newComment";
+
+        const commentButton = document.createElement ("button");
+        commentButton.id = "addComments";
+        commentButton.innerText = "Add Comment";
+        commentButton.setAttribute ("style", "float: right");
+        commentButton.setAttribute ("style", "margin-top: 10px");
+
+        const allCommentsDiv = document.createElement ("div");
+        allCommentsDiv.id = "allComments";
+
+        newComment.appendChild (commentLabel);
+        newComment.appendChild (textArea);
+        newComment.appendChild (commentButton);
+        newComment.appendChild (allCommentsDiv);
+
+        document.getElementById("commentContainerId").appendChild(newComment);
+        commentContainer = document.getElementById('allComments');
+        document.getElementById('addComments').addEventListener('click', function (ev) {
+            addComment(ev)});
+    }
+}
+
+function isUserLoggedIn () {
+    return (sessionStorage.getItem("USERNAME") && sessionStorage.getItem("JWT"));
 }

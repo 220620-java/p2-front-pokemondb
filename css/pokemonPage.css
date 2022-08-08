@@ -115,6 +115,7 @@ section img {
 }
 
 .commentContainer {
+    display: none;
     max-width: 640px;
     margin: 20px auto;
     background: var(--blue);
@@ -191,15 +192,18 @@ section img {
 /* Pokemon Sprite */
 
 .pokemonContainer {
+    display: none;
     margin: auto;
     max-width: 1024px;
     align-content: space-between;
     background-color: rgba(36, 130, 213, 0.767);
     border-radius: 15px;
     box-shadow: 10px 10px #00000038;
+    transition: all .05s ease-in-out;
 }
 
 .pokemonSpriteContainer {
+    display: none;
     width: 360px;
     background-color: #ffffff;
     border-radius: 15px;
@@ -208,10 +212,12 @@ section img {
 /* Stats */
 
 #pokemon-stats-title {
+    display: none;
     padding: 0;
 }
 
 .pokemonStatsContainer {
+    display: none;
     margin-top: 20px;
     border-radius: 12px;
     background-color: rgb(95, 178, 255);
@@ -521,4 +527,13 @@ button.primaryContained {
 
 button.primaryContained:hover {
     background: #d4e91b;
+}
+
+.wrapper {
+    height: auto;
+    width: auto;
+    margin: 5px;
+    background: rgb(243, 243, 243);
+    padding: 5px;
+    border-radius: 5px;
 }
