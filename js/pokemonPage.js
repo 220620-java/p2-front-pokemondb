@@ -18,8 +18,6 @@ else if (window.location.hostname == "pokepost-test.s3-website-us-east-1.amazona
     destinationDomain = "ec2-44-202-125-216.compute-1.amazonaws.com";
 }
 
-
-
 console.log("Destination domain: " + destinationDomain);
 document.getElementById('searchButton').addEventListener('click', function (ev) {
     displayPokemon(destinationDomain, document.getElementById('query').value);
@@ -36,11 +34,14 @@ if (currentPokemonId) {
 }
 
 async function displayPokemon(domain, pokemonNameID) {
+    document.getElementById("pokemonContainer").setAttribute("style", "display: block");
+    const pokemonTitleH1 = document.getElementById("pokemon-title");
     // Build the URL
     let pokemonURL = "http://" + domain + destinationPort + "/pokemon/" + pokemonNameID;
-
+    pokemonTitleH1.innerText = "Fetching... " + toTitleCase(pokemonNameID);
     // Send the fetch request
     let response = await fetch(pokemonURL);
+    
 
     // Receive the response
     let pokeString = await response.text();
@@ -63,10 +64,8 @@ async function displayPokemon(domain, pokemonNameID) {
     const pokemonAbilities = pokemonJSON.abilities;
     const pokemonMoves = pokemonJSON.moves;
 
-    document.getElementById("pokemonContainer").setAttribute("style", "display: block");
 
     // Title
-    const pokemonTitleH1 = document.getElementById("pokemon-title");
     pokemonTitleH1.innerText = "#" + pokemonID + " " + toTitleCase(pokemonName);
     currentPokemonId = pokemonID;
 

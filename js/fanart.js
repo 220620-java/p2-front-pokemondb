@@ -22,6 +22,10 @@ let currentUserId = getUserId();
 let lastPage;
 let currentPage;
 
+// Change this to the destination domain name
+let destinationDomain = window.location.hostname;
+let destinationPort = ":8080";
+
 /*Objects*/
 
 /** Full Disclosure: This is a modified copy of a list model from
@@ -160,7 +164,7 @@ function getAllFanart() {
 	//Setup request
 	getArtRequest = new XMLHttpRequest();
 
-	getArtURL = "http:/localhost:8080/fanart/";
+	getArtURL = "http://" + destinationDomain + destinationPort + "/fanart/";
 
 	getArtRequest.open("GET", getArtURL, false);
 
@@ -208,7 +212,7 @@ function getFilteredFanart() {
 	//Setup request
 	getFilteredArtRequest = new XMLHttpRequest();
 
-	getFilteredArtURL = "http:/localhost:8080/fanart/filters?" + filterParams;
+	getFilteredArtURL = "http://" + destinationDomain + destinationPort + "/fanart/filters?" + filterParams;
 
 	getFilteredArtRequest.open("GET", getFilteredArtURL, false);
 
