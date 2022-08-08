@@ -11,7 +11,7 @@ h1 {
     font-family: Ravie;
     font-size: 55px;
     /* background-image: linear-gradient(to bottom, #7fffd4, #acfae0); */
-    background-image: linear-gradient(to bottom, #9ec9f8, #b9d7f8);
+    background-image: linear-gradient(to bottom, rgba(0, 132, 255, 0.651), #b9d7f8);
 }
 
 h2 {
@@ -108,7 +108,7 @@ table {
 }
 
 .h1Style {
-    margin-top: 10%;
+    margin-top: 6%;
 }
 
 div#displayWishlist {
@@ -131,3 +131,10 @@ divpokemon {
     background-color: #a2b6f7;
 }
 
+pokemonId {
+    background-color: azure;
+}
+
+#pokemonKey {
+    background-color: #f3cb5e;
+}
