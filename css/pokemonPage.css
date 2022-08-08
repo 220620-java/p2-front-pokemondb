@@ -116,10 +116,11 @@ section img {
 
 .commentContainer {
     max-width: 640px;
-    margin: 30px auto;
+    margin: 20px auto;
     background: var(--blue);
     border-radius: 8px;
-    padding: 20px;
+    padding: 40px;
+    box-shadow: 10px 10px #00000038;
 }
 
 .queryContainer {
@@ -281,7 +282,7 @@ section img {
     background-color: rgb(0, 94, 255);
 }
 
-#spec-atk-stat {
+#spa-stat {
     background-image: linear-gradient(to bottom, 
         var(--specatk-orange-dark) 1%, 
         var(--specatk-orange) 50%, 
@@ -290,7 +291,7 @@ section img {
     background-color: rgb(255, 153, 0);
 }
 
-#spec-def-stat {
+#spf-stat {
     background-image: linear-gradient(to bottom, 
         var(--specdef-purple-dark) 1%, 
         var(--specdef-purple) 50%, 
@@ -299,7 +300,7 @@ section img {
     background-color: rgb(168, 23, 205);
 }
 
-#speed-stat {
+#spd-stat {
     background-image: linear-gradient(to bottom, 
         var(--speed-yellow-dark) 1%, 
         var(--speed-yellow) 50%, 

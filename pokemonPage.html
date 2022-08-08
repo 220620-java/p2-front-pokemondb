@@ -36,57 +36,95 @@
                     <div id="pokemonSpriteContainer" class="pokemonSpriteContainer">
                         <img src="images/pokeball.png" id="pokemon_picture" title="363" alt="Spheal">
                     </div>
-                    <div class="pokemonStatsContainer">
+                    <div style="padding-top:5px"class="pokemonStatsContainer">
                         <h1 id="pokemon-stats-title">Stats</h1>
                         <div style="padding:0">
                             <div class="statsGraphic">
                                 <div class="stats" id="hp-stat">
-                                    <h1>HP</h1>
+                                    <h1 id="hp-num">HP</h1>
                                 </div>
                                 <div class="stats" id="atk-stat">
-                                    <h1>Attack</h1>
+                                    <h1 id="atk-num">Attack</h1>
                                 </div>
                                 <div class="stats" id="def-stat">
-                                    <h1>Defense</h1>
+                                    <h1 id="def-num">Defense</h1>
                                 </div>
-                                <div class="stats" id="spec-atk-stat">
-                                    <h1>Special Atk.</h1>
+                                <div class="stats" id="spa-stat">
+                                    <h1 id="spa-num">Special Atk.</h1>
                                 </div>
-                                <div class="stats" id="spec-def-stat">
-                                    <h1>Special Def.</h1>
+                                <div class="stats" id="spf-stat">
+                                    <h1 id="spf-num">Special Def.</h1>
                                 </div>
-                                <div class="stats" id="speed-stat">
-                                    <h1>Speed</h1>
+                                <div class="stats" id="spd-stat">
+                                    <h1 id="spd-num">Speed</h1>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="information">
-                            <div>
-                                <h1>Type</h1>
-                            </div>
-                            <div>
-                                <h2 class="type" id="grass">Grass</h2><h2 class="type" id="electric">Electric</h2>
-                            </div>
-                            <div>
+                        <div class="information" style="justify-content: space-evenly;" id="type-target">
+                            <h1>Type</h1>
+                            <h2 class="type" id="grass">Grass</h2>
+                            <h2 class="type" id="electric">Electric</h2>
+                            <!-- <div>
                                 <h1>Weakness</h1>
                             </div>
-                            <div>
+                            <div id="weakness-target">
                                 <h2 class="type" id="fire">Fire</h2><h2 class="type" id="water">Water</h2>
+                            </div> -->
+                        </div>
+                        <div class="information">
+                            <div>
+                                <h1 style="font-size:x-large;padding:5px;">Generation</h1>
+                            </div>
+                            <div>
+                                <h2 style="padding:5px;font-family:'Times New Roman', Times, serif;font-size:xx-large">I</h2>
+                            </div>
+                            <div>
+                                <h1 style="font-size:x-large;padding:5px;">Category</h1>
+                            </div>
+                            <div>
+                                <h2 style="font-size:x-large;padding:5px;">Seed Pokemon</h2>
                             </div>
                         </div>
                         <div class="information">
                             <div>
-                                <h1>Generation</h1>
+                                <h1 style="font-size:xx-large;padding:15px;">Height</h1>
                             </div>
                             <div>
-                                <h2 style="font-family:'Times New Roman', Times, serif;font-size:xx-large">I</h2>
+                                <h2 style="font-size:xx-large;padding:15px;">6'2"</h2>
                             </div>
                             <div>
-                                <h1 id="">Category</h1>
+                                <h1 style="font-size:xx-large;padding:15px;">Weight</h1>
                             </div>
                             <div>
-                                <h2>Seed Pokemon</h2>
+                                <h2 style="font-size:xx-large;padding:15px;">190lb</h2>
+                            </div>
+                        </div>
+                        <div class="information">
+                            <div>
+                                <h1 style="padding:25px;">Description</h1>
+                            </div>
+                            <div>
+                                <p style="padding:15px;text-align: justify;">Haha funny description about a Pokemon, what else is there to write about? Better make this long to see how this handles long descriptions.</h2>
+                            </div>
+                        </div>
+                        <h1>Evolution</h1>
+                        <div class="information">
+                            <div>
+                                <h1>Pokemon 1</h1>
+                                <img src="images/pokeball.png">
+                            </div>
+                            <div>
+                                <h1>Pokemon 2</h1>
+                                <img src="images/pokeball.png">
+                            </div>
+                            <div>
+                                <h1>Pokemon 3</h1>
+                                <img src="images/pokeball.png">
+                            </div>
+                            <div>
+                                <h1>Pokemon 4</h1>
+                                <img src="images/pokeball.png">
                             </div>
                         </div>
                     </div>
@@ -94,10 +132,11 @@
             </div> 
         </section>
         <div class="commentContainer">
+            <h1>Comment Section</h1>
             <div class="newComment">
                 <label id="username" for="newComment" name="newComment"></label>
                 <textarea id="newComment"></textarea>
-                <button id="addComments">Add Comment</button>
+                <button style="float:right; margin-top:10px" id="addComments">Add Comment</button>
                 <div id="allComments"></div>
             </div>
          </div>

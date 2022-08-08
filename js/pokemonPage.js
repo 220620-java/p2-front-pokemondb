@@ -22,7 +22,7 @@ document.getElementById('addComments').addEventListener('click', function (ev) {
     addComment(ev)});
 
 console.log("Destination domain: " + destinationDomain);
-document.getElementById('search').addEventListener('click', function (ev) {
+document.getElementById('searchButton').addEventListener('click', function (ev) {
     displayPokemon(destinationDomain, document.getElementById('query').value);
 });
 
@@ -30,10 +30,10 @@ const urlParams = new URLSearchParams(window.location.search);
 console.log("URLPARAMS: " + urlParams);
 const paramPokemon = urlParams.get('pokemon');
 console.log("Pokemon: " + pokemon);
+let currentPokemonId = paramPokemon;
 
-return;
-if (paramPokemon) {
-    displayPokemon (destinationDomain, paramPokemon);
+if (currentPokemonId) {
+    displayPokemon (destinationDomain, currentPokemonId);
 }
 
 async function displayPokemon(domain, pokemonNameID) {
@@ -64,32 +64,82 @@ async function displayPokemon(domain, pokemonNameID) {
     const pokemonAbilities = pokemonJSON.abilities;
     const pokemonMoves = pokemonJSON.moves;
 
+    // Title
+    const pokemonTitleH1 = document.getElementById("pokemon-title");
+    pokemonTitleH1.innerText = "#" + pokemonID + " " + toTitleCase(pokemonName);
+    
+    // Image
+    const pokemonPicture = document.getElementById("pokemon_picture");
+    pokemonPicture.title = pokemonName;
+    pokemonPicture.alt = pokemonName;
+    pokemonPicture.setAttribute("src", pokemonImageURL);
 
-    /*
-    let sprite = document.createElement('img');
-    let types = pokemonData.types;
-    for (let i in types) {
-        let t = document.createElement('div');
-        t.innerHTML += types[i].type.name + " ";
-        t.setAttribute('class', 'val');
-        document.getElementById('type').innerHTML = null;
-        document.getElementById('type').appendChild(t);
+    // HP Stat
+    const hp = pokemonBaseStats.hp;
+    const hpStat = document.getElementById("hp-stat");
+    const hpNum = document.getElementById("hp-num");
+    hpNum.innerText = "HP " + hp;
+    hpStat.setAttribute("style", "height: " + (hp+20) + "px");
+
+    // Attack Stat
+    const attack = pokemonBaseStats.attack;
+    const attackStat = document.getElementById("atk-stat");
+    const attackNum = document.getElementById("atk-num");
+    attackNum.innerText = "Attack " + attack;
+    attackStat.setAttribute("style", "height: " + (attack+20) + "px");
+
+    // Defense Stat
+    const defense = pokemonBaseStats.defense;
+    const defenseStat = document.getElementById("def-stat");
+    defenseStat.setAttribute("style", "height:" + (defense+20) + "px");
+    const defenseNum = document.getElementById("def-num");
+    defenseNum.innerText = "Defense " + defense;
+
+    // Special Attack Stat
+    const specialAttack = pokemonBaseStats["special-attack"];
+    const specialAttackStat = document.getElementById("spa-stat");
+    specialAttackStat.setAttribute("style", "height:" + (specialAttack+20) + "px");
+    const specialAttackNum = document.getElementById("spa-num");
+    specialAttackNum.innerText = "Special Atk. " + specialAttack;
+
+    // Special Defense Stat
+    const specialDefense = pokemonBaseStats["special-defense"];
+    const specialDefenseStat = document.getElementById("spf-stat");
+    specialDefenseStat.setAttribute("style", "height:" + (specialDefense+20) + "px");
+    const specialDefenseNum = document.getElementById("spf-num");
+    specialDefenseNum.innerText = "Special Def. " + specialDefense;
+
+    // Speed Stat
+    const speed = pokemonBaseStats.speed;
+    const speedStat = document.getElementById("spd-stat");
+    speedStat.setAttribute("style", "height:" + (speed+20) + "px");
+    const speedNum = document.getElementById("spd-num");
+    speedNum.innerText = "Speed. " + speed;
+
+    // Types
+    const typeDiv = document.getElementById("type-target");
+    typeDiv.innerHTML = "";
+    const typeH1 = document.createElement('h1');
+    typeH1.innerText = "Type";
+    typeDiv.appendChild(typeH1);
+    for (let type of pokemonTypes) {
+        const typeH2 = document.createElement('h2');
+        typeH2.setAttribute('class', 'type');
+        typeH2.setAttribute('id', type);
+        typeH2.innerText = toTitleCase(type);
+        typeDiv.appendChild(typeH2);
     }
-    sprite.src = pokemonData.sprites.other["official-artwork"].front_default;
-    sprite.setAttribute('class', 'pokeImg');
-    sprite.setAttribute('id', 'pokemon_picture');
-    sprite.setAttribute('title', pokemonData.id.toString());
-    const spriteContainer = document.getElementById("pokemonSpriteContainer");
-    spriteContainer.innerHTML = null;
-    spriteContainer.appendChild(sprite);
-    const stats = pokemonData.stats;
-    for (let i in stats) {
-        console.log(stats[i].base_stat.toString()+'px');
-        document.getElementById(stats[i].stat.name).setAttribute('style', 'height: '+((stats[i].base_stat/150)*100).toString()+'px;');
-        document.getElementById(stats[i].stat.name).innerHTML = stats[i].base_stat;
+
+    // Weakness
+    const weakness = document.getElementById("weakness-target");
+    typeDiv.innerHTML = "";
+    for (let type of pokemonTypes) {
+        const typeH2 = document.createElement('h2');
+        typeH2.setAttribute('class', 'type');
+        typeH2.setAttribute('id', type);
+        typeH2.innerText = toTitleCase(type);
+        typeDiv.appendChild(typeH2);
     }
-    */
-    getAllPokemonComments();
 }
 
 async function addComment(_ev) {
@@ -256,3 +306,12 @@ async function deleteComment(json, _delete_ev) {
     }
 }
 
+function toTitleCase(str) {
+    return str.replace(
+      /\w*/g,
+      function(txt) {
+        
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      }
+    );
+}
