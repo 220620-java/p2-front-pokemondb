@@ -58,6 +58,7 @@ img.pB {
     display: flex;
     margin-top: 2rem;
     justify-content: center;
+    grid-gap: 30px;
 }
 
 .pokemonBox img {
@@ -86,6 +87,11 @@ h3 {
     transform: scale(1.1);
 }
 
+divpokemon:hover {
+    /* transform: rotateX(20deg); */
+    transform: scale(1.1);
+}
+
 .pokecard {
     display:flex;
     flex-direction: column;
@@ -104,3 +110,24 @@ table {
 .h1Style {
     margin-top: 10%;
 }
+
+div#displayWishlist {
+    display: grid;
+    grid-gap: 30px;
+    grid-template-columns: repeat(5, 1fr);
+    text-align: center;
+
+}
+
+divpokemon {
+    border: dashed;
+    padding-bottom: 10px;
+    border-radius: 5px;
+}
+
+.deletePoke {
+    height: 20px;
+    width: 80px; 
+    background-color: #a2b6f7;
+}
+

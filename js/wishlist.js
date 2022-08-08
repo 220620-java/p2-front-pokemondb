@@ -34,12 +34,12 @@ function getPokemon(e) {
             document.querySelector(".pokemonBox").innerHTML = `
             <div class="pokecard"> 
             <h4>ID: ${data.id}</h4>
-            <h4><button id="pokemonKey" type="button" class="btn-add">ADD</button></h4>
+            
             <img
             src="${data.sprites.other["official-artwork"].front_default}"
             alt="Pokemon name"
             />
-            <h3>${capitalizeFirstLetter(data.name)}</h3>
+            <h3><button id="pokemonKey" type="button" class="btn-add">${capitalizeFirstLetter(data.name)}</button></h3>
             </div>
             <div class="pokemonInfos">
             <h4>Abilities: </h4>    
@@ -159,7 +159,7 @@ async function getDisplayList() {
             pokeName = null;
             deletePoke = null;
 
-            pokeDiv = document.createElement("div")
+            pokeDiv = document.createElement("divPokemon")
             pokeId = document.createElement("p")
             pokeImg = document.createElement("img")
             pokeName = document.createElement("p")
@@ -183,17 +183,18 @@ async function getDisplayList() {
             if (wishlistObj.id == null) {
                 pokeName.innerHTML = "Anonymous";
             } else {
-                pokeName.innerHTML = wishlistObj.pokemon.name;
+                pokeName.innerHTML = capitalizeFirstLetter(wishlistObj.pokemon.name);
             }
 
             pokeImg.src = wishlistObj.pokemon.imageUrl;
             pokeImg.setAttribute("class", "pokeImg");
-            pokeImg.height = "30";
-            pokeImg.width = "30";
+            pokeImg.height = "150";
+            pokeImg.width = "150";
 
             deletePoke.setAttribute("class", "deletePoke");
             deletePoke.setAttribute("id", "delete" + wishlistObj.id);
             deletePoke.type = "submit";
+            deletePoke.appendChild(document.createTextNode('Release'));
 
             deletePoke.onclick = function () {
                 deleteWishPokemon(currentUserId, wishlistObj.pokemon.id);
@@ -217,3 +218,4 @@ async function deleteWishPokemon(userid, pokemonid) {
         console.log('Sorry...')
     }
 }
+
