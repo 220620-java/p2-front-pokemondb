@@ -130,17 +130,58 @@ async function displayPokemon(domain, pokemonNameID) {
         typeDiv.appendChild(typeH2);
     }
 
-    // Weakness
-    const weakness = document.getElementById("weakness-target");
-    typeDiv.innerHTML = "";
-    for (let type of pokemonTypes) {
-        const typeH2 = document.createElement('h2');
-        typeH2.setAttribute('class', 'type');
-        typeH2.setAttribute('id', type);
-        typeH2.innerText = toTitleCase(type);
-        typeDiv.appendChild(typeH2);
+    // Generation
+    const genHeader = document.getElementById("gen-target");
+    genHeader.innerText = "Generation " + pokemonGeneration;
+
+    // Category
+    const categoryHeader = document.getElementById("cat-target");
+    categoryHeader.innerText = "Category: " + pokemonCategory;
+
+    // Height
+    const heightHeader = document.getElementById("height-target");
+    heightHeader.innerText = "Height: " + pokemonHeight;
+    
+    // Weight
+    const weightHeader = document.getElementById("weight-target");
+    weightHeader.innerText = "Weight: " + pokemonWeight;
+
+    // Description
+    const descriptionTarget = document.getElementById("description-target");
+    descriptionTarget.innerText = pokemonDescription;
+
+    // Evolution
+    const evolutionTarget = document.getElementById("evolution-target");
+    evolutionTarget.innerHTML = "";
+
+    let count = 1;
+    for (let evolution of pokemonEvolution) {
+        let eName = evolution[0];
+
+        // Send the fetch request
+        let eURL = "http://" + domain + destinationPort + "/pokemon/poke/" + eName.toLowerCase();
+        let eResponse = await fetch(eURL);
+
+        // Receive the response
+        let eString = await eResponse.text();
+        let eJSON = JSON.parse(eString);
+        let eId = eJSON.id;
+        let eImage = eJSON.imageUrl;
+
+        const eDiv = document.createElement("div");
+        const eNameHeader = document.createElement("h1");
+        eNameHeader.innerText = "(" + count + ") " + "#" + eId + " " + toTitleCase(eName);
+        
+        const eImg = document.createElement("img");
+        eImg.setAttribute("src", eImage);
+
+        eDiv.appendChild(eNameHeader);
+        eDiv.appendChild(eImg);
+        evolutionTarget.appendChild(eDiv);
+        count++;
     }
-}
+
+}   
 
 async function addComment(_ev) {
     // Text Box
